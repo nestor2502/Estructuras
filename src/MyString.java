@@ -1,8 +1,13 @@
-
+/**
+*@author Nestor Semer Vazquez Cordero
+*@author Isay Balderas Salomon
+*@version 1.0
+*
+*/
 
 public class MyString {
 
-	public String [];
+	public char [];
 
 
 	/** Constructor para generar una cadena vacia */
