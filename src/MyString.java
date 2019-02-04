@@ -2,6 +2,7 @@
 *@author Nestor Semer Vazquez Cordero
 *@author Isay Balderas Salomon
 *@version 1.0
+*Clase que implementa un subconjunto de metodos de la clase String
 *
 */
 
@@ -13,7 +14,7 @@ public class MyString {
 	/** Constructor para generar una cadena vacia */
 
 	 public MyString(){
-	 	String cadena = " "
+	 	caracteres = new char [] {0};
 
 	  } 
 
@@ -21,8 +22,14 @@ public class MyString {
 
 	 public MyString (String cadena){
 
-	 longitud = cadena.length();
-	 caracteres char [] = new char[longitud];
+		 longitud = cadena.length();
+
+		 caracteres = new char [longitud];
+
+		 for(int i = 0 ; i < longitud ; i++){
+
+		 	 caracteres [i] = cadena.charAt(i);
+		 }
      
        
 
@@ -145,5 +152,28 @@ public class MyString {
          return tamaño   ;
 
       }
+
+
+
+
+
+     public static void main (String [] args ){
+
+	  char [] cadena = new char [7];
+	  cadena[0]='d';
+	  cadena[1]='i';
+	  cadena[2]='a';
+	  cadena[3]='n';
+	  cadena[4]='a';
+	  cadena[5]='h';
+	  cadena[6]='8';
+
+	  Mystring obj = new Mystring(cadena); //entra como parametro arreglo de caracteres
+
+	  
+	  int a = obj.length();
+	 
+	  System.out.println(a);
+	}
  
  }
