@@ -7,12 +7,13 @@
 
 public class MyString {
 
-	public char [];
+	public char [] caracteres;
 
 
 	/** Constructor para generar una cadena vacia */
 
 	 public MyString(){
+	 	String cadena = " "
 
 	  } 
 
@@ -20,11 +21,28 @@ public class MyString {
 
 	 public MyString (String cadena){
 
+	 longitud = cadena.length();
+	 caracteres char [] = new char[longitud];
+     
+       
+
 	  }
 
 	/** Constructor a partir de un arreglo de caracteres */
 
-	 public MyString (String []){
+	 public MyString (char [] caracteres){
+
+	 	 int cont =0;
+
+         this.caracteres = new char[caracteres.length+1]; //+1 para que cree un espacio vacío en el arreglo
+
+         for(int i=0 ; i < caracteres.length; i++){
+           
+             this.caracteres[i]= caracteres[i];
+
+             cont++;
+
+             }
 
 	  }
      
@@ -110,15 +128,22 @@ public class MyString {
 
      /**
      *
-     *Metodo que devuelve un string con los miosmos caractyeres que nuestra cadena
+     *Metodo que nos regrese la longitud de nuestra cadena.
      *@param string
      *@return cadena
      *
      */
-     public int length ( String cadena){}
+     public int length (){
+     
+         int tamaño =0;
 
+         for(int i=0;caracteres[i]!= 0 ; i++){
+    
+             tamaño++;   
 
+             }
+         return tamaño   ;
 
-
-
-}
+      }
+ 
+ }
