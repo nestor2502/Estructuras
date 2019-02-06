@@ -60,8 +60,8 @@ public class MyString {
      *@return cadena
      *
      */
-	@Override
-     public String toString(){}
+	 @Override
+     public String toString(){
 for(int i=0;i<this.caracteres.length;i++){
 	String str = "" + this.caracteres[i];
 }
@@ -87,7 +87,18 @@ for(int i=0;i<this.caracteres.length;i++){
      */
      public char charAt( int index) throws IndexOutOfBoundsException{
       
-         try{
+         char caracter = ' ';
+
+         try{  
+
+         	 for (i =0 ; i < caracteres.length; i++){
+
+         	 	 if ( i == index ){
+                     
+                     caracter = caracteres [i];
+
+         	 	} return caracter; 
+         	 }
 
 
              }
@@ -98,7 +109,7 @@ for(int i=0;i<this.caracteres.length;i++){
 
              }
 
-
+         return ' ';
      }
 
      /**
@@ -133,7 +144,21 @@ for(int i=0;i<this.caracteres.length;i++){
      *@return posicion
      *
      */
-     public int indexOF( String cadena){}
+     public int indexOf( char caracter){
+            
+         for(int i =0 ; i < caractres.length; i++){
+
+         	 if( caracteres [i] == caracter ){
+                 
+                 return i;
+
+         	 }
+
+         }
+         	
+         return -1; 
+
+     }
 
      /**
      *
@@ -151,7 +176,26 @@ for(int i=0;i<this.caracteres.length;i++){
      *@return cadena
      *
      */
-     public boolean isEmpty( MyString cadena){}
+     public boolean isEmpty(){
+
+     	int cont = 0;
+
+     	for (int i = 0; i < caracteres.length; i++){
+
+     		 if( caracteres [i] == 0)
+     		 	 cont ++;
+
+     		 }
+
+         if (cont == caracteres.length)
+             return true;
+
+         else
+             return false; 
+
+
+     	}
+     
 
      /**
      *
