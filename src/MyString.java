@@ -60,7 +60,7 @@ public class MyString {
      *@return cadena
      *
      */
-     public String toString( String cadena){}
+     public String toString(){}
 
      /**
      *
@@ -77,9 +77,24 @@ public class MyString {
      *Toma un indice i y nos regresa el caracter en la posicion i de nuestra cadena
      *@param indice
      *@return caracter
+     *@throws IndexOutOfBoundsException
      *
      */
-     public char charAt( String cadena){}
+     public char charAt( int index) throws IndexOutOfBoundsException{
+      
+         try{
+
+
+             }
+         
+         catch( IndexOutOfBoundsException e ){
+
+             System.out.println("El indice no fue encontrado");
+
+             }
+
+
+     }
 
      /**
      *
@@ -104,7 +119,7 @@ public class MyString {
      *@return cadena
      *
      */
-     public String trim( String cadena){}
+     public String trim(){}
 
      /**
      *
