@@ -60,8 +60,13 @@ public class MyString {
      *@return cadena
      *
      */
+	@Override
      public String toString(){}
-
+for(int i=0;i<this.caracteres.length;i++){
+	String str = "" + this.caracteres[i];
+}
+	return str;
+}
      /**
      *
      *Metodo que recibe un indice i y nos regresa un MyString con los caracteres del intervalo [i, longitud-1]
