@@ -56,33 +56,41 @@ public class MyString {
      /**
      *
      *Metodo que devuelve un string con los mismos caractyeres que nuestra cadena
-     *@param string
-     *@return cadena
+     *
+     *@return concat_string
      *
      */
 	 @Override
       public String toString(){
-        String str = "";
-
-          for(int i=0;i<this.caracteres.length;i++){
-
-	     str = "" + this.caracteres[i];
-
-         }
-	      return str;
+        String concat_string="";
+	      for(int i=0;i<caracteres.length;i++){
+		      concat_string += caracteres[i];
+	      }
+	      return concat_string;
 }
      /**
      *
      *Metodo que recibe un indice i y nos regresa un MyString con los caracteres del intervalo [i, longitud-1]
      * de la cadena original
-     *@param indice
-     *@return MyString
+     *@param index
+     *@return concat_string
      *
      */
         
-     public void subString (String cadena){
-
-
+     public String subString (int index){
+String concat_string = "";
+	     if(index<0){
+			return "";
+	     }
+	     elseif(index>caracteres.length){
+		     return "";
+     	     }
+	     else{
+		    for(int i=index;i<caracteres.length;i++){
+			    concat_string += caracteres[i];
+		    }
+		     return concat_string;
+	     }
      }
 
      /**
