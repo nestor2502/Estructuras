@@ -22,7 +22,7 @@ public class MyString {
 
 	 public MyString (String cadena){
 
-		 longitud = cadena.length();
+		 int longitud = cadena.length();
 
 		 caracteres = new char [longitud];
 
@@ -61,11 +61,15 @@ public class MyString {
      *
      */
 	 @Override
-     public String toString(){
-for(int i=0;i<this.caracteres.length;i++){
-	String str = "" + this.caracteres[i];
-}
-	return str;
+      public String toString(){
+        String str = "";
+
+          for(int i=0;i<this.caracteres.length;i++){
+
+	     str = "" + this.caracteres[i];
+
+         }
+	      return str;
 }
      /**
      *
@@ -75,7 +79,11 @@ for(int i=0;i<this.caracteres.length;i++){
      *@return MyString
      *
      */
-     public MyString subString (String cadena){}
+        
+     public void subString (String cadena){
+
+
+     }
 
      /**
      *
@@ -89,9 +97,16 @@ for(int i=0;i<this.caracteres.length;i++){
       
          char caracter = ' ';
 
-         try{  
 
-         	 for (i =0 ; i < caracteres.length; i++){
+        // try{  
+
+         	 for (int i =0 ; i < caracteres.length; i++){
+
+                if (caracteres.length < index){
+
+                throw new IndexOutOfBoundsException();
+
+                }
 
          	 	 if ( i == index ){
                      
@@ -101,13 +116,14 @@ for(int i=0;i<this.caracteres.length;i++){
          	 }
 
 
-             }
+           //  }
          
-         catch( IndexOutOfBoundsException e ){
+         //catch( IndexOutOfBoundsException e ){
 
-             System.out.println("El indice no fue encontrado");
+          //   System.out.println("El indice no fue encontrado");
 
-             }
+          //   }
+             
 
          return ' ';
      }
@@ -126,7 +142,10 @@ for(int i=0;i<this.caracteres.length;i++){
      *@return boolean
      *
      */
-     public boolean endsWith ( String cadena){}
+     public boolean endsWith ( String cadena){
+
+        return true;
+     }
 
      /**
      *
@@ -135,7 +154,11 @@ for(int i=0;i<this.caracteres.length;i++){
      *@return cadena
      *
      */
-     public String trim(){}
+     public String trim(){
+
+        String hola = " ";
+        return hola;
+     }
 
      /**
      *
@@ -146,7 +169,7 @@ for(int i=0;i<this.caracteres.length;i++){
      */
      public int indexOf( char caracter){
             
-         for(int i =0 ; i < caractres.length; i++){
+         for(int i =0 ; i < caracteres.length; i++){
 
          	 if( caracteres [i] == caracter ){
                  
@@ -167,7 +190,10 @@ for(int i=0;i<this.caracteres.length;i++){
      *@return cadena
      *
      */
-     public String concat( String cadena){}
+     public String concat( String cadena){
+        String hola = " ";
+        return hola;
+     }
 
      /**
      *
@@ -231,8 +257,9 @@ for(int i=0;i<this.caracteres.length;i++){
 	  cadena[4]='a';
 	  cadena[5]='h';
 	  cadena[6]='8';
-
-	  Mystring obj = new Mystring(cadena); //entra como parametro arreglo de caracteres
+      
+      //entra como parametro arreglo de caracteres
+	  MyString obj = new MyString(cadena); 
 
 	  
 	  int a = obj.length();
