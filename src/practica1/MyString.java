@@ -1,4 +1,4 @@
-package practica1;
+package src.practica1;
 
 
 /**
@@ -136,7 +136,7 @@ String concat_string = "";
           //   }
              
 
-         return 'h';
+         return ' ';
      }
 
      /**
@@ -153,7 +153,9 @@ String concat_string = "";
      *@return boolean
      *
      */
-     public boolean endsWith ( String cadena){
+     public boolean endsWith ( MyString cadena){
+
+
 
         return true;
      }
@@ -167,8 +169,40 @@ String concat_string = "";
      */
      public String trim(){
 
-        String hola = " ";
-        return hola;
+     int cont1=0;
+     int cont2=0;   
+     int []  car = new int[caracteres.length];
+     char [] nuevo;
+
+     for(int i = 0;i<caracteres.length; i++){
+
+         car[i]=(int)caracteres[i];
+  
+         }
+
+     for(int i =0; car[i] <= 33; i++ ){
+
+         cont1++;
+     }
+
+     for(int i = (car.length-1); car[i] <= 33; i-- ){
+ 
+         cont2=i;
+     }
+     
+     int total = cont2 - cont1;
+
+     
+
+     nuevo = new char [total];
+
+     for(int i=cont1; i< nuevo.length; i++){
+
+         nuevo [i-cont1]=(char)car[i];
+     
+    }
+     String espa = String.valueOf(nuevo);
+     return espa;
      }
 
      /**
@@ -250,7 +284,8 @@ String concat_string = "";
              tamaño++;   
 
              }
-         return tamaño   ;
+        
+         return tamaño  ;
 
       }
 
@@ -261,25 +296,53 @@ String concat_string = "";
      public static void main (String [] args ){
 
 	  char [] cadena = new char [7];
-	  cadena[0]='d';
+	  cadena[0]=' ';
 	  cadena[1]='i';
 	  cadena[2]='a';
 	  cadena[3]='n';
 	  cadena[4]='a';
 	  cadena[5]='h';
-	  cadena[6]='8';
+	  cadena[6]=' ';
       
       //entra como parametro arreglo de caracteres
 	  MyString obj = new MyString(cadena); 
 
 	  
-	  int a = obj.length();
+	  int longitud = obj.length();
 
-      int b = 6;
+      char caracter = obj.charAt(6);
 
-      char caracter = obj.charAt(b);
+      String caden = obj.toString();
+
+      String sub = obj.subString(3);
+
+      
+      String espa =obj.trim();
+
+      int inde = obj.indexOf('a');
+
+      boolean emp = obj.isEmpty();
+
+      for(int i=0; i<cadena.length;i++){
+          
+         System.out.println(cadena[i]);
+
+      }
 	 
-	  System.out.println(a+ "   "+caracter);
+      System.out.println("Metodo toString: "+caden);
+      System.out.println("metodo subString(3): "+ sub);
+      System.out.println("Caracter en la posicion 6: "+caracter);
+      System.out.println("metodo equals: ");
+      System.out.println("metodo endsWith: ");
+      System.out.println("metodo trim: "+espa);
+      System.out.println("Metodo indexOf de 'a': "+ inde);
+      System.out.println("metodo concat: ");
+      System.out.println("la cadena es vacia: "+ emp);
+	  System.out.println("Longitud: "+longitud);
+
+      
+      
+ 
 	}
  
  }
