@@ -1,3 +1,6 @@
+package practica1;
+
+
 /**
 *@author Nestor Semer Vazquez Cordero
 *@author Isay Balderas Salomon
@@ -82,7 +85,7 @@ String concat_string = "";
 	     if(index<0){
 			return "";
 	     }
-	     elseif(index>caracteres.length){
+	     else if(index>caracteres.length){
 		     return "";
      	     }
 	     else{
@@ -108,17 +111,17 @@ String concat_string = "";
 
         // try{  
 
-         	 for (int i =0 ; i < caracteres.length; i++){
+         	 for (int i =0 ; i < this.caracteres.length; i++){
 
-                if (caracteres.length < index){
+                if (this.caracteres.length < index || index < 0){
 
                 throw new IndexOutOfBoundsException();
 
                 }
 
-         	 	 if ( i == index ){
+         	 	 else {
                      
-                     caracter = caracteres [i];
+                     caracter = this.caracteres [index];
 
          	 	} return caracter; 
          	 }
@@ -133,7 +136,7 @@ String concat_string = "";
           //   }
              
 
-         return ' ';
+         return 'h';
      }
 
      /**
@@ -271,8 +274,12 @@ String concat_string = "";
 
 	  
 	  int a = obj.length();
+
+      int b = 6;
+
+      char caracter = obj.charAt(b);
 	 
-	  System.out.println(a);
+	  System.out.println(a+ "   "+caracter);
 	}
  
  }
