@@ -11,7 +11,7 @@ package src.practica1;
 
 public class MyString {
 
-	public char [] caracteres;
+	public  char [] caracteres;
 
 
 	/** Constructor para generar una cadena vacia */
@@ -155,9 +155,30 @@ String concat_string = "";
      */
      public boolean endsWith ( MyString cadena){
 
+        int cont =0;
+        int j =0;
+        char[] nuevo = cadena.caracteres;
+        if(nuevo.length > caracteres.length)
 
+             return false;
 
-        return true;
+        for (int i=0;i<caracteres.length;i++){
+
+             if(caracteres[i]==nuevo[j]){
+                
+                cont++;
+                j++;
+            }
+         }
+
+         if(cont>=1)
+
+             return true;
+        
+         else
+
+             return false;
+        
      }
 
      /**
@@ -167,7 +188,7 @@ String concat_string = "";
      *@return cadena
      *
      */
-     public String trim(){
+     public char[] trim(){
 
      int cont1=0;
      int cont2=0;   
@@ -201,8 +222,8 @@ String concat_string = "";
          nuevo [i-cont1]=(char)car[i];
      
     }
-     String espa = String.valueOf(nuevo);
-     return espa;
+     //String espa = String.valueOf(nuevo);
+     return nuevo;
      }
 
      /**
@@ -303,9 +324,15 @@ String concat_string = "";
 	  cadena[4]='a';
 	  cadena[5]='h';
 	  cadena[6]=' ';
+
+      char[] cadena2 = new char[3];
+      cadena2[0]=' ';
+      cadena2[1]='i';
+      cadena2[2]='a';
       
       //entra como parametro arreglo de caracteres
 	  MyString obj = new MyString(cadena); 
+      MyString obj3 = new MyString(cadena2);
 
 	  
 	  int longitud = obj.length();
@@ -316,9 +343,18 @@ String concat_string = "";
 
       String sub = obj.subString(3);
 
-      
-      String espa =obj.trim();
+      boolean sufijo = obj.endsWith(obj3);
 
+      char[] hol = obj.trim();
+
+      MyString obj2 = new MyString(hol);
+
+      
+
+
+
+      
+      String espa = obj2.toString();
       int inde = obj.indexOf('a');
 
       boolean emp = obj.isEmpty();
@@ -333,7 +369,7 @@ String concat_string = "";
       System.out.println("metodo subString(3): "+ sub);
       System.out.println("Caracter en la posicion 6: "+caracter);
       System.out.println("metodo equals: ");
-      System.out.println("metodo endsWith: ");
+      System.out.println("metodo endsWith: "+sufijo);
       System.out.println("metodo trim: "+espa);
       System.out.println("Metodo indexOf de 'a': "+ inde);
       System.out.println("metodo concat: ");
