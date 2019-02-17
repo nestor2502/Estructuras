@@ -347,19 +347,35 @@ String concat_string = "";
      *
      */
      public int length (){
+<<<<<<< HEAD
      /**
          int tamaño =0;
+=======
+     
+         int tamanio =0;
+>>>>>>> 4822ce1653bc55429c61d28ba8ceb30d9349313b
 
-         for(int i=0;caracteres[i]!= 0 ; i++){
+         for(int i=0;i<caracteres.length; i++){
     
-             tamaño++;   
+             tamanio++;   
 
              }*/
         
+<<<<<<< HEAD
          return caracteres.length-1 ;
+=======
+         return tamanio  ;
+>>>>>>> 4822ce1653bc55429c61d28ba8ceb30d9349313b
 
       }
+//Setter y getter
+    public char[] getCaracteres() {
+        return caracteres;
+    }
 
+    public void setCaracteres(char[] caracteres) {
+        this.caracteres = caracteres;
+    }
 
 
 
