@@ -309,7 +309,14 @@ String concat_string = "";
          return tamanio  ;
 
       }
+//Setter y getter
+    public char[] getCaracteres() {
+        return caracteres;
+    }
 
+    public void setCaracteres(char[] caracteres) {
+        this.caracteres = caracteres;
+    }
 
 
 
