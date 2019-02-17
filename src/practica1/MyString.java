@@ -298,15 +298,15 @@ String concat_string = "";
      */
      public int length (){
      
-         int tamaño =0;
+         int tamanio =0;
 
-         for(int i=0;caracteres[i]!= 0 ; i++){
+         for(int i=0;i<caracteres.length; i++){
     
-             tamaño++;   
+             tamanio++;   
 
              }
         
-         return tamaño  ;
+         return tamanio  ;
 
       }
 
