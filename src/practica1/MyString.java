@@ -144,15 +144,30 @@ String concat_string = "";
      *Metodo que nos dice si dos objetos son iguales
      *
      */
-     public boolean equals (Object objeto){
-/**
-         if (objeto.caracteres == MyString.caracteres)
-             return true;
-
-         else
-*/
+	@Override  
+public boolean equals(Object o){
+     if(this == o){
+         return true;
+     }
+     if(o == null){
          return false;
      }
+       if(o instanceof Chewi){
+           Chewi test = (Chewi) o;
+          if(test.caracteres.length != this.caracteres.length){
+              return false;
+          }
+              else{
+              for(int i=0; i<caracteres.length;i++){
+                  if(test.caracteres[i] != this.caracteres[i])
+                      return false;
+                      }
+                }              
+          return true;
+              }       
+       return false;
+}
+
 
      /**
      *
