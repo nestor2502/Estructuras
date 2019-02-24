@@ -10,9 +10,9 @@ import java.util.Iterator;
      */
     public class Lista<T> implements Iterable<T>{
 
-        ////////////////////////////////////////////////////////////////
 
         // Clase interna para representar los nodos de nuestras listas.
+        
         private class Nodo{
         
         public T elemento;
@@ -25,10 +25,6 @@ import java.util.Iterator;
         }
 
         }
-
-
-    ///////////////////////////////////////////////////////////////////////
-
 
         // Clase para iterar la lista.
         private class Iterador implements Iterator<T>{
@@ -129,7 +125,7 @@ import java.util.Iterator;
                  ultimo.siguiente=null;
                  ultimo.anterior=null;
 
-                 this.longitud ++;
+                 longitud ++;
                  
                  }
              
@@ -142,19 +138,14 @@ import java.util.Iterator;
                      cabeza.siguiente=null;
                      ultimo.anterior= null;
                      ultimo.siguiente= null;
-                     this.longitud++;
+                     longitud++;
 
 
-                 for(int i= 1;i<tamaño;i++ ){
-                        
-                        //Nodo n2= new Nodo(arreglo[i]);           
+                 for(int i= 1;i<tamaño;i++ ){           
 
                          agregaFinal(arreglo[i]);
                          
-                         this.longitud++;
-
                      }
-
                     
              }
           }
@@ -170,7 +161,9 @@ import java.util.Iterator;
              return cabeza.elemento;
 
          }
+
         public T getEnmedio(){
+
             return cabeza.siguiente.elemento;
         }
 
@@ -242,7 +235,7 @@ import java.util.Iterator;
         //debe lanzar NoSuchElementException
         public T eliminaUltimo() throws NoSuchElementException{
 
-                 Nodo temp2; 
+                 Nodo temp2 = new Nodo(ultimo.elemento); 
                  Nodo temp5;
 
              if(longitud==0)
@@ -250,19 +243,19 @@ import java.util.Iterator;
                  throw new NoSuchElementException();
 
              if(longitud == 1){
-
-                 temp2 = new Nodo(ultimo.elemento);
                
                  ultimo = null;
 
                  cabeza = null;
                  
                  longitud--;
+
+                 return temp2.elemento;
                  }
 
              if(longitud > 1){
 
-                 temp2 = new Nodo(ultimo.elemento);
+                 temp2 = new Nodo(ultimo.elemento); 
 
                  ultimo = ultimo.anterior;
 
@@ -270,12 +263,12 @@ import java.util.Iterator;
 
                  longitud--;
 
+                 return temp2.elemento;
                  }
 
-                 temp2 = new Nodo (cabeza.elemento);
+               
 
-             
-                 return temp2.elemento;
+             return temp2.elemento;
         
         }
         
@@ -286,8 +279,6 @@ import java.util.Iterator;
         public void agregaInicio(T t){
 
              Nodo nuevoElemento = new Nodo(t);
-
-            // cabeza.siguiente.anterior= nuevoElemento;
 
              cabeza.anterior= nuevoElemento;
 
@@ -333,16 +324,32 @@ import java.util.Iterator;
         */
         public boolean contiene(T t){
 
-             
-                
-            if(t == null){
-                return false;
-            }
-            else{
+             Nodo n1 = new Nodo(cabeza.elemento);
+             boolean resul=false;
 
-                return true;
-            }
+             n1=cabeza;
+             if(longitud==0)
+                 return false;
 
+             if(cabeza.elemento == t)
+                 return true;
+
+             int cont=0;
+
+             while(cont <=longitud-2){
+
+                 cabeza= cabeza.siguiente;
+
+                 if(cabeza.elemento == t)
+                     resul =  true;
+
+                 cont++;
+
+             }
+
+             cabeza = n1;
+
+             return resul;
         
         }
         
@@ -363,9 +370,81 @@ import java.util.Iterator;
         *devuelve true si el elemento se eliminó, false en otro claso
         */
         public boolean elimina(T t){
-        // Aquí va su código.
-            return true;
-        }
+
+             int cont=0;
+             int cont2=0;  //contador para encontrar la primera incidencia
+             boolean valor=false;
+             Nodo n1 = new Nodo(cabeza.elemento);
+             n1=cabeza;
+
+             if(contiene(t)==false){
+
+                return false;
+
+             }
+
+             if((longitud == 1) & (cabeza.elemento == t)){
+
+                 limpia();
+                 return contiene(t);
+             }
+
+
+             if(cabeza.elemento == t){
+                 /**
+                 cabeza=cabeza.siguiente; 
+                 cabeza.anterior.siguiente= null;
+                 cabeza.anterior= null;
+                 longitud--;
+                 */
+                 eliminaPrimero();
+                 valor = true;
+             }
+
+             else {//comienza a recorrer la lista a partir del segundo elemento
+                 
+                 while(cont2 <1){
+
+                     cabeza = cabeza.siguiente;
+
+
+
+                     if(cabeza.elemento == t){
+
+                        if(cabeza.siguiente == null){
+                              
+                             cabeza.anterior.siguiente=null;
+                             ultimo = cabeza.anterior;
+                             //cabeza.siguiente.anterior=cabeza.anterior;
+                             //eliminaUltimo();
+                             cabeza= ultimo;
+                             cont2++;
+                             longitud--;
+                             }
+
+                         if(cabeza.siguiente != null){
+                      
+                             cabeza.anterior.siguiente=cabeza.siguiente;
+                             cabeza.siguiente.anterior=cabeza.anterior;    
+                             cont2++;
+                             longitud--;
+                             }
+                             
+                         valor = true;
+ 
+                         }
+                
+                     cont++;
+                     
+                     }
+
+                     cabeza=n1;
+                 }
+             
+             
+             return valor;
+
+         }
         
 
         /**
@@ -373,10 +452,13 @@ import java.util.Iterator;
         */
         public void limpia(){
         
-        cabeza= ultimo;
-        cabeza = null;
-        cabeza.siguiente=null;
-        cabeza.anterior= null;
+         cabeza.siguiente=null;
+         cabeza = null;
+
+         ultimo.anterior= null;
+         ultimo = null;
+         
+         longitud=0;
 
         }
         
@@ -385,10 +467,33 @@ import java.util.Iterator;
         *Este método toma un índice i y regresa el i-ésimo elemento de la lista.
         */
         //Deben lanzar una IndexOutOfBoundsException si el índice es menor a 0 o mayor o igual al tamaño de la lista.
-        public T get(int indx){
+        public T get(int indx)throws IndexOutOfBoundsException{
 
-        return cabeza.elemento;
-        }
+             int cont=0;
+             Nodo n1 = new Nodo(cabeza.elemento);
+             n1= cabeza;
+
+             if(indx<0 || indx>=longitud){
+
+                 throw new IndexOutOfBoundsException();
+
+                 }
+
+             if(indx>0 && indx<longitud){
+
+                
+                 while(indx!=cont){
+                     cabeza= cabeza.siguiente;
+                     cont++;
+                
+                     }
+                 Nodo n2= new Nodo(cabeza.elemento);
+                 cabeza = n1;
+                 return n2.elemento;
+                 }
+
+         return cabeza.elemento;
+         }
         
 
         /**
@@ -452,34 +557,4 @@ import java.util.Iterator;
 
         }
 
-
-        public static void main(String [] args){
-            String [] arr1 = {"uno","dos","tres"};
-            String hola="hola";
-            String adios="adios";
-
-            Lista<String> test= new Lista<String>(arr1);
-            //Lista emptytest = new Lista();
-            System.out.println("Longitud: "+test.getLongitud());
-            System.out.println(test.getPrimero());
-            System.out.println(test.getEnmedio());
-            System.out.println(test.getUltimo());
-            test.agregaInicio(hola);
-            System.out.println(test.getPrimero());
-            System.out.println("Longitud: "+test.getLongitud());
-            System.out.println(test.getPrimero());
-            test.agregaFinal(adios);
-            System.out.println(test.getUltimo());
-            System.out.println("Longitud: "+test.getLongitud());
-            System.out.println("se elimina el primer elemento");
-            System.out.println(test.eliminaPrimero());
-            System.out.println(test.getPrimero());
-            System.out.println("Longitud: "+test.getLongitud());
-            System.out.println("se elimina el siguiente elemento");
-            System.out.println(test.eliminaPrimero());
-            System.out.println(test.getPrimero());
-            System.out.println("Longitud: "+test.getLongitud());
-            //System.out.println(test.getUltimo());
-
-        }
     }
