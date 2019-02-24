@@ -8,6 +8,7 @@ public class PruebaLista{
          String hola="hola";
          String adios="adios";
          String nuevo= "nuevo";
+         String [] nuevo2= new String[7];
             
          Lista<String> test= new Lista<String>(arr1);
          //Lista emptytest = new Lista();
@@ -16,6 +17,14 @@ public class PruebaLista{
          System.out.println("Segundo elemento: "+test.getEnmedio());
          System.out.println("Ultimo elemento: "+test.getUltimo());
          System.out.println("Longitud: "+test.getLongitud());
+         System.out.println();
+         System.out.println();
+         System.out.println("Se regresa un arreglo");
+         //nuevo2 =(String)test.toArray();
+         //for(int i=0; i<nuevo2.length;i++)
+         	//System.out.println(nuevo2[i]);
+         
+         System.out.println();
          System.out.println();
          System.out.println();
          System.out.println("¿La lista contiene 'uno'?: "+test.contiene("uno"));

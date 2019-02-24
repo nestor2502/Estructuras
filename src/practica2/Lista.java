@@ -546,9 +546,31 @@ import java.util.Iterator;
         /**
         *Este método nos regresa un arreglo con los mismos elementos de nuestra lista en el mismo orden.
         */
-        //public Object[] toArray(){
-        // Aquí va su código.
-        //}
+        public Object[] toArray(){
+         
+             Object [] nuevo = new Object[longitud];
+
+             Nodo n1 = new Nodo(cabeza.elemento);
+
+             n1 = cabeza;
+
+             nuevo [0]= cabeza.elemento;
+
+             int cont = 1;
+
+              while(cont<longitud){
+
+                 cabeza = cabeza.siguiente;
+
+                 nuevo[cont]=cabeza.elemento;
+           
+                 cont++;
+
+                 }
+           
+              cabeza= n1;
+              return nuevo;
+        }
         
 
         /**
