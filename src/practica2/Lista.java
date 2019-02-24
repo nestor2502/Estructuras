@@ -500,8 +500,46 @@ import java.util.Iterator;
         *Toma un índice i y un elemento y mete el elemento en la posición i de la lista.
         //
         */
-        public void inserta(int indx, T t){
-        // Aquí va su código.
+        public void inserta(int indx, T t)throws IndexOutOfBoundsException{
+
+             Nodo n1 = new Nodo(t);
+             Nodo n2 = new Nodo(cabeza.elemento);
+             n2=cabeza;
+             int j = 1;
+
+             if(indx<0 || indx>longitud+1){
+
+                 throw new IndexOutOfBoundsException();
+                 
+             }
+
+             if(longitud == 0 || indx==0)
+                 agregaInicio(t);
+
+             if(indx==longitud){
+                 agregaFinal(t);
+                 }
+
+             else if(longitud > 0 && j<longitud){ 
+
+                 while(j <= longitud){
+
+                      cabeza= cabeza.siguiente;
+
+                      if(j == indx){
+
+                        cabeza.anterior.siguiente = n1;
+                        cabeza.anterior= n1;
+                        cabeza.anterior.siguiente = cabeza;
+                        cabeza.anterior.anterior = cabeza.anterior.anterior;
+                        cabeza = n1;
+
+                      }
+                     j++;
+                 }
+             cabeza = n2;
+             longitud++;
+             }
         }
         
 

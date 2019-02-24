@@ -7,6 +7,7 @@ public class PruebaLista{
 		 String [] arr1 = {"uno","dos","tres"};
          String hola="hola";
          String adios="adios";
+         String nuevo= "nuevo";
             
          Lista<String> test= new Lista<String>(arr1);
          //Lista emptytest = new Lista();
@@ -18,6 +19,14 @@ public class PruebaLista{
          System.out.println();
          System.out.println();
          System.out.println("¿La lista contiene 'uno'?: "+test.contiene("uno"));
+         System.out.println();
+         System.out.println();
+         System.out.println("Agregando un elemento en la posicion 3");
+         test.inserta(3,nuevo);
+         System.out.println("Primer elemento: "+test.getPrimero());
+         System.out.println("Segundo elemento: "+test.getEnmedio());
+         System.out.println("Ultimo elemento: "+test.getUltimo());
+         System.out.println("Longitud: "+test.getLongitud());
          System.out.println();
          System.out.println();
          System.out.println("Eliminando 'uno'");
