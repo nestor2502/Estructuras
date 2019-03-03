@@ -1,0 +1,61 @@
+
+
+public class Sudoku {
+
+    private int[][] sudoku;
+    
+    public Sudoku(int[][] sudoku) throws IllegalArgumentException{
+this.sudoku= sudoku;
+if(this.sudoku.length != 9 || this.sudoku[0].length != 9){
+throw new IllegalArgumentException("No es un sudoku");
+}
+for(int i=0;i<9;i++){
+    for(int j=0;j<9;j++){
+        sudoku[i][j]=0;
+    }
+  }
+}
+    
+    public boolean resuelve(){
+        return false;
+    }
+
+public int vacios(){
+        int aux =0;
+for(int i=0;i<9;i++){
+    for(int j=0;j<9;j++){
+        if(sudoku[i][j]==0)
+            aux++;
+    }
+  }
+        return aux;
+    }
+    
+    public boolean seguro(int valor, int fila, int columna){
+        /**
+         * fila,h son filas, columna,k son columnas
+         * false significa que no es seguro poner el numero
+         * true significa que es seguro poner el numero
+         */
+        for(int k=0;k<9;k++){
+            if(columna!=k){
+                if(sudoku[fila][columna] == sudoku[fila][k]){
+                    return false;
+                }
+            }
+        }
+        
+        for(int h=0;h<9;h++){
+            if(fila!=h){
+                if(sudoku[fila][columna]==sudoku[h][columna]){
+                    return false;
+                }
+            }
+        }
+       return true; 
+    }
+    public static void main(String[] args) {
+       
+    }
+    
+}
