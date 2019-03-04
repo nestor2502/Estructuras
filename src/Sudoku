@@ -9,11 +9,13 @@ this.sudoku= sudoku;
 if(this.sudoku.length != 9 || this.sudoku[0].length != 9){
 throw new IllegalArgumentException("No es un sudoku");
 }
-for(int i=0;i<9;i++){
-    for(int j=0;j<9;j++){
-        sudoku[i][j]=0;
-    }
-  }
+/**
+*for(int i=0;i<9;i++){
+*    for(int j=0;j<9;j++){
+*        sudoku[i][j]=0;
+*    }
+*  }
+**/
 }
     
     public boolean resuelve(){
@@ -39,7 +41,7 @@ for(int i=0;i<9;i++){
          */
         for(int k=0;k<9;k++){
             if(columna!=k){
-                if(sudoku[fila][columna] == sudoku[fila][k]){
+                if(valor == sudoku[fila][k]){
                     return false;
                 }
             }
@@ -47,7 +49,7 @@ for(int i=0;i<9;i++){
         
         for(int h=0;h<9;h++){
             if(fila!=h){
-                if(sudoku[fila][columna]==sudoku[h][columna]){
+                if(valor==sudoku[h][columna]){
                     return false;
                 }
             }
@@ -55,66 +57,66 @@ for(int i=0;i<9;i++){
 //Revisa diagonales
         if(fila%3 == 0){
             if(columna%3 == 0){
-                if(sudoku[fila][columna]==sudoku[fila+1][columna+1])
+                if(valor==sudoku[fila+1][columna+1])
                     return false;
-                if(sudoku[fila][columna]==sudoku[fila+2][columna+2])
+                if(valor==sudoku[fila+2][columna+2])
                     return false;
             }
             if(columna%3 == 1){
-                if(sudoku[fila][columna]==sudoku[fila+1][columna+1])
+                if(valor==sudoku[fila+1][columna+1])
                     return false;
-                if(sudoku[fila][columna] == sudoku[fila+1][columna-1])
+                if(valor == sudoku[fila+1][columna-1])
                     return false;
             }
             if(columna%3 == 2){
-                if(sudoku[fila][columna]==sudoku[fila+1][columna-1])
+                if(valor==sudoku[fila+1][columna-1])
                     return false;
-                if(sudoku[fila][columna]==sudoku[fila+2][columna-2])
+                if(valor==sudoku[fila+2][columna-2])
                     return false;
             }
         }
         if(fila%3 == 1){
             if(columna%3 == 0){
-                if(sudoku[fila][columna]==sudoku[fila+1][columna+1])
+                if(valor==sudoku[fila+1][columna+1])
                     return false;
-                if(sudoku[fila][columna]==sudoku[fila-1][columna+1])
+                if(valor==sudoku[fila-1][columna+1])
                     return false;
             }
             if(columna%3 == 1){
-                if(sudoku[fila][columna]==sudoku[fila+1][columna+1])
+                if(valor==sudoku[fila+1][columna+1])
                     return false;                
-                if(sudoku[fila][columna]==sudoku[fila-1][columna-1])
+                if(valor==sudoku[fila-1][columna-1])
                     return false;                
-                if(sudoku[fila][columna]==sudoku[fila+1][columna-1])
+                if(valor==sudoku[fila+1][columna-1])
                     return false;                
-                if(sudoku[fila][columna]==sudoku[fila-1][columna+1])
+                if(valor==sudoku[fila-1][columna+1])
                     return false;
             }
             if(columna%3 == 2){
-                if(sudoku[fila][columna]==sudoku[fila-1][columna-1])
+                if(valor==sudoku[fila-1][columna-1])
                     return false;
-                if(sudoku[fila][columna]==sudoku[fila+1][columna-1])
+                if(valor==sudoku[fila+1][columna-1])
                     return false;                
 
             }
         }
         if(fila%3 == 2){
             if(columna%3 == 0){
-                if(sudoku[fila][columna]==sudoku[fila-1][columna+1])
+                if(valor==sudoku[fila-1][columna+1])
                     return false;
-                if(sudoku[fila][columna]==sudoku[fila-2][columna+2])
+                if(valor==sudoku[fila-2][columna+2])
                     return false;
                             }
             if(columna%3 == 1){
-                if(sudoku[fila][columna]==sudoku[fila-1][columna+1])
+                if(valor==sudoku[fila-1][columna+1])
                     return false;                
-            if(sudoku[fila][columna]==sudoku[fila-1][columna-1])
+            if(valor==sudoku[fila-1][columna-1])
                     return false;
             }
             if(columna%3 == 2){
-            if(sudoku[fila][columna]==sudoku[fila-2][columna-2])
+            if(valor==sudoku[fila-2][columna-2])
                     return false;
-            if(sudoku[fila][columna]==sudoku[fila-1][columna-1])
+            if(valor==sudoku[fila-1][columna-1])
                     return false;    
             }
             
