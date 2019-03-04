@@ -593,10 +593,41 @@ import java.util.Iterator;
         /**
         *El método regresa una cadena con la información de nuestra lista.
         */
-        //@Override
-        //public String toString(){
-            // Aquí va su código.
-        //}
+        @Override
+        public String toString(){
+
+            Nodo n1 = new Nodo(cabeza.elemento);
+            n1= cabeza;
+            String  nuevo ="";
+
+            if(longitud==1){
+                nuevo = "[ "+cabeza.elemento.toString()+" ]";
+            }
+             
+             if (longitud>1){
+
+                 nuevo= "["+cabeza.elemento+", ";
+
+                 for(int i=0; i<=longitud;i++){
+
+                     cabeza= cabeza.siguiente;
+
+                     if(i<longitud){
+
+                         nuevo=nuevo+cabeza.elemento.toString()+", ";
+                         }
+
+                     if(i= longitud)
+                         nuevo = nuevo+cabeza.elemento.toString()+" ]";
+
+                     }
+
+                     cabeza=n1;
+             }
+
+
+          return nuevo;
+         }
 
         /**
         *Deben regresar true si el objeto recibido es igual a la lista y false en otro caso.
