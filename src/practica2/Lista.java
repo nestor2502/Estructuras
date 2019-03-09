@@ -598,8 +598,12 @@ import java.util.Iterator;
 
             Nodo n1 = new Nodo(cabeza.elemento);
             n1= cabeza;
-            String  nuevo ="";
-
+            String  nuevo ="[";
+            
+            if(longitud==0){
+                nuevo = "[ ]";
+                return nuevo;
+            }
             if(longitud==1){
                 nuevo = "[ "+cabeza.elemento.toString()+" ]";
             }
@@ -607,20 +611,22 @@ import java.util.Iterator;
              if (longitud>1){
 
                  nuevo= "["+cabeza.elemento+", ";
+                 int i =0;
+                 while(i<longitud);
+                    
+                     if(i== longitud-1)
+                         nuevo = nuevo+ultimo.elemento.toString()+" ]";
 
-                 for(int i=0; i<=longitud;i++){
+                     if(i<longitud-1){
 
                      cabeza= cabeza.siguiente;
-
-                     if(i<longitud){
 
                          nuevo=nuevo+cabeza.elemento.toString()+", ";
                          }
 
-                     if(i= longitud)
-                         nuevo = nuevo+cabeza.elemento.toString()+" ]";
-
-                     }
+                      
+                      i++;
+                     
 
                      cabeza=n1;
              }
