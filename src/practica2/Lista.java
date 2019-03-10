@@ -5,10 +5,14 @@ import java.util.Iterator;
     import java.util.NoSuchElementException;
 
 
-    /**
-     * Implementación de listas ligadas.
-     */
-    public class Lista<T> implements Iterable<T>{
+     /**
+     *@author Nestor Semer Vazquez Cordero
+     *@author Isay Balderas Salomon
+     *@version 2.0
+     *Clase que implementa un subconjunto de metodos de la clase String
+     *
+    */   
+      public class Lista<T> implements Iterable<T>{
 
 
         // Clase interna para representar los nodos de nuestras listas.
@@ -18,6 +22,10 @@ import java.util.Iterator;
         public T elemento;
         public Nodo siguiente;
         public Nodo anterior;
+
+        public Nodo(){
+            this.elemento=null;
+        }
         
         public Nodo(T elemento){
             
@@ -29,26 +37,22 @@ import java.util.Iterator;
         // Clase para iterar la lista.
         private class Iterador implements Iterator<T>{
 
-        public Nodo siguiente;
+         public Nodo siguiente;
 
-        public Iterador(){
+         public Iterador(){
 
              siguiente = cabeza;
 
          }
-
-        @Override
-        public boolean hasNext(){
+         /**
+         *@return boolean
+         */
+         @Override
+         public boolean hasNext(){
 
 
              return (siguiente!=null);
-             
-             //return true;
-
-             //else 
-
-             //return false;
-            
+                        
          }
         
          /**
@@ -75,8 +79,6 @@ import java.util.Iterator;
                  }      
         }
         }
-    //////////////////////////////////////////////////////////////////////////
-
 
         private Nodo cabeza;
         private Nodo ultimo;
@@ -88,11 +90,7 @@ import java.util.Iterator;
         public Lista(){
 
         cabeza = null;
-        cabeza.siguiente = ultimo;
-        cabeza.anterior= null;
         ultimo = null;
-        ultimo.siguiente=null;
-        ultimo.anterior=cabeza;
 
         }
 
@@ -150,8 +148,7 @@ import java.util.Iterator;
              }
           }
          
-        
-
+    
         /**
         *Regresa el primer elemento de la lista
         */
@@ -278,8 +275,18 @@ import java.util.Iterator;
         */
         public void agregaInicio(T t){
 
+
              Nodo nuevoElemento = new Nodo(t);
 
+            if(longitud==0){
+
+                cabeza =nuevoElemento;
+                ultimo =nuevoElemento;
+                cabeza.anterior= null;
+                cabeza.siguiente = ultimo;
+                ultimo.anterior=cabeza;
+
+            }
              cabeza.anterior= nuevoElemento;
 
              nuevoElemento.siguiente = cabeza;
@@ -301,6 +308,16 @@ import java.util.Iterator;
         public void agregaFinal(T t){
 
              Nodo nuevoElemento = new Nodo(t);
+
+             if(longitud==0){
+
+                cabeza =nuevoElemento;
+                ultimo =nuevoElemento;
+                cabeza.anterior= null;
+                cabeza.siguiente = ultimo;
+                ultimo.anterior=cabeza;
+
+            }
 
              ultimo.siguiente = nuevoElemento;
 
@@ -554,7 +571,7 @@ import java.util.Iterator;
 
              n1 = cabeza;
 
-             nuevo [0]= cabeza.elemento;
+             nuevo [0]=cabeza.elemento;
 
              int cont = 1;
 
@@ -569,6 +586,7 @@ import java.util.Iterator;
                  }
            
               cabeza= n1;
+
               return nuevo;
         }
         
@@ -576,18 +594,60 @@ import java.util.Iterator;
         /**
         *Este método nos regresa una lista con los elementos de nuestra lista en orden inverso. 
         */
-        //public Lista<T> reversa(){
-        // Aquí va su código.
-        //}
+        public Lista<T> reversa(){ 
+
+             Lista <T> nuevo = new Lista<T>();
+
+             Nodo n1 = new Nodo(cabeza.elemento);
+             n1 = cabeza;
+          
+             nuevo.agregaInicio(cabeza.elemento);
+
+             int i = 1;
+           
+             while(i<longitud){
+
+                cabeza = cabeza.siguiente;      
+
+                 nuevo.agregaInicio(cabeza.elemento);  
+
+                 i++;
+             }
+             cabeza = n1;
+             
+             return nuevo;
+        }
 
         
 
         /**
         *Este método nos regresa una copia de nuestra lista.
         */
-        //public Lista<T> copia(){
-        // Aquí va su código.
-        //}
+        public Lista<T> copia(){
+        
+             Lista <T> copia = new Lista<T>();
+
+             Nodo n1 = new Nodo(cabeza.elemento);
+             n1 = cabeza;
+          
+             copia.agregaFinal(cabeza.elemento);
+
+             int i = 1;
+           
+             while(i<longitud){
+
+                cabeza = cabeza.siguiente;      
+
+                 copia.agregaFinal(cabeza.elemento);  
+
+                 i++;
+             }
+             cabeza = n1;
+             
+             return copia;
+             
+ 
+        }
 
 
         /**
@@ -595,10 +655,10 @@ import java.util.Iterator;
         */
         @Override
         public String toString(){
-
+            
             Nodo n1 = new Nodo(cabeza.elemento);
             n1= cabeza;
-            String  nuevo ="[";
+            String  nuevo =" ";
             
             if(longitud==0){
                 nuevo = "[ ]";
@@ -610,24 +670,25 @@ import java.util.Iterator;
              
              if (longitud>1){
 
-                 nuevo= "["+cabeza.elemento+", ";
-                 int i =0;
-                 while(i<longitud);
+                 nuevo= "["+cabeza.elemento.toString()+", ";
+                 int i =1;
+                 while(i<longitud){
                     
                      if(i== longitud-1)
-                         nuevo = nuevo+ultimo.elemento.toString()+" ]";
 
-                     if(i<longitud-1){
+                         nuevo = nuevo+ultimo.elemento.toString()+"]";
+
+                     if(i<(longitud-1)){
 
                      cabeza= cabeza.siguiente;
 
-                         nuevo=nuevo+cabeza.elemento.toString()+", ";
+                         nuevo+= cabeza.elemento.toString()+", ";
+
                          }
 
-                      
                       i++;
                      
-
+                     }
                      cabeza=n1;
              }
 
@@ -638,10 +699,62 @@ import java.util.Iterator;
         /**
         *Deben regresar true si el objeto recibido es igual a la lista y false en otro caso.
         */
-        //@Override
-        //public boolean equals(Object o){
-            // Aquí va su código.
-        //}
+        @Override
+        public boolean equals(Object o){
+                 if (o instanceof Lista){
+
+                         Nodo n1 = new Nodo (cabeza.elemento);
+                         n1=cabeza;
+
+                      Lista <T> l3 =  (Lista<T>)o;
+
+                      int i=0;
+                      int j = 1;
+                      int con =0;
+
+                      if(l3.longitud!=this.longitud){
+
+                          return false;
+                      }
+
+                      if(cabeza.elemento!=l3.cabeza.elemento){
+
+                             return false;
+
+                      }
+ 
+                      if (cabeza.elemento==l3.cabeza.elemento){
+
+                         while(j<longitud){
+                         
+                             cabeza= cabeza.siguiente;
+                             l3.cabeza = l3.cabeza.siguiente;
+
+                             if(cabeza!=l3.cabeza)
+                                 con++;
+
+                             j++;
+                         }
+
+
+                      }
+                      
+                      cabeza = n1;
+
+                      if(con > 1)
+                          return true;
+
+
+                 }
+
+                    else {
+
+                        return  true;
+                    }
+
+           return true;
+
+         }
 
 
         /**
