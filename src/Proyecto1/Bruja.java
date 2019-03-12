@@ -1,5 +1,4 @@
-package Proyecto1;
-
+package practica2;
 /**
 *
 *

@@ -1,0 +1,19 @@
+<project name="mi proyecto" default="all">
+  <target name="all" depends="build,pack" />
+
+  <target name="build">
+    <mkdir dir="bin" />
+    <!-- esto indica que compile todo lo que haya bajo sources y ponga las clases resultantes en bin -->
+    <javac srcdir="src" destdir="bin" includes="**/*.java">
+      <!-- este es un classpath de ejemplo: un directorio lib al mismo nivel que sources, incluimos todos los jars que contenga -->
+      <classpath>
+       
+      </classpath>
+    </javac>
+  </target>
+
+  <target name="pack">
+  
+  </target>
+
+</project>
