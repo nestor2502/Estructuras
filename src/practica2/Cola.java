@@ -3,9 +3,13 @@ package practica2;
 import java.util.NoSuchElementException;
 import java.util.Iterator;
 
-/**
- * Implementación de colas.
- */
+     /**
+     *@author Nestor Semer Vazquez Cordero
+     *@author Isay Balderas Salomon
+     *@version 2.0
+     *Clase que implementa una cola
+     *
+     */
 public class Cola<T> implements Iterable<T>{
 
     Lista <T> cola;
@@ -17,7 +21,8 @@ public class Cola<T> implements Iterable<T>{
     }
     
     public Cola(Lista<T> l){
-	//Aquí va su código.
+	     
+	     cola=l;
     }
     
     public Cola(T[] arreglo){

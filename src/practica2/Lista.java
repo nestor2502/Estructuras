@@ -9,9 +9,9 @@ import java.util.Iterator;
      *@author Nestor Semer Vazquez Cordero
      *@author Isay Balderas Salomon
      *@version 2.0
-     *Clase que implementa un subconjunto de metodos de la clase String
+     *Clase que implementa ua lista
      *
-    */   
+     */   
       public class Lista<T> implements Iterable<T>{
 
 
@@ -50,8 +50,8 @@ import java.util.Iterator;
          @Override
          public boolean hasNext(){
 
-
-             return (siguiente!=null);
+              
+             return (cabeza.elemento!=null);
                         
          }
         

@@ -3,26 +3,41 @@ package practica2;
 import java.util.EmptyStackException;
 import java.util.Iterator;
 
-/**
- * Implementación de pilas.
- */
+     /**
+     *@author Nestor Semer Vazquez Cordero
+     *@author Isay Balderas Salomon
+     *@version 2.0
+     *Clase que implementa ua pila
+     *
+     */
 public class Pila<T> implements Iterable<T>{
 
 	Lista <T> pila;
 	Lista <T> l2;
 
+    /**
+    *Constructor
+    */
     public Pila(){
          
          pila = new Lista <T>();
     }
     
+    /**
+    *Constructor que recibe una lista;
+    *
+    */
     public Pila(Lista<T> l){
-	//Aquí va su código.
+	     pila = l;
     }
-
+     
+     /**
+     *Constructor que recibe un arreglo
+     *@param arreglo
+     */
     public Pila(T[] arreglo){
      
-     pila = new Lista <T>(arreglo);	
+          pila = new Lista <T>(arreglo);	
 
     }
 

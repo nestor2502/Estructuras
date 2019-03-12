@@ -1,7 +1,13 @@
-
 package practica2;
 import java.util.Iterator;
 
+     /**
+     *@author Nestor Semer Vazquez Cordero
+     *@author Isay Balderas Salomon
+     *@version 2.0
+     *Clase de prueba para una lista
+     *
+     */
 public class PruebaLista{
 
 	public static void main(String [] args){
@@ -22,7 +28,7 @@ public class PruebaLista{
           System.out.println("Se agrega nuevo elemento al final");
           String adios2= "adios2";
           test2.agregaInicio(adios2);
-         System.out.println("Primer elemento: "+test2.getPrimero());
+          System.out.println("Primer elemento: "+test2.getPrimero());
        
          //////////////////////////////////////
          //Lista emptytest = new Lista();
@@ -42,7 +48,7 @@ public class PruebaLista{
          System.out.println();
          test4= test.copia();
          System.out.println("Copia de la lista: "+test4.toString());
-          System.out.println("Longitud: "+test4.getLongitud());
+         System.out.println("Longitud: "+test4.getLongitud());
          System.out.println();
          System.out.println();
          System.out.println("Se comparan dos listas (Principal y copia)"+ test.equals(test4));
@@ -56,7 +62,7 @@ public class PruebaLista{
          System.out.println();
          System.out.print("Se regresa un arreglo: ");
          nuevo2 =test.toArray();
-          for(int i=0; i<nuevo2.length;i++)
+         for(int i=0; i<nuevo2.length;i++)
          	 System.out.print(nuevo2[i]+" ");
          System.out.println();
          System.out.println();
@@ -65,7 +71,11 @@ public class PruebaLista{
          System.out.println("hay un primer elemento? "+it.hasNext());
          System.out.println("1) recorriendo el iterador "+ it.next());
          System.out.println("2) recorriendo el iterador "+ it.next());
-         System.out.println("2) recorriendo el iterador "+ it.next());
+         System.out.println("3) recorriendo el iterador "+ it.next());
+         System.out.println("hay un siguiente elemento? "+it.hasNext());
+         System.out.println("hay un siguiente elemento? "+it.hasNext());
+         System.out.println("hay un siguiente elemento? "+it.hasNext());
+         System.out.println("hay un siguiente elemento? "+it.hasNext());	
          System.out.println();
          System.out.println();
          System.out.println();
