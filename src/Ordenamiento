@@ -1,0 +1,67 @@
+public class Ordenamientos {
+	public static <T extends Comparable<T>> void quickSort(T[] a){
+		
+    }
+/**
+*    public static <T extends Comparable<T>> Lista<T> mergeSort(Lista<T> l){
+*    }
+*/
+    public static <T extends Comparable<T>> int busquedaBinaria(T[] a, T elemento)
+	  int n = a.length;
+	  int centro,inf=0,sup=n-1;
+	   while(inf<=sup){
+	     centro=(sup+inf)/2;
+	     if(a[centro]==elemento) 
+	    	 return centro;
+	     else if(elemento < a [centro] ){
+	        sup=centro-1;
+	     }
+	     else {
+	       inf=centro+1;
+	     }
+	   }
+	   return -1;
+	 }
+    
+    
+    public static <T extends Comparable<T>> void bubbleSort(T[] a)
+    	 {
+    		    int swap = 1, outCounter, inCounter; 
+    		    T temp;
+    		    for (outCounter = a.length - 1; outCounter > 0 && swap == 1; outCounter--)
+    		    {
+    		      swap = 0;
+    		      for (inCounter = 0; inCounter < outCounter; inCounter++)
+    		      {
+    		        if (a[inCounter].compareTo(a[inCounter+1]) > 0)
+    		        {
+    		          temp = a[inCounter];
+    		          a[inCounter] = a[inCounter+1];
+    		          a[inCounter+1] = temp;
+    		          swap = 1;
+    		        
+    		      }
+    		    }
+    		  }
+    	 }
+    
+    
+    public static <T extends Comparable<T>> void selectionSort(T[] a)
+    	{
+    	    int outCounter, inCounter;
+    	    T temp;
+    	    for (outCounter = 1; outCounter < a.length; outCounter++)
+    	    {
+    	      temp = a[outCounter];
+    	      for (inCounter = outCounter; inCounter > 0 && a[inCounter - 1].compareTo(temp) > 0; inCounter--)
+    	      {
+    	        a[inCounter] = a[inCounter - 1];
+    	      }
+    	      a[inCounter] = temp;
+    	    }
+    	  }
+    
+        
+    public static void main(String args[]){
+    }    
+}
