@@ -50,8 +50,14 @@ import java.util.Iterator;
          @Override
          public boolean hasNext(){
 
-              
-             return (cabeza.elemento!=null);
+              boolean valor= false;
+
+              if(siguiente!=null)
+                   return true;
+
+            else 
+
+             return valor;
                         
          }
         

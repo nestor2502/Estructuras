@@ -7,15 +7,34 @@ package practica2;
 */
 public class Noche{
 
- Lista <Persona> nocturnos = new Lista <Persona>();
+     /**
+     *
+     *
+     */
+     public Noche(String nocturnos){
 
-public void agrega(){
-	String va = "nestor";
-	String ve = "Lobo"; 
- Persona l1 = new Persona(va, ve);
+     }
+     
 
-  nocturnos.agregaInicio(l1);
-}
+     /**
+     *Metodo que usará la vidente
+     *
+     */
+     public void espiar(){
+
+     	 System.out.println("La vidente puede espiar una carta");
+      
+       }
+
+     public String proteger(String nombre){
+
+     	 return nombre;
+ 
+     }
+
+
+
+ 
 
 
 }

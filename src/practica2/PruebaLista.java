@@ -75,7 +75,7 @@ public class PruebaLista{
          System.out.println("hay un siguiente elemento? "+it.hasNext());
          System.out.println("hay un siguiente elemento? "+it.hasNext());
          System.out.println("hay un siguiente elemento? "+it.hasNext());
-         System.out.println("hay un siguiente elemento? "+it.hasNext());	
+         System.out.println("hay un siguiente elemento? "+it.hasNext());
          System.out.println();
          System.out.println();
          System.out.println();

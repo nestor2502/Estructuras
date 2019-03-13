@@ -44,6 +44,43 @@ public class Persona{
 
 		 return sospechoso;
 	 } 
+     
+     /**
+     *
+     */
+     public String getNombre(){
+
+     	 return nombre;
+     }
+
+
+	 /**
+	 *
+	 */
+	 public String getTipo(){
+
+	 	 return tipo;
+	 }
+     
+
+     /**
+     *
+     *
+     */
+     public void setProtegido(){
+
+     	 protegido = true;
+     }
+
+     /**
+     *
+     *
+     */
+     public void setEncantado(){
+
+     	 encantado=true;
+     }
+
 
 
  }
