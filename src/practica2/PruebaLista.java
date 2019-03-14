@@ -29,6 +29,20 @@ public class PruebaLista{
           String adios2= "adios2";
           test2.agregaInicio(adios2);
           System.out.println("Primer elemento: "+test2.getPrimero());
+          test2.agregaInicio(arr1[0]);
+          test2.agregaInicio(arr1[1]);
+          test2.agregaInicio(arr1[2]);
+           System.out.println("Informacion de la lista: "+test2.toString());
+           System.out.println("se imprime  elementos de la lista");
+           System.out.println();
+           for(String it9: test2){
+
+                 System.out.println("el elemento es: "+ it9);
+           }
+         System.out.println();
+         System.out.println();
+         System.out.println();
+
        
          //////////////////////////////////////
          //Lista emptytest = new Lista();

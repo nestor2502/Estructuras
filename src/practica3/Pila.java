@@ -20,7 +20,8 @@ public class Pila<T> implements Iterable<T>{
     */
     public Pila(){
          
-         pila = new Lista <T>();
+         l2 = new Lista <T>();
+         pila= new Lista <T>();
 
     }
     
@@ -116,9 +117,49 @@ public class Pila<T> implements Iterable<T>{
 
     @Override
     public boolean equals(Object o){
+
+        boolean valor=true;
 	
-	return l2.equals(o);
-    }
+	   if (o instanceof Pila){
+                      Lista<T> equ = l2;
+                      Pila <T> l3 = (Pila<T>)o;
+                      Pila <T> l4 = new Pila(equ.reversa());
+
+                      int con =0;
+
+                      if(l3.getLong()!= l4.getLong()){
+
+                          return false;
+                      }
+
+                         Iterator <T> itera = l4.iterator();
+                         Iterator <T> iter = l3.iterator();
+  
+                        for(T it0 : this){
+
+                             if(itera.next()!= iter.next() )
+                              
+                             con++;
+                         }
+
+
+                      if(con > 1)
+
+                          valor= false;
+                      if(con == 0)
+
+                          valor = true;
+
+
+                 }
+
+                    else 
+
+                        valor =false;
+
+                    return valor;
+
+         }
 
     @Override
     public Iterator<T> iterator(){

@@ -286,24 +286,48 @@ import java.util.Iterator;
 
             if(longitud==0){
 
-                cabeza =nuevoElemento;
-                ultimo =nuevoElemento;
-                cabeza.anterior= null;
-                cabeza.siguiente = ultimo;
-                ultimo.anterior=cabeza;
+                 cabeza =nuevoElemento;
+                 ultimo =nuevoElemento;
+                 cabeza.anterior= null;
+                 cabeza.siguiente = ultimo;
+                 ultimo.anterior=cabeza;
+                 ultimo.siguiente=null;
+
+                  longitud++;
+ 
+            }
+
+             else if(longitud==1){
+
+                 cabeza.anterior= nuevoElemento;
+                    
+                 nuevoElemento.siguiente = cabeza;
+
+                 nuevoElemento.anterior= null;
+
+
+                 cabeza = nuevoElemento;
+
+
+                 longitud++;  
+            }
+
+            else if(longitud >1){
+                
+                cabeza.anterior= nuevoElemento;
+                    
+                 nuevoElemento.siguiente = cabeza;
+
+                 cabeza = nuevoElemento;
+
+                 cabeza.anterior= null;
+
+
+
+                 longitud++; 
 
             }
-             cabeza.anterior= nuevoElemento;
-
-             nuevoElemento.siguiente = cabeza;
-
-             nuevoElemento.anterior= null;
-
-             cabeza= nuevoElemento;
-
-             //cabeza.anterior = nuevoElemento; 
-
-             longitud++;       
+               
 
         }
         
