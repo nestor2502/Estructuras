@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class Noche{
 
      Lista <Persona> nocturnos;
+     //Lista con lobos vivos
+     Lista <Lobo> lviv = new Lista <Lobo>();
      Vidente vid;
      Protector protec;
      Lobo l1;
@@ -57,30 +59,25 @@ public class Noche{
      }
 
 
-     public String lobosMatar(){
+     public String lobosMatar(String [] victimas){
 
-          String [] victimas = new String[lobosVivos()];
-          Iterator <Persona> lobos = nocturnos.iterator();
+          String [] victimas2 = new String[lobosVivos()];
+          Iterator <Lobo> lobos = lviv.iterator();
 
           Scanner teclado = new Scanner(System.in);
 
 
 
-          for(int i =0; i< victimas.length; i++){
-
-                System.out.println("Lobo "+(i+1)+" selecciona tu victima");
+          for(int i =0; i< victimas2.length; i++){
 
                 int j=0;
 
+
                 if(lobos.hasNext()==true){
 
-                     for(int k =0; j<1;k++){
-                          
-                          //me quedé aqui, hay que hacer una nueva lista con lobos
-                          if(lobos.next() instanceof Lobo){}
+                     Lobo lo1 = lobos.next();
 
-
-
+                       lo1.seleccionaVictima(victimas2[i]);
 
                            }
                 }
@@ -89,7 +86,7 @@ public class Noche{
 
 
 
-          } 
+           
           String temp = "ayuda";
           return temp;
                 }
@@ -106,17 +103,25 @@ public class Noche{
      }
 */
      public int lobosVivos(){
-
+           
+           //Itera la lista de personas buscando lobos
            Iterator <Persona> vivos = nocturnos.iterator();
 
            int cont =0;
-
+            //recorre los elementos de la lista nocturnos
            for(int i = 0; i<= nocturnos.getLongitud();i++){
 
-                if(vivos.next().getMuerte()==true){
+           	     if(vivos instanceof Lobo){
 
-                    cont++;
+                      Lobo p1 =(Lobo) vivos.next();
+
+                     if(p1.getMuerte()==true){
+
+                     lviv.agregaInicio(p1);
+                      
+                     cont++;
                 }
+             }
            }
            return cont;
      }
