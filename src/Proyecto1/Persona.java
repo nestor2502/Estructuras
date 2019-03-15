@@ -9,9 +9,9 @@ public class Persona{
 
 	 protected String nombre;
 	 protected String tipo;
-	 protected boolean vivo;
-	 protected boolean protegido;
-	 protected boolean encantado;
+	 protected boolean vivo=true;
+	 protected boolean protegido=false;
+	 protected boolean encantado=false;
 
 	 /**
 	 *Constructor
@@ -81,6 +81,23 @@ public class Persona{
      	 encantado=true;
      }
 
+     /**
+     *
+     *
+     */
+     public void setMuerte(boolean muerte){
+
+     	this.vivo=muerte;
+
+     }
+
+     /**
+     *
+     *
+     */
+     public boolean getMuerte(){
+     	return vivo;
+     }
 
 
  }

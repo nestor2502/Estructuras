@@ -16,4 +16,10 @@ public class Vidente extends Persona{
 
 	     super(nombre, tipo);
      }
+
+     public void observar(){
+
+     	System.out.println("La vidente puede observar una carta");
+
+     }
 }
