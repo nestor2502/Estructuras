@@ -11,6 +11,7 @@ public class Noche{
      Lista <Persona> nocturnos;
      //Lista con lobos vivos
      Lista <Lobo> lviv = new Lista <Lobo>();
+     Lista <Persona> encantados = new Lista <Persona> ();
      Vidente vid;
      Protector protec;
      Lobo l1;
@@ -126,9 +127,20 @@ public class Noche{
            return cont;
      }
 
+public void brujaMatar(String nombre){
 
+}
+public void brujaRevive(String nombre){
 
+}
+public void encantarPersonas(String nombre, String nombre){
+	Lista <String> encantados = new Lista <String> ();
+}
+public void personasencantadas(){
  
+} 	
+public String [] personasMuertas(){
 
+}
 
 }

@@ -53,6 +53,10 @@ public class PruebaLista{
          System.out.println("Longitud: "+test.getLongitud());
          System.out.println();
          System.out.println();
+         //System.out.println("Probamos eliminar dos");
+         //System.out.println("se elimino?"+test.elimina("dos"));
+         System.out.println();
+         System.out.println();
          System.out.println("Informacion de la lista: "+test.toString());
          System.out.println();
          System.out.println();

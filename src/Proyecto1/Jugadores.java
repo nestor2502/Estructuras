@@ -70,14 +70,14 @@ public class Jugadores{
              tonto = new Tonto(nombres[n], "tonto");
              //Lista con personas seleccionadas como especiales
              especiales = new Lista <Persona>();
-
-             especiales.agregaInicio(tonto);
-             especiales.agregaInicio(cazador);
+             
+             //Aldenados no comunes
+             aldeanos.agregaInicio(tonto);
+             aldeanos.agregaInicio(cazador);
+             aldeanos.agregaInicio(niña);
+             //Especiales
              especiales.agregaInicio(flautista);
              especiales.agregaInicio(bruja);
-             especiales.agregaInicio(niña);
-             especiales.agregaInicio(bruja);
-             especiales.agregaInicio(niña);
              especiales.agregaInicio(lobo1);
              especiales.agregaInicio(lobo2);
              especiales.agregaInicio(lobo3);
@@ -102,7 +102,7 @@ public class Jugadores{
     
  
 
-     public Lista<Persona> asignarAldeno(){
+     public Lista<Persona> asignarAldeano(){
 
          aldeanos= new Lista <Persona>();
 
