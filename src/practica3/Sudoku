@@ -19,8 +19,27 @@ throw new IllegalArgumentException("No es un sudoku");
 }
     
     public boolean resuelve(){
-        return false;
-    }
+            //int cont = vacios();
+                for(int i=0;i<9;i++){
+                    for(int j=0;j<9;j++){
+                        for(int valor=1;valor<=9;valor++){
+                            if(seguro(valor,i,j)){
+                                sudoku[i][j]=valor;
+                            }
+                            
+                            if(resuelve()){
+                                return true;
+                            }else{
+                                sudoku[i][j] = 0;
+                            }
+                            
+                        }
+                    }                    
+                    return false;
+                }
+            
+            return true;
+    }    
 
 public int vacios(){
         int aux =0;
