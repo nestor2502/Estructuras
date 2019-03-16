@@ -133,14 +133,22 @@ public void brujaMatar(String nombre){
 public void brujaRevive(String nombre){
 
 }
+<<<<<<< HEAD
 public void encantarPersonas(String nombre){
+=======
+public void encantarPersonas(String nombre, String nombre2){
+>>>>>>> nestor
 	Lista <String> encantados = new Lista <String> ();
 }
 public void personasencantadas(){
  
 } 	
+<<<<<<< HEAD
 public void personasMuertas(){
+=======
+//public String [] personasMuertas(){
+>>>>>>> nestor
 
-}
+//}
 
 }
