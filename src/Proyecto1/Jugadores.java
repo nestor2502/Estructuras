@@ -11,6 +11,7 @@ public class Jugadores{
 	 int numJugadores=0;
      String[] nombres;
      String[] alde; 
+     int [] dif;
      Lista <Integer> seleccionados = new Lista <Integer>();
      Lista <Persona> especiales;
      Lista <Persona> aldeanos;
@@ -44,18 +45,18 @@ public class Jugadores{
 
      	  Iterator <Integer> it = seleccionados.iterator();
      	     //metodo que devuelve un numero aleatorio
-             random1();
-             int a=it.next();
-             int b=it.next();
-             int c=it.next();
-             int d=it.next();
-             int e=it.next();
-             int f=it.next();
-             int g=it.next();
-             int h=it.next();
-             int l=it.next();
-             int m=it.next();
-             int n=it.next();
+             dif = random1(this.nombres.length);
+             int a=dif[0];
+             int b=dif[1];
+             int c=dif[2];
+             int d=dif[3];
+             int e=dif[4];
+             int f=dif[5];
+             int g=dif[6];
+             int h=dif[7];
+             int l=dif[8];
+             int m=dif[9];
+             int n=dif[10];
 
              vidente = new Vidente(nombres[a], "vidente");
              protector = new Protector(nombres[b], "protector"); 
@@ -124,27 +125,36 @@ public class Jugadores{
      *Metodo que devuelve un numero random que no se repite
      *
      */
-     public void random1(){
+     public int [] random1(int n){
          
-         int numero=0;
-         int j=0;
+          int [] difi = new int[n];
+
+          int i=0;
+
+          while(i< difi.length){
+
+          	  int numero = (int)(Math.random() * n)+1;
+
+          	  int cont=0;
+
+          	 for(int j=0; j<difi.length;i++){
+          	  	 
+          	  	 if(difi[j]==numero){
+          	  	   	 cont++;
+          	  	   }
+
+          	  }
+
+          	  if(cont<1){
+          	  	  difi[i]=numero;
+          	  	  i++;
+
+          	  }
+
+          }
          
-         // 11 es el numero de personajes que no son aldeanos
-         while(j<=11){
 
-
-     	     numero = (int) (Math.random() * numJugadores) + 1;
-
-
-             if(seleccionados.contiene(numero)==false){
-
-                 seleccionados.agregaInicio(numero);
-                 j++;
-
-                 }
-         }
-
-
+      return difi;
      } 
 
 
