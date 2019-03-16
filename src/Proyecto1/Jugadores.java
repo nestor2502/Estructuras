@@ -133,15 +133,6 @@ public class Jugadores{
 
           while(i< difi.length){
 
-<<<<<<< HEAD
-     	     Integer entero = new Integer(numero);
-
-
-             if(seleccionados.contiene(entero)==false){
-
-                 seleccionados.agregaInicio(entero);
-                 j++;
-=======
           	  int numero = (int)(Math.random() * n)+1;
 
           	  int cont=0;
@@ -151,7 +142,7 @@ public class Jugadores{
           	  	 if(difi[j]==numero){
           	  	   	 cont++;
           	  	   }
->>>>>>> nestor
+
 
           	  }
 
@@ -164,11 +155,11 @@ public class Jugadores{
           }
          
 
-<<<<<<< HEAD
-     }
-=======
+
       return difi;
->>>>>>> nestor
-     } 
+     }}
+
+
+
 
 
