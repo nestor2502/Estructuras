@@ -135,17 +135,19 @@ public class Jugadores{
 
      	     numero = (int) (Math.random() * numJugadores) + 1;
 
+     	     Integer entero = new Integer(numero);
 
-             if(seleccionados.contiene(numero)==false){
 
-                 seleccionados.agregaInicio(numero);
+             if(seleccionados.contiene(entero)==false){
+
+                 seleccionados.agregaInicio(entero);
                  j++;
 
                  }
          }
 
 
+     }
      } 
 
 
-}

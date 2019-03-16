@@ -18,13 +18,13 @@ public class Juego{
      Jugadores personajes;
      Scanner sc= new Scanner(System.in);
 
-
+     /**
      public Juego(int numeroJugadores){
      	this.numeroJugadores=numeroJugadores;
      	jugadores = new String [numeroJugadores];
 
 
-     }
+     }*/
 
      public void asignaJugadores(){
 
@@ -34,14 +34,16 @@ public class Juego{
      	this.jugadores = new String[this.numeroJugadores];
      	System.out.println();
      	System.out.println();
-        for(int i =0 ; i< this.jugadores.length; i++){
-     	     System.out.println("ingresa al jugador"+(i+1));
+        for(int i =0 ; i < numeroJugadores; i++){
+     	     System.out.println("ingresa al jugador "+(i+1));
      	     this.jugadores[i]=sc.next();
           }
          //se inicia clase jugadores
          this.personajes = new Jugadores(this.jugadores);
          nocturnos = personajes.asignarPersonajesSup();
          aldeanos = personajes.asignarAldeano();
+         //Se inicia noche y se recibe una lista con jugadores
+         Noche nocheVar = new Noche(nocturnos); 
 
      }
 
