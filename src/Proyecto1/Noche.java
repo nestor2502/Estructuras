@@ -59,37 +59,11 @@ public class Noche{
  
      }
 
+    //hay que modificar
+     public String lobosMatar(String  victimas){
 
-     public String lobosMatar(String [] victimas){
-
-          String [] victimas2 = new String[lobosVivos()];
-          Iterator <Lobo> lobos = lviv.iterator();
-
-          Scanner teclado = new Scanner(System.in);
-
-
-
-          for(int i =0; i< victimas2.length; i++){
-
-                int j=0;
-
-
-                if(lobos.hasNext()==true){
-
-                     Lobo lo1 = lobos.next();
-
-                       lo1.seleccionaVictima(victimas2[i]);
-
-                           }
-                }
-
-
-
-
-
-           
-          String temp = "ayuda";
-          return temp;
+          
+          return victimas;
                 }
      
 /**

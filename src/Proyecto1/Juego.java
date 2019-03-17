@@ -19,6 +19,7 @@ public class Juego{
 ;     Lista <Persona> aldeanos;
      //clase que asigna roll en el juego
      Jugadores personajes;
+     Noche nocheVar;
      Scanner sc= new Scanner(System.in);
 
      /**
@@ -57,7 +58,7 @@ public class Juego{
          aldeanos = personajes.asignarAldeano();
 
          //Se inicia noche y se recibe una lista con jugadores
-         Noche nocheVar = new Noche(nocturnos); 
+         nocheVar = new Noche(nocturnos); 
 
      }
 
@@ -80,9 +81,106 @@ public class Juego{
            	Persona p2 = it2.next();
            	System.out.println(p2.getTipo()+" : "+p2.getNombre());
            }
+     }
 
-           
-    
+     public void iniciaNoche(){
+
+       if(vidente.getMuerte()== true){
+          nocheVar.espiar();
+       }
+
+       if(protector.getMuerte ()== true){
+          System.out.println("¿A quien quieres proteger?");
+          System.out.println();
+          String prot = sc.next();
+          String protegido = nocheVar.proteger(prot);}
+
+       if(nocheVar.lobosVivos() > 0){
+           System.out.println("a quien decicieron matar?");
+           String victi = sc.next();
+           System.out.println();
+           String guardar1 = nocheVar.lobosMatar(victi);
+         }
+
+        if(bruja.getMuerte() == true){
+
+           if(bruja.pocionesDisponibles()==0){
+             System.out.println("la bruja ya no tiene pociones");
+           }
+
+          if(bruja.pocionesDisponibles()==1 ){
+             System.out.println(" tienes disponible" + bruja.pociones());
+             System.out.println();
+             System.out.println("lo quieres usar?");
+             System.out.println();
+             System.out.println("1)si      2) no");
+             System.out.println();
+             int opc = sc.nextInt();
+             if (opc == 1 && bruja.pocion_curativa==true){
+                    System.out.println("¿A quien quieres revivir?");
+                    System.out.println();
+                    String suertudo = sc.next();
+                    String revive=bruja.revivir(suertudo);
+             }
+             else  if (opc == 1 && bruja.pocion_veneno==true){
+                    System.out.println("¿A quien quieres matar?");
+                    System.out.println();
+                    String morira = sc.next();
+                    String revive=bruja.mata(morira);
+             }
+
+            
+                    
+             }
+
+          if(bruja.pocionesDisponibles()==2){
+               System.out.println("tienes disponibles"+ bruja.pociones()+" ¿quieres usar ambas?");
+               System.out.println();
+               System.out.println("1)si      2) no");
+               System.out.println();
+               int opc = sc.nextInt();
+              if (opc ==1){
+             
+                    System.out.println("¿A quien quieres revivir?");
+                    String suertudo = sc.next();
+                    String revive = bruja.revivir(suertudo);
+            
+   
+                    System.out.println("¿A quien quieres matar?");
+                    String morira = sc.next();
+                    String revive= bruja.mata(morira);
+     
+
+             }
+
+               if(opc ==2){
+                    System.out.println("cual quieres usar?");
+                    System.out.println();
+                    System.out.println("1) Poción curativa      2) Veneno");
+                    System.out.println();
+                    int opc2 = sc.nextInt();
+                    if (opc2 == 1){
+                        System.out.println("¿A quien quieres revivir?");
+                        String suertudo = sc.next();
+                        String revive = bruja.revivir(suertudo);
+                     }
+                    else  if (opc2 == 2){
+                    System.out.println("¿A quien quieres matar?");
+                    String morira = sc.next();
+                    String revive=bruja.mata(morira);
+            }
+
+
+             }
+
+   
+}
+
+/////////////////////////// HASTA AQUI
+        }
+
+
+
 
 
      }

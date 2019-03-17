@@ -62,4 +62,40 @@ public class Bruja extends Persona{
 	     return nombre; 
 
 	 }
+
+	 public int pocionesDisponibles(){
+
+	 	 int cont =0;
+	 	 if(pocion_curativa==true){
+	 		 cont++;
+	 	 }
+	 	 if(pocion_veneno==true){
+	 		 cont++;
+	 	 }
+
+	 	 return cont;
+	 }
+
+	 public String pociones(){
+
+	 	 String poc = " ";
+         if(pocionesDisponibles()==2){
+	 	     if(pocion_curativa==true){
+	 		     poc+= "Pocion curativa y ";
+	 	     }
+	 	     if(pocion_veneno==true){
+	 		     poc += " Veneno";
+	 	     }
+         }
+         if(pocionesDisponibles()==1){
+	 	     if(pocion_curativa==true){
+	 		     poc+= "Pocion curativa ";
+	 	     }
+	 	     if(pocion_veneno==true){
+	 		     poc += " Veneno ";
+	 	     }
+         }
+
+         return poc;
+	 }
 }

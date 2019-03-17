@@ -25,17 +25,17 @@ public class Jugadores{
      Lista <Persona> aldeanos = new Lista <Persona>();
 
 
-	 Vidente vidente;
-	 Protector protector;
-	 Lobo lobo1;
-	 Lobo lobo2;
-	 Lobo lobo3;
-	 Lobo lobo4;
-	 Niña niña;
-	 Bruja bruja;
-	 Flautista flautista;
-	 Cazador cazador;
-	 Tonto tonto;
+	 public Vidente vidente;
+	 public Protector protector;
+	 public Lobo lobo1;
+	 public Lobo lobo2;
+	 public Lobo lobo3;
+	 public Lobo lobo4;
+	 public Niña niña;
+	 public Bruja bruja;
+	 public Flautista flautista;
+	 public Cazador cazador;
+	 public Tonto tonto;
 
 
      public Jugadores(String [] nombres){
