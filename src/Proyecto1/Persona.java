@@ -85,9 +85,15 @@ public class Persona{
      *
      *
      */
-     public void setMuerte(boolean muerte){
+     public void setMuerte(){
 
-     	this.vivo=muerte;
+     	this.vivo=false;
+
+     }
+
+     public void setVida(){
+
+          this.vivo=true;
 
      }
 

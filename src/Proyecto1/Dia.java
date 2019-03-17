@@ -7,15 +7,22 @@ public class Dia{
 	 String [] muertos ;
      int [] votos;
      Lista <String> sospechosos = new Lista <String>();
+     Lista <Persona> nocturnos;
+     Lista <Persona> aldeanos; 
      Scanner sc = new Scanner(System.in);
+     String muerto;
 
-	public Dia(Lista <Persona> aldeanos){}
+	public Dia(Lista<Persona> noctu,Lista <Persona> aldea){
+		nocturnos = noctu;
+		aldeanos = aldea;
+	}
      
 
     /**
     *Metodo que informa muertos
     *
     */
+
 	public void informediario(String [] muertos){
 
 		    String muer=" ";
@@ -30,66 +37,90 @@ public class Dia{
 
             }
 	 }
+
 	public void seleccionaSospechoso(){
 
 		 System.out.println("Es el momento de seleccinar al lobo");
 
+
+
 		 
 		 int opc=1;
 
+		 int i=0;
+
 		 do {
 
-		 	System.out.println("Ingresa al sospechoso: ");
-		 	String sospechoso = sc.next();
-		 	sospechosos.agregaInicio(sospechoso);
-		 	System.out.println();
-		 	System.out.println();
-		 	System.out.println("¿Hay otro sospechoso?:");
-		 	System.out.println();
-		 	System.out.println("1) si      2)no");
-		    opc = sc.nextInt();
-
+		 	 System.out.println("Ingresa al sospechoso: "+(i+1));
+		 	 String sospechoso = sc.next();
+		 	 sospechosos.agregaInicio(sospechoso);
+		 	 System.out.println();
+		 	 System.out.println();
+		 	 System.out.println("¿Hay otro sospechoso?:");
+		 	 System.out.println();
+		 	 System.out.println("1) si      2)no");
+		     opc = sc.nextInt();
+             i++;
 
 		 }while(opc==1);
-	
+         System.out.println();
+         System.out.println();
+		 System.out.println("los sospechosos son:");
+		 System.out.println();
+		 System.out.println(sospechosos.toString());
+
+		 System.out.println("a quien deciden matar?");
+		
+         muerto =sc.next();
+
+         System.out.println();
+         System.out.println("Unas ultimas palabras?"+muerto);
+         System.out.println();
+         System.out.println();
+         mensajecolgado(muerto);
+	     
 	}
-    
-/**
-	public void votar(){
-	      votos = new int[sospechosos.getLongitud()];
-
-		for(int i =0;i<votos.length;i++){
-             votos[i]=0;
-		}
-
-		int cont =0;
-
-		Iterator <String> votos2 = sospechosos.iterator();
-
-		do {
-
-		 	System.out.println("Cuantos votan por "+votos2.next());
-		 	int cuantos = sc.nextInt();
-		 	votos[cont]=cuantos;
-		 	System.out.println();
-		 	System.out.println();
-            cont++;
 
 
-		 }while(cont < votos.length);
-
-
-	}*/
-
-	public String matarSospechoso(String sospechoso){
-       return sospechoso;
+	public String matarSospechoso(){
+       return muerto;
    }
          
 
 
 //	}
 	public void mensajecolgado(String nombre){
-          System.out.println("Ha muertoque era un");
+
+		 Iterator <Persona> sospe = nocturnos.iterator();
+		 Iterator <Persona> sospe2 = aldeanos.iterator();
+         String tipo= " ";
+		 for(int i = 0;i< nocturnos.getLongitud(); i++){
+
+		 	Persona per = sospe.next();
+
+		 	if(per.getNombre()==nombre){
+
+		 		tipo = per.getTipo();
+
+		 		break;
+		 	}
+
+		 }
+
+		  for(int i = 0;i< aldeanos.getLongitud(); i++){
+
+		 	Persona per = sospe2.next();
+
+		 	if(per.getNombre()==nombre){
+
+		 		tipo = per.getTipo();
+
+		 		break;
+		 	}
+
+		 }
+
+          System.out.println("Ha muertoque"+muerto+" era un"+tipo);
 	}
 
 	

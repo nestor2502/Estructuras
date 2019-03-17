@@ -12,5 +12,6 @@ public class UsaJuego{
 	  	Juego usa = new Juego();
 	  	usa.asignaJugadores();
 	  	usa.mostrarPersonajes();
+	  	usa.iniciaNoche();
 	  }
 }

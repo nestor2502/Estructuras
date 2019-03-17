@@ -20,6 +20,7 @@ public class Noche{
      Lobo l4;
      Bruja bruj;
      Flautista flau;
+     int longe=0;
 
      /**
      *
@@ -40,6 +41,7 @@ public class Noche{
            bruj = (Bruja)it.next();
            flau = (Flautista)it.next();
 
+          longe = nocturnos.getLongitud();
      }
      
 
@@ -66,17 +68,7 @@ public class Noche{
           return victimas;
                 }
      
-/**
-     public String matar(String [] nombres){
 
-
-
-          // l1.seleccionaVictima(String nombre);
-           l2.seleccionaVictima(String nombre);
-           l3.seleccionaVictima(String nombre);
-           l4.seleccionaVictima(String nombre);
-     }
-*/
      public int lobosVivos(){
            
            //Itera la lista de personas buscando lobos
@@ -84,41 +76,20 @@ public class Noche{
 
            int cont =0;
             //recorre los elementos de la lista nocturnos
-           for(int i = 0; i<= nocturnos.getLongitud();i++){
+           for(int i = 0; i< nocturnos.getLongitud();i++){
 
-           	     if(vivos instanceof Lobo){
+                      Persona p1 = vivos.next();
+           	         if(p1.getMuerte()==true && p1.getTipo()=="lobo"){
 
-                      Lobo p1 =(Lobo) vivos.next();
 
-                     if(p1.getMuerte()==true){
-
-                     lviv.agregaInicio(p1);
+                     //lviv.agregaInicio(p1);
                       
                      cont++;
-                }
              }
            }
            return cont;
      }
 
-public void brujaMatar(String nombre){
 
-}
-public void brujaRevive(String nombre){
-
-}
-
-public void encantarPersonas(String nombre){
-}
-public void encantarPersonas(String nombre, String nombre2){
-
-}
-public void personasencantadas(){
- 
-} 	
-
-public void personasMuertas(){
-
-}
 
 }
