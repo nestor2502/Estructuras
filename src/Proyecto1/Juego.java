@@ -51,10 +51,10 @@ public class Juego{
           	System.out.println(jugadores[i]);
           }
          //metodo de clase Jugadores que devuelve una lista que seran los nocturnos
-         nocturnos = personajes.asignarPersonajesSup();
+          nocturnos = personajes.asignarPersonajesSup();
 
          //Metodo que regresa una lista con los aldeanos
-         //aldeanos = personajes.asignarAldeano();
+        // aldeanos = personajes.asignarAldeano();
 
          //Se inicia noche y se recibe una lista con jugadores
          //Noche nocheVar = new Noche(nocturnos); 
