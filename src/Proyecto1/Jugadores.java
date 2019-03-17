@@ -67,7 +67,7 @@ public class Jugadores{
 
              Lista <Persona> especiales = new Lista <Persona>();
      	     //metodo que devuelve arrreglo con un 11 numeros aleatorios
-             dif = diferentes(15);
+             dif = diferentes(numJugadores);
 
              vidente = new Vidente(nombres[dif[0]], "vidente");
              protector = new Protector(nombres[dif[1]], "protector"); 
@@ -88,7 +88,8 @@ public class Jugadores{
              especiales.agregaInicio(lobo3);
              especiales.agregaInicio(lobo4);
              especiales.agregaInicio(protector);
-             especiales.agregaInicio(vidente);/**
+             especiales.agregaInicio(vidente);
+             
              //se inicia arreglo sin numeros aleatorios de tamaño 
              sinRep = quitaRepetido(total, dif);
 
@@ -103,7 +104,7 @@ public class Jugadores{
 
 
              }
-          */
+          
           return especiales;
          }
     
@@ -157,7 +158,7 @@ public class Jugadores{
 
        while(i < dif.length){
 
-           int numero = (int) (Math.random() * n) +1;
+           int numero = (int) (Math.random() * n);
 
            int cont =0;
 

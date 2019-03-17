@@ -54,10 +54,10 @@ public class Juego{
           nocturnos = personajes.asignarPersonajesSup();
 
          //Metodo que regresa una lista con los aldeanos
-        // aldeanos = personajes.asignarAldeano();
+         aldeanos = personajes.asignarAldeano();
 
          //Se inicia noche y se recibe una lista con jugadores
-         //Noche nocheVar = new Noche(nocturnos); 
+         Noche nocheVar = new Noche(nocturnos); 
 
      }
 
@@ -76,7 +76,7 @@ public class Juego{
            	Persona p1 = it.next();
            	System.out.println(p1.getTipo()+" : "+p1.getNombre());
            }
-           for(int j=0; j<long1; j++){
+           for(int j=0; j<long1-1; j++){
            	Persona p2 = it2.next();
            	System.out.println(p2.getTipo()+" : "+p2.getNombre());
            }
