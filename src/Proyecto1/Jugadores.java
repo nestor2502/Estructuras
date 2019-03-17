@@ -9,12 +9,20 @@ import java.util.Iterator;
 public class Jugadores{
 
 	 int numJugadores=0;
+     //arreglo con el nombre de todos los jugadores
      String[] nombres;
-     String[] alde; 
+     //numeros del 1 al numero total de jugadores
+     int [] total;
+     //arreglo con 11 numeros aleatorios
      int [] dif;
-     Lista <Integer> seleccionados = new Lista <Integer>();
-     Lista <Persona> especiales;
-     Lista <Persona> aldeanos;
+     //arreglo con numeros sin repetir los numeros que fueron seleccionados aleatorios
+     int [] sinRep;
+     //arreglo con el nombre de los aldeanos
+     String[] alde; 
+     //lista con personajes nocturnos
+     //Lista <Persona> especiales = new Lista <Persona>();
+     //lista de aldeanos
+     Lista <Persona> aldeanos = new Lista <Persona>();
 
 
 	 Vidente vidente;
@@ -35,6 +43,15 @@ public class Jugadores{
          numJugadores = nombres.length;
 
          this.nombres = nombres;
+
+
+         total = new int[nombres.length];
+
+         for(int i=0;i< total.length;i++){
+
+             total [i]=i;
+         }
+
     
       }
 
@@ -43,34 +60,21 @@ public class Jugadores{
      */
      public Lista <Persona> asignarPersonajesSup(){
 
-     	  Iterator <Integer> it = seleccionados.iterator();
-     	     //metodo que devuelve un numero aleatorio
-             dif = random1(this.nombres.length);
-             int a=dif[0];
-             int b=dif[1];
-             int c=dif[2];
-             int d=dif[3];
-             int e=dif[4];
-             int f=dif[5];
-             int g=dif[6];
-             int h=dif[7];
-             int l=dif[8];
-             int m=dif[9];
-             int n=dif[10];
+             Lista <Persona> especiales = new Lista <Persona>();
+     	     //metodo que devuelve arrreglo con un 11 numeros aleatorios
+             dif = random1(numJugadores);
 
-             vidente = new Vidente(nombres[a], "vidente");
-             protector = new Protector(nombres[b], "protector"); 
-             lobo1 = new Lobo(nombres[c], "lobo");
-             lobo2 = new Lobo(nombres[d], "lobo");
-             lobo3 = new Lobo(nombres[e], "lobo");
-             lobo4 = new Lobo(nombres[f], "lobo");
-             niña = new Niña(nombres[g], "niña");
-             bruja = new Bruja(nombres[h], "bruja");
-             flautista = new Flautista(nombres[l], "flautista");
-             cazador = new Cazador(nombres[m], "cazador");
-             tonto = new Tonto(nombres[n], "tonto");
-             //Lista con personas seleccionadas como especiales
-             especiales = new Lista <Persona>();
+             vidente = new Vidente(nombres[dif[0]], "vidente");
+             protector = new Protector(nombres[dif[1]], "protector"); 
+             lobo1 = new Lobo(nombres[dif[2]], "lobo");
+             lobo2 = new Lobo(nombres[dif[3]], "lobo");
+             lobo3 = new Lobo(nombres[dif[4]], "lobo");
+             lobo4 = new Lobo(nombres[dif[5]], "lobo");
+             niña = new Niña(nombres[dif[6]], "niña");
+             bruja = new Bruja(nombres[dif[7]], "bruja");
+             flautista = new Flautista(nombres[dif[8]], "flautista");
+             cazador = new Cazador(nombres[dif[9]], "cazador");
+             tonto = new Tonto(nombres[dif[10]], "tonto");
              
              //Aldenados no comunes
              aldeanos.agregaInicio(tonto);
@@ -85,16 +89,18 @@ public class Jugadores{
              especiales.agregaInicio(lobo4);
              especiales.agregaInicio(protector);
              especiales.agregaInicio(vidente);
+             //se inicia arreglo sin numeros aleatorios de tamaño 11
+             sinRep = quitaRepetido(total, dif);
 
              //se inicia arreglo con el nombres restantes
-             alde = new String[nombres.length-13];
-             int j=0;
-             for(int i=0; i< nombres.length-13;i++){
+             alde = new String[sinRep.length];
+
+             //se llena arreglo con los nombres de los aldeanos
+             for(int i=0; i <alde.length;i++){
                  //se cera el arreglo de aldeanos sin personajes especiales
-             	if(seleccionados.contiene(i)==false){
-             		alde[j]=nombres[i];
-             		j++;
-             	}
+             	
+             		alde[i]=nombres[sinRep[i]];
+
 
              }
           
@@ -104,8 +110,6 @@ public class Jugadores{
  
 
      public Lista<Persona> asignarAldeano(){
-
-         aldeanos= new Lista <Persona>();
 
          String tip = "aldeano";
 
@@ -127,37 +131,74 @@ public class Jugadores{
      */
      public int [] random1(int n){
          
-          int [] difi = new int[n];
+         int [] dif = new int[11];
+       int i =0 ;
 
-          int i=0;
+       while(i < dif.length){
 
-          while(i< difi.length){
+           int numero = (int) (Math.random() * n) +1;
 
-          	  int numero = (int)(Math.random() * n)+1;
+           int cont =0;
 
-          	  int cont=0;
+           for(int j=0; j<dif.length;j++){
 
-          	 for(int j=0; j<difi.length;i++){
-          	  	 
-          	  	 if(difi[j]==numero){
-          	  	   	 cont++;
-          	  	   }
+            if(dif[j]==numero){
 
+              cont++;
+            }
+             
+           }
+             
+           if(cont < 1){
+              
+              dif[i]=numero;
+              i++;
 
-          	  }
-
-          	  if(cont<1){
-          	  	  difi[i]=numero;
-          	  	  i++;
-
-          	  }
-
-          }
+           }
          
+         }
+      return dif;
+     }
+
+     public boolean seEncuentra(int [] arr, int n){
 
 
-      return difi;
-     }}
+         int [] arre = arr;
+
+         for(int i =0; i< arre.length;i++){
+
+             if(arre[i]==n)
+
+                 return true;
+         }
+
+         return false;
+     }
+
+        public int [] quitaRepetido(int [] arr6, int[]arr7){
+         //este es el arreglo grande
+         int [] arr1 = arr6;
+         //este es el arreglo chico
+         int [] arr2= arr7;
+         int [] perfect = new int[(arr6.length-arr7.length)];
+         int i=0;
+         int con =0;
+
+         while(i<perfect.length-1){
+             
+             for(int j =0; j< arr1.length;j++){
+                if(seEncuentra(arr2, arr1[j])==false){
+                   perfect[i]=arr1[j];
+                   i++;
+                }
+             }
+             
+              }
+       return perfect;
+    
+}
+
+ }
 
 
 
