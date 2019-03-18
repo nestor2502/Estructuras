@@ -54,6 +54,7 @@ public class Dia{
 		     System.out.println("Presione cualquier tecla para continuar: ");
 		     String rrr = sc.next(); 
 		     System.out.println();
+		     limpiarPantalla();
 
             
 	 }
@@ -61,7 +62,16 @@ public class Dia{
 	public void seleccionaSospechoso(){
 
 		 System.out.println("Es el momento de seleccinar al lobo");
+		 System.out.println();
+		     System.out.println();
+          
+          System.out.println("Personas vivas:");
 
+		 	 mostrarPersonajesVivos();
+		 	 System.out.println();
+		     System.out.println();
+		     System.out.println();
+		     System.out.println();
 
 		 int opc=1;
 
@@ -104,16 +114,47 @@ public class Dia{
          Persona pr = itera(muerto);
          pr.setMuerte();
          System.out.println();
+         limpiarPantalla();
+         System.out.println();
+         System.out.println();
+         System.out.println();
          System.out.println("Mataron a  "+muerto+"  que era: "+pr.getTipo());
          System.out.println();
          System.out.println();
          System.out.println();
          System.out.println();
+         System.out.println("Presione cualquier letra para continuar");
+         String seeee = sc.next();
 
          sospechosos.limpia(); 
+         limpiarPantalla();
          //}
 	     
 	}
+
+	public void mostrarPersonajesVivos(){
+
+         Iterator <Persona> it  = nocturnos.iterator();
+         Iterator <Persona> it2 = aldeanos.iterator();
+         System.out.println();
+          System.out.println();
+         System.out.println("Lista de jugadores vivos");
+         System.out.println();
+           int long1=nocturnos.getLongitud();
+           int long2=aldeanos.getLongitud();
+
+           for(int i=0; i<long1; i++){
+            Persona p1 = it.next();
+            if(p1.getMuerte()==true)
+            System.out.println(p1.getNombre());
+           }
+           for(int j=0; j<long1-1; j++){
+            Persona p2 = it2.next();
+            if(p2.getMuerte()==true)
+            System.out.println(p2.getNombre());
+           }
+     }
+
 
 
          
@@ -186,6 +227,10 @@ public class Dia{
      return prueba;
 
 }
+public static void limpiarPantalla(){
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+} 
 
 	
 }

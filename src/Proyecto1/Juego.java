@@ -45,10 +45,19 @@ public class Juego{
      */
      public void asignaJugadores(){
 
-     	System.out.println("¿Cuantos jugadores son?");
-     	System.out.println("Nota: minimo 14 jugadores, maximo: 30");
+     	System.out.println("Inicia el juego");
+      System.out.println();
+     	System.out.println("Nota: minimo 15 jugadores, maximo: 30");
+      System.out.println();
+      System.out.println(" *no puede haber nombres repetidos");
+      System.out.println();
+      System.out.println();
+      System.out.println();
+      System.out.println("¿Cuantos jugadores son?");
+      System.out.println();
      	numeroJugadores = sc.nextInt();
-
+      System.out.println();
+      System.out.println();
      	jugadores = new String[numeroJugadores];
      	System.out.println();
      	System.out.println();
@@ -57,6 +66,7 @@ public class Juego{
      	     System.out.println("ingresa al jugador "+(i+1));
      	     jugadores[i]=sc.next();
           }
+          limpiarPantalla();
          //se inicia clase jugadores con arreglo de nombres
          personajes = new Jugadores(jugadores);
           
@@ -95,6 +105,7 @@ public class Juego{
             if(p2.getMuerte()==true)
            	System.out.println(p2.getTipo()+" : "+p2.getNombre());
            }
+
      }
 
        /**
@@ -158,6 +169,7 @@ public class Juego{
           System.out.println();
           System.out.println("Selecciona cualquier letra para continuar");
           String seleccion1 = sc.next();
+          limpiarPantalla();
           System.out.println();
        }
 
@@ -187,6 +199,7 @@ public class Juego{
             System.out.println("Selecciona cualquier letra para continuar");
             String seleccion7 = sc.next();
             System.out.println();
+            limpiarPantalla();
            }
 
         
@@ -221,9 +234,10 @@ public class Juego{
             System.out.println();
             
             // System.out.println("lo sentimos "+per2.getNombre()+" estaba protegido");
-             System.out.println("esta persona esta viva: "+ per2.getMuerte());
+             //System.out.println("esta persona esta viva: "+ per2.getMuerte());
              System.out.println();
              System.out.println();
+             limpiarPantalla();
          }
          
 
@@ -452,7 +466,7 @@ public class Juego{
 
    
        }}
-
+        limpiarPantalla();
         }
 
            if( personajes.flautista.getMuerte()== true ){
@@ -482,9 +496,11 @@ public class Juego{
               System.out.println();
               System.out.println();
               per.protegido= false;
-              System.out.println("Aldeanos vivos: "+aldeanosVivos());
-              System.out.println("Lobos vivos: "+lobosVi());
-              System.out.println("Personas encantadas: "+encantados());
+              limpiarPantalla();
+              //System.out.println("Aldeanos vivos: "+aldeanosVivos());
+              //System.out.println("Lobos vivos: "+lobosVi());
+              //System.out.println("Personas encantadas: "+encantados());
+
               //seleccionar opc para continuarx|
 
 
@@ -503,6 +519,12 @@ public class Juego{
        System.out.println("Aldeanos vivos: "+aldeanosVivos());
        System.out.println("Lobos vivos: "+lobosVi());
        System.out.println("Personas encantadas: "+encantados());
+              System.out.println();
+              System.out.println("Presione una letra para continuar");
+              String fff = sc.next();
+              System.out.println();
+              limpiarPantalla();
+
      }
 
 
@@ -632,4 +654,9 @@ public class Juego{
      return prueba;
 
 }
+public static void limpiarPantalla(){
+    System.out.print("\033[H\033[2J");
+    System.out.flush();
+} 
+
 }
