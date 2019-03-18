@@ -17,7 +17,7 @@ public class Juego{
      int numeroEncantados;
      //persona protegida
      Persona proteg;
-     // persona caso 1
+     // persona protegida
      Persona per;
      //persona que mataron lobos
      Persona per2;
@@ -32,7 +32,7 @@ public class Juego{
      Jugadores personajes;
      Noche nocheVar;
      Scanner sc= new Scanner(System.in);
-     
+
 
 
 
@@ -61,10 +61,6 @@ public class Juego{
          //se inicia clase jugadores con arreglo de nombres
          personajes = new Jugadores(jugadores);
           
-          for(int i =0; i< jugadores.length; i++){
-
-          	System.out.println(jugadores[i]);
-          }
          //metodo de clase Jugadores que devuelve una lista que seran los nocturnos
           nocturnos = personajes.asignarPersonajesSup();
 
@@ -120,11 +116,11 @@ public class Juego{
           System.out.println("¿A quien quieres proteger?");
           System.out.println();
           String prot = sc.next();
-          String protegido = nocheVar.proteger(prot);
-           per = itera(protegido);
-          
+          //String protegido = nocheVar.proteger(prot);
+           per = itera(prot);
+                    System.out.println(per.getNombre());
                    per.setProtegido();
-                   proteg = per;
+                   //proteg = per;
            }
 
         
@@ -137,12 +133,27 @@ public class Juego{
            String victi = sc.next();
            System.out.println();
            String guardar1 = nocheVar.lobosMatar(victi);
-            per2 = itera(guardar1);
-             per2.setMuerte();
+            per2 = itera(victi);
+            // if(per.getNombre()!=guardar1){
+                  per2.setMuerte();
+             //}
          }
+         
 
         if(personajes.bruja.getMuerte() == true){
-
+              
+              System.out.println();
+              System.out.println("Despierta bruja");
+              System.out.println();
+              System.out.println("¿quieres usar alguna pocion?");
+              if(per2.getMuerte()==false){
+              System.out.println("ten encuenta que los lobos mataron a: "+per2.getNombre());
+               }
+              System.out.println();
+              System.out.println("1) si       2) no");
+              System.out.println();
+              int opc9 = sc.nextInt();
+              if( opc9 == 1) {
            if(personajes.bruja.pocionesDisponibles()==0){
              System.out.println("la bruja ya no tiene pociones");
            }
@@ -169,7 +180,10 @@ public class Juego{
                     String morira = sc.next();
                     String revive=personajes.bruja.matar(morira);
                     per3 = itera(revive);
-                    per3.setMuerte();
+                    if(per.getNombre()!=revive){
+                       per3.setMuerte();
+                    }
+                    
              }
 
             
@@ -196,7 +210,10 @@ public class Juego{
                     String morira = sc.next();
                     String morira2= personajes.bruja.matar(morira);
                     per4 = itera(morira2);
-                    per4.setMuerte();
+                    if(per.getNombre()!=morira2){
+                       per4.setMuerte();
+                    }
+                    
      
 
              }
@@ -219,7 +236,9 @@ public class Juego{
                     String morira = sc.next();
                     String revive=personajes.bruja.matar(morira);
                     per3= itera(revive);
-                    per3.setMuerte();
+                    if(per.getNombre()!=revive){
+                       per3.setMuerte();
+                    }
             }
 
 
@@ -229,27 +248,52 @@ public class Juego{
        }
 
         }
+}
+           if( personajes.flautista.getMuerte()== true ){
 
+               String encantado1;
+               String encantado2;
+               System.out.println();
+               System.out.println("Flautista");
+               System.out.println("A quienes vas a encantar?");
+               System.out.println();
+               System.out.println("ingresa al primer encantado");
+               encantado1 = sc.next();
+               System.out.println("ingresa al segundo  encantado");
+               encantado2 = sc.next();
+
+               Persona p5 = itera(encantado1);
+               Persona p6 = itera(encantado2); 
+               p5.setEncantado();
+               p6.setEncantado();
+              }
 
 
      }
-
+     /**
+     *este metodo regresa un objeto persona que contiene el nombre de la persona que ingresa de parametro
+     *@param nombre
+     *@return prueba
+     */
      public Persona itera(String nombre ){
-         Persona prueba = new Persona("no se", "encuantra");
-         Iterator <Persona> it1  = nocturnos.iterator();
-         Iterator <Persona> it2 = aldeanos.iterator();
-
-      for(int i = 0;i< nocturnos.getLongitud(); i++){
-               prueba = it1.next();
-               if(prueba.getNombre()==nombre){
+         Persona prueba = new Persona("no se", "encuentra");
+         Iterator <Persona> it4  = nocturnos.iterator();
+         Iterator <Persona> it8 = aldeanos.iterator();
+          int long7 = nocturnos.getLongitud();
+         String busco = nombre;
+         
+               for(int i=0; i< long7; i++){
+               prueba = it4.next();
+               String nom = prueba.getNombre(); 
+               if(nom.equals(busco)){
                 return prueba;
                }
            }
-
+        
            for(int i = 0;i< aldeanos.getLongitud(); i++){
              
-              prueba = it2.next();
-                if(prueba.getNombre()==nombre){
+              prueba = it8.next();
+                if((prueba.getNombre()).equals(nombre)){
              return prueba;
            }
      }
