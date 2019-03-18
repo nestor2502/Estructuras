@@ -21,7 +21,7 @@ public class Bruja extends Persona{
 	 *Pocion que cambia de disponibilidad una pocion
 	 *@param tipo
 	 */
-	 private void usarPocion(String tipo){
+	 public void usarPocion(String tipo){
 
 	 	 if(tipo.equals("curativa")){
 	 	 	pocion_curativa= false;
@@ -89,10 +89,10 @@ public class Bruja extends Persona{
          }
          if(pocionesDisponibles()==1){
 	 	     if(pocion_curativa==true){
-	 		     poc+= "Pocion curativa ";
+	 		     poc+= "Pocion curativa";
 	 	     }
 	 	     if(pocion_veneno==true){
-	 		     poc += " Veneno ";
+	 		     poc += "Veneno";
 	 	     }
          }
 

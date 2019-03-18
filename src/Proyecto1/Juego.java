@@ -110,15 +110,15 @@ public class Juego{
        }
 
        if(personajes.protector.getMuerte ()== true){
-          System.out.println("lobos vivos: "+nocheVar.lobosVivos());
-          System.out.println("Despierta la bruja");
+          //System.out.println("lobos vivos: "+nocheVar.lobosVivos());
+          System.out.println("Despierta el protector");
           System.out.println();
           System.out.println("¿A quien quieres proteger?");
           System.out.println();
           String prot = sc.next();
           //String protegido = nocheVar.proteger(prot);
            per = itera(prot);
-                    System.out.println(per.getNombre());
+                   // System.out.println(per.getNombre());
                    per.setProtegido();
                    //proteg = per;
            }
@@ -134,9 +134,12 @@ public class Juego{
            System.out.println();
            String guardar1 = nocheVar.lobosMatar(victi);
             per2 = itera(victi);
-            // if(per.getNombre()!=guardar1){
+             if((per.getNombre()).equals(guardar1)==false){
                   per2.setMuerte();
-             //}
+             }
+            
+            // System.out.println("lo sentimos "+per2.getNombre()+" estaba protegido");
+             System.out.println("esta persona esta viva: "+ per2.getMuerte());
          }
          
 
@@ -145,9 +148,13 @@ public class Juego{
               System.out.println();
               System.out.println("Despierta bruja");
               System.out.println();
-              System.out.println("¿quieres usar alguna pocion?");
+              //System.out.println("¿quieres usar alguna pocion?");
               if(per2.getMuerte()==false){
+                System.out.println("¿quieres usar alguna pocion?");
               System.out.println("ten encuenta que los lobos mataron a: "+per2.getNombre());
+               }
+               else if(per2.getMuerte()==true){
+                System.out.println("¿quieres usar la pocion veneno?");
                }
               System.out.println();
               System.out.println("1) si       2) no");
@@ -155,100 +162,134 @@ public class Juego{
               int opc9 = sc.nextInt();
               if( opc9 == 1) {
            if(personajes.bruja.pocionesDisponibles()==0){
-             System.out.println("la bruja ya no tiene pociones");
+             System.out.println("Rayos, creo que la bruja ya no tiene pociones");
            }
 
           if(personajes.bruja.pocionesDisponibles()==1 ){
-             System.out.println(" tienes disponible" + personajes.bruja.pociones());
-             System.out.println();
-             System.out.println("lo quieres usar?");
-             System.out.println();
-             System.out.println("1)si      2) no");
-             System.out.println();
-             int opc = sc.nextInt();
-             if (opc == 1 && personajes.bruja.pocion_curativa==true){
-                    System.out.println("¿A quien quieres revivir?");
-                    System.out.println();
-                    String suertudo = sc.next();
-                    String revive=personajes.bruja.revivir(suertudo);
-                    per3 = itera(revive);
-                    per3.setVida();
-             }
-             else  if (opc == 1 && personajes.bruja.pocion_veneno==true){
-                    System.out.println("¿A quien quieres matar?");
+
+             if((personajes.bruja.pociones()).equals("Pocion curativa")==false){
+                  System.out.println(" tienes disponible" + personajes.bruja.pociones());
+                  System.out.println();
+                  System.out.println("lo quieres usar?");
+                  System.out.println();
+                  System.out.println("1)si      2) no");
+                  System.out.println();
+                   int opc5 = sc.nextInt();
+                   if (opc5 == 1 && personajes.bruja.pocion_veneno==true){
+                   System.out.println("¿A quien quieres matar?");
                     System.out.println();
                     String morira = sc.next();
                     String revive=personajes.bruja.matar(morira);
                     per3 = itera(revive);
                     if(per.getNombre()!=revive){
                        per3.setMuerte();
-                    }
-                    
+                       personajes.bruja.usarPocion("veneno");
+                    }}
              }
 
-            
-                    
+             else if((personajes.bruja.pociones()).equals("Pocion curativa")==true){
+                  System.out.println(" tienes disponible" + personajes.bruja.pociones());
+                  System.out.println();
+                  System.out.println("lo quieres usar para revivir a?"+per2.getNombre());
+                  System.out.println();
+                  System.out.println("1)si      2) no");
+                  System.out.println();
+                   int opc6 = sc.nextInt();
+                   if (opc6 == 1 && personajes.bruja.pocion_curativa==true){
+                   System.out.println("¿quieres revivir a "+per2.getNombre()+"?");
+                    System.out.println();
+                    System.out.println("1)si      2) no");
+                    System.out.println();
+                    int opc3 = sc.nextInt();
+                      if(opc3== 1){
+
+                        per2.setVida();
+                        personajes.bruja.usarPocion("curativa");
+                    }
+                    }
+             }
+          
              }
 
           if(personajes.bruja.pocionesDisponibles()==2){
+               
+               System.out.println("tienes disponibles "+ personajes.bruja.pociones());
+               System.out.println();
 
-               System.out.println("tienes disponibles"+ personajes.bruja.pociones()+" ¿quieres usar ambas?");
+               if(per2.getMuerte()==false){////
+                System.out.println("¿Cuantas quieres usar?");
+               int cantidad = sc.nextInt();
                System.out.println();
-               System.out.println("1)si      2) no");
-               System.out.println();
-               int opc = sc.nextInt();
-              if (opc ==1){
+               if(cantidad==2){
+                System.out.println("Los lobos mataron a: "+ per2.getNombre()+", ¿quieres revivirlo?");
+                 System.out.println();
+                 System.out.println("1)si      2) no");
+                 System.out.println();
+                int opc = sc.nextInt();
+                if (opc ==1){
              
-                    System.out.println("¿A quien quieres revivir?");
+                    System.out.println();
+                    System.out.println("1)si      2) no");
                     String suertudo = sc.next();
                     String revive = personajes.bruja.revivir(suertudo);
                     per3 = itera(revive);
                     per3.setVida();
+                    personajes.bruja.usarPocion("curativa");
+                    System.out.println("Reviviste a: "+per2.getNombre());
+               }
             
-   
+                    System.out.println();
                     System.out.println("¿A quien quieres matar?");
                     String morira = sc.next();
                     String morira2= personajes.bruja.matar(morira);
                     per4 = itera(morira2);
-                    if(per.getNombre()!=morira2){
+
+                    if((per.getNombre()).equals(morira2)==false){
                        per4.setMuerte();
+                       personajes.bruja.usarPocion("veneno");
                     }
-                    
-     
+                  }
 
-             }
-
-               if(opc ==2){
-                    System.out.println("cual quieres usar?");
-                    System.out.println();
-                    System.out.println("1) Poción curativa      2) Veneno");
-                    System.out.println();
-                    int opc2 = sc.nextInt();
-                    if (opc2 == 1){
-                        System.out.println("¿A quien quieres revivir?");
-                        String suertudo = sc.next();
-                        String revive = personajes.bruja.revivir(suertudo);
-                        per3 = itera(revive);
-                        per3.setVida();
-                     }
-                    else  if (opc2 == 2){
+                    if(cantidad==1){
+                       System.out.println();
                     System.out.println("¿A quien quieres matar?");
                     String morira = sc.next();
-                    String revive=personajes.bruja.matar(morira);
-                    per3= itera(revive);
-                    if(per.getNombre()!=revive){
-                       per3.setMuerte();
+                    String morira2= personajes.bruja.matar(morira);
+                    per4 = itera(morira2);
+
+                    if((per.getNombre()).equals(morira2)==false){
+                       per4.setMuerte();
+                       personajes.bruja.usarPocion("veneno");
                     }
-            }
+                   }
+                   }////
+                  if(per2.getMuerte()==true){
+                     System.out.println("¿Quieres matar a alguien?");
+                     int acierto = sc.nextInt();
+                     System.out.println("1) si     2) no");
+                     if(acierto==1){
+                      System.out.println();
+                      System.out.println("¿A quien quieres matar?");
+                      String morira = sc.next();
+                      String morira2= personajes.bruja.matar(morira);
+                      per4 = itera(morira2);
 
+                      if((per.getNombre()).equals(morira2)==false){
+                       per4.setMuerte();
+                       personajes.bruja.usarPocion("veneno");
+                    }
+                     }
+                     
+                  }
 
-             }
+             
+           }
 
    
        }
 
         }
-}
+
            if( personajes.flautista.getMuerte()== true ){
 
                String encantado1;
@@ -267,6 +308,8 @@ public class Juego{
                p5.setEncantado();
                p6.setEncantado();
               }
+
+
 
 
      }
