@@ -38,7 +38,7 @@ public class Juego{
      Noche nocheVar;
      Dia diaVar;
      Scanner sc= new Scanner(System.in);
-
+      
      /**
      *Metodo que inicia el juego y asigna personajes a cada jugador
      *
@@ -94,6 +94,14 @@ public class Juego{
            	System.out.println(p2.getTipo()+" : "+p2.getNombre());
            }
      }
+
+       /**
+       *Metodo que devuelve el total de jugadores al comienzo de una partida
+       */
+       public int numJuga(){
+
+          return numeroJugadores;
+       }
       /**
       *Metodo que llama a todos los personajes nocturnos ademas de sus metodos
       */
