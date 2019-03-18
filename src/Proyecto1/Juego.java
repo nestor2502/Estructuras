@@ -87,11 +87,39 @@ public class Juego{
 
            for(int i=0; i<long1; i++){
            	Persona p1 = it.next();
+            if(p1.getMuerte()==true)
            	System.out.println(p1.getTipo()+" : "+p1.getNombre());
            }
            for(int j=0; j<long1-1; j++){
            	Persona p2 = it2.next();
+            if(p2.getMuerte()==true)
            	System.out.println(p2.getTipo()+" : "+p2.getNombre());
+           }
+     }
+
+       /**
+     *Metodo que muestra los personajes seleccionados para cada jugador
+     */
+     public void mostrarPersonajesVivos(){
+
+         Iterator <Persona> it  = nocturnos.iterator();
+         Iterator <Persona> it2 = aldeanos.iterator();
+         System.out.println();
+          System.out.println();
+         System.out.println("Lista de jugadores vivos");
+         System.out.println();
+           int long1=nocturnos.getLongitud();
+           int long2=aldeanos.getLongitud();
+
+           for(int i=0; i<long1; i++){
+            Persona p1 = it.next();
+            if(p1.getMuerte()==true)
+            System.out.println(p1.getNombre());
+           }
+           for(int j=0; j<long1-1; j++){
+            Persona p2 = it2.next();
+            if(p2.getMuerte()==true)
+            System.out.println(p2.getNombre());
            }
      }
 
@@ -113,25 +141,45 @@ public class Juego{
         System.out.println("Despierta la vidente");
         System.out.println();
           nocheVar.espiar();
+          System.out.println();
+          System.out.println();
+          System.out.println("Selecciona cualquier letra para continuar");
+          String seleccion7 = sc.next();
+          System.out.println();
+          System.out.println();
           System.out.println("se duerme la vidente");
           System.out.println();
-          System.out.println("Selecciona cualquier numero para continuar");
-          int seleccion7 = sc.nextInt();
+          System.out.println("Selecciona cualquier letra para continuar");
+          String seleccion1 = sc.next();
           System.out.println();
        }
 
        if(personajes.protector.getMuerte ()== true){
           //System.out.println("lobos vivos: "+nocheVar.lobosVivos());
+          System.out.println();
           System.out.println("Despierta el protector");
+          System.out.println();
+          System.out.println();
+          mostrarPersonajesVivos();
+          System.out.println();
           System.out.println();
           System.out.println("¿A quien quieres proteger?");
           System.out.println();
           String prot = sc.next();
+          System.out.println();
           //String protegido = nocheVar.proteger(prot);
            per = itera(prot);
                    // System.out.println(per.getNombre());
                    per.setProtegido();
                    //proteg = per;
+            System.out.println();
+            System.out.println();
+            System.out.println("El protector duerme");
+            System.out.println();
+            System.out.println();
+            System.out.println("Selecciona cualquier letra para continuar");
+            String seleccion7 = sc.next();
+            System.out.println();
            }
 
         
@@ -140,6 +188,11 @@ public class Juego{
         System.out.println();
         System.out.println("Despiertan lobos");
         System.out.println();
+        System.out.println();
+          System.out.println();
+          mostrarPersonajesVivos();
+          System.out.println();
+          System.out.println();
            System.out.println("a quien decicieron matar?");
            String victi = sc.next();
            System.out.println();
@@ -150,7 +203,13 @@ public class Juego{
                   muertos.agregaInicio(per2.getNombre());
                   //muer[0]=per2.getNombre();
              }
-
+          
+            System.out.println();
+            System.out.println();
+            System.out.println("Los lobos duermen");
+            System.out.println("Selecciona cualquier letra para continuar");
+            String seleccion8 = sc.next();
+            System.out.println();
             
             // System.out.println("lo sentimos "+per2.getNombre()+" estaba protegido");
              System.out.println("esta persona esta viva: "+ per2.getMuerte());
@@ -342,6 +401,11 @@ public class Juego{
                String encantado2;
                System.out.println();
                System.out.println("Flautista");
+               System.out.println();
+               System.out.println();
+               mostrarPersonajesVivos();
+               System.out.println();
+               System.out.println();
                System.out.println("A quienes vas a encantar?");
                System.out.println();
                System.out.println("ingresa al primer encantado");
@@ -355,6 +419,7 @@ public class Juego{
                p6.setEncantado();
               }
 
+              per.protegido= false;
               System.out.println("Aldeanos vivos: "+aldeanosVivos());
               System.out.println("Lobos vivos: "+lobosVi());
               System.out.println("Personas encantadas: "+encantados());

@@ -152,6 +152,14 @@ public class PruebaLista{
          System.out.println("Limpiando: ");
          test.limpia();
          System.out.println("Longitud: "+test.getLongitud());
+         test.agregaInicio("holadenuevo");
+         System.out.println("Longitud: "+test.getLongitud());
+         System.out.println("Informacion de la lista: "+test.toString());
+         Iterator <String> it7 = test.iterator();
+
+         System.out.println("hay un primer elemento? "+it7.hasNext());
+         System.out.println("1) recorriendo el iterador "+ it7.next());
+         System.out.println("hay un siguiente elemento? "+it7.hasNext());
 
           System.out.println();
           System.out.println();/**

@@ -49,6 +49,11 @@ public class Dia{
 
              }
 		     }
+		     System.out.println();
+		     System.out.println();
+		     System.out.println("Presione cualquier tecla para continuar: ");
+		     String rrr = sc.next(); 
+		     System.out.println();
 
             
 	 }
@@ -78,7 +83,7 @@ public class Dia{
 		 }while(opc==1);
          System.out.println();
          System.out.println();
-		 System.out.println("los sospechosos son:");
+		 System.out.println("los sospechosos son: ");
 		 System.out.println();
 		 System.out.println(sospechosos.toString());
          System.out.println();
@@ -91,7 +96,7 @@ public class Dia{
 
          System.out.println();
         // if(sospechosos.contiene(muerto)==true){
-         System.out.println("Unas ultimas palabras?"+muerto);
+         System.out.println("Unas ultimas palabras?  "+muerto);
          System.out.println();
          System.out.println();
          System.out.println("Presione cualquier letra para continuar");
@@ -99,9 +104,9 @@ public class Dia{
          Persona pr = itera(muerto);
          pr.setMuerte();
          System.out.println();
-         System.out.println("Mataron a "+muerto+"que era: "+pr.getTipo());
+         System.out.println("Mataron a  "+muerto+"  que era: "+pr.getTipo());
 
-
+         sospechosos.limpia(); 
          //}
 	     
 	}
