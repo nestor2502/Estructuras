@@ -76,4 +76,23 @@ public class UsaJuego{
          }
 	  	 
 	   }
+         System.out.println();
+         System.out.println();
+         System.out.println();
+         System.out.println();
+	   if(aldeanosVivos==0){
+         	System.out.println("Lamentablemente todos los aldeanos murieron :c");
+         }
+         else if(usa.lobosVi()==0){
+         	System.out.println("¡Felicidades mataron a todos los lobos!");
+         }
+         else if(personasEncantadas==(totalJugadores-1)){
+         	System.out.println("El flautista hizo de las suyas y encanto a todos");
+         }
+         System.out.println();
+         System.out.println();
+         System.out.println();
+         System.out.println("FIN DEL JUEGO");
+  
+
 }}

@@ -135,6 +135,11 @@ public class Juego{
       */
      public void iniciaNoche(){
 
+         if(muertos.getLongitud()>0){
+
+             muertos.limpia();
+         }
+
         if(muertos.getLongitud()>0){
           System.out.println();
         }
@@ -228,14 +233,32 @@ public class Juego{
               System.out.println("Despierta bruja");
               System.out.println();
               //System.out.println("¿quieres usar alguna pocion?");
+                if(per2.getMuerte()==true){
+                System.out.println("¿quieres usar la pocion veneno?");
+                System.out.println();
+              System.out.println("1) si       2) no");
+              System.out.println();
+              int pppp = sc.nextInt();
+              if (pppp == 1 && personajes.bruja.pocion_veneno==true){
+                   System.out.println("¿A quien quieres matar?");
+                    System.out.println();
+                    String morira = sc.next();
+                    String revive=personajes.bruja.matar(morira);
+                    per3 = itera(revive);
+                    if(per.getNombre()!=revive){
+                       per3.setMuerte();
+                       if(muertos.contiene(per3.getNombre())==false){
+                            muertos.agregaInicio(per3.getNombre());
+                       }
+                       //muer[1]= per3.getNombre();
+                       personajes.bruja.usarPocion("veneno");
+                    }}
+               }
               if(per2.getMuerte()==false){
                 System.out.println("¿Quieres usar alguna pocion?");
                 System.out.println();
               System.out.println("Ten encuenta que los lobos mataron a: "+per2.getNombre());
-               }
-               else if(per2.getMuerte()==true){
-                System.out.println("¿quieres usar la pocion veneno?");
-               }
+               
               System.out.println();
               System.out.println("1) si       2) no");
               System.out.println();
@@ -247,7 +270,7 @@ public class Juego{
 
           if(personajes.bruja.pocionesDisponibles()==1 ){
 
-             if((personajes.bruja.pocion_veneno==true){
+             if((personajes.bruja.pocion_veneno==true)){
                   System.out.println(" tienes disponible  " + personajes.bruja.pociones());
                   System.out.println();
                   System.out.println("lo quieres usar?");
@@ -428,7 +451,7 @@ public class Juego{
            }
 
    
-       }
+       }}
 
         }
 
