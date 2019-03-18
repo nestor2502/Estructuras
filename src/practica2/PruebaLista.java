@@ -25,6 +25,7 @@ public class PruebaLista{
          ///////////////////////////////////////
           System.out.println("Pueba contructor vacio: ");
           Lista<String> test2= new Lista<String>();
+          System.out.println("La lista contiene a: dos ? "+test2.contiene("dos") );
           System.out.println("Se agrega nuevo elemento al final");
           String adios2= "adios2";
           test2.agregaFinal(adios2);

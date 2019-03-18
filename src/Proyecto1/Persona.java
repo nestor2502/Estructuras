@@ -72,6 +72,10 @@ public class Persona{
      	 protegido = true;
      }
 
+     public void quitaProteccion(){
+           protegido = false;
+     }
+
      /**
      *
      *

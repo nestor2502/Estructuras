@@ -105,6 +105,10 @@ public class Dia{
          pr.setMuerte();
          System.out.println();
          System.out.println("Mataron a  "+muerto+"  que era: "+pr.getTipo());
+         System.out.println();
+         System.out.println();
+         System.out.println();
+         System.out.println();
 
          sospechosos.limpia(); 
          //}

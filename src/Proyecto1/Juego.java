@@ -135,7 +135,9 @@ public class Juego{
       */
      public void iniciaNoche(){
 
-
+        if(muertos.getLongitud()>0){
+          System.out.println();
+        }
        if(personajes.vidente.getMuerte()== true){
         System.out.println();
         System.out.println("Despierta la vidente");
@@ -207,12 +209,16 @@ public class Juego{
             System.out.println();
             System.out.println();
             System.out.println("Los lobos duermen");
+            System.out.println();
+            System.out.println();
             System.out.println("Selecciona cualquier letra para continuar");
             String seleccion8 = sc.next();
             System.out.println();
             
             // System.out.println("lo sentimos "+per2.getNombre()+" estaba protegido");
              System.out.println("esta persona esta viva: "+ per2.getMuerte());
+             System.out.println();
+             System.out.println();
          }
          
 
@@ -223,8 +229,9 @@ public class Juego{
               System.out.println();
               //System.out.println("¿quieres usar alguna pocion?");
               if(per2.getMuerte()==false){
-                System.out.println("¿quieres usar alguna pocion?");
-              System.out.println("ten encuenta que los lobos mataron a: "+per2.getNombre());
+                System.out.println("¿Quieres usar alguna pocion?");
+                System.out.println();
+              System.out.println("Ten encuenta que los lobos mataron a: "+per2.getNombre());
                }
                else if(per2.getMuerte()==true){
                 System.out.println("¿quieres usar la pocion veneno?");
@@ -240,8 +247,8 @@ public class Juego{
 
           if(personajes.bruja.pocionesDisponibles()==1 ){
 
-             if((personajes.bruja.pociones()).equals("Pocion curativa")==false){
-                  System.out.println(" tienes disponible" + personajes.bruja.pociones());
+             if((personajes.bruja.pocion_veneno==true){
+                  System.out.println(" tienes disponible  " + personajes.bruja.pociones());
                   System.out.println();
                   System.out.println("lo quieres usar?");
                   System.out.println();
@@ -264,16 +271,16 @@ public class Juego{
                     }}
              }
 
-             else if((personajes.bruja.pociones()).equals("Pocion curativa")==true){
-                  System.out.println(" tienes disponible" + personajes.bruja.pociones());
+              if((personajes.bruja.pocion_curativa)==true){
+                  System.out.println(" tienes disponible " + personajes.bruja.pociones());
                   System.out.println();
-                  System.out.println("lo quieres usar para revivir a?"+per2.getNombre());
+                  System.out.println("lo quieres usar para revivir a? "+per2.getNombre());
                   System.out.println();
                   System.out.println("1)si      2) no");
                   System.out.println();
                    int opc6 = sc.nextInt();
                    if (opc6 == 1 && personajes.bruja.pocion_curativa==true){
-                   System.out.println("¿quieres revivir a "+per2.getNombre()+"?");
+                   System.out.println("¿quieres revivir a "+per2.getNombre()+" ?");
                     System.out.println();
                     System.out.println("1)si      2) no");
                     System.out.println();
@@ -282,7 +289,7 @@ public class Juego{
 
                         per2.setVida();
                         if(muertos.contiene(per2.getNombre())==true){
-                            System.out.println("Se quiro de la lista de muertos?"+muertos.elimina(per2.getNombre()));
+                            System.out.println("Se quito de la lista de muertos?"+muertos.elimina(per2.getNombre()));
                        }
                         //muer[0]=null;
                         personajes.bruja.usarPocion("curativa");
@@ -295,6 +302,7 @@ public class Juego{
           if(personajes.bruja.pocionesDisponibles()==2){
                
                System.out.println("tienes disponibles "+ personajes.bruja.pociones());
+
                System.out.println();
 
                if(per2.getMuerte()==true){
@@ -304,11 +312,12 @@ public class Juego{
                      if(acierto==1){
                       System.out.println();
                       System.out.println("¿A quien quieres matar?");
+                      System.out.println();
                       String morira = sc.next();
                       String morira2= personajes.bruja.matar(morira);
-                      per4 = itera(morira2);
+                      per4 = itera(morira);
 
-                      if((per.getNombre()).equals(morira2)==false){
+                      if((per.getNombre()).equals(morira)==false){
                        per4.setMuerte();
                        if(muertos.contiene(per4.getNombre())==false){
                            muertos.agregaInicio(per4.getNombre());
@@ -323,11 +332,11 @@ public class Juego{
                if(per2.getMuerte()==false){////
                 System.out.println("¿Cuantas quieres usar?");
                 System.out.println();
-                System.out.println("1) solo 1     2) ambas");
+                System.out.println("1) solo 1     2) ambas     3) ninguna");
                 System.out.println();
                int cantidad = sc.nextInt();
                System.out.println();
-               if(cantidad==2){
+               if(cantidad==2){//////////////////////////////////////
                 System.out.println("Los lobos mataron a: "+ per2.getNombre()+", ¿quieres revivirlo?");
                  System.out.println();
                  System.out.println("1)si      2) no");
@@ -347,6 +356,8 @@ public class Juego{
                     //muer[0]= null;
                     personajes.bruja.usarPocion("curativa");
                     System.out.println("Reviviste a: "+per2.getNombre());
+                    System.out.println();
+                       System.out.println();
                }
             
                     System.out.println();
@@ -356,7 +367,7 @@ public class Juego{
                     System.out.println();
                     String morira = sc.next();
                     String morira2= personajes.bruja.matar(morira);
-                    per4 = itera(morira2);
+                    per4 = itera(morira);
 
                     if((per.getNombre()).equals(morira2)==false){
                        per4.setMuerte();
@@ -365,24 +376,50 @@ public class Juego{
                        }
                        //muer[1]=per4.getNombre();
                        personajes.bruja.usarPocion("veneno");
+                       System.out.println();
                     }
-                  }
+                  }//////////////////////////////////////////////////////////
 
                     if(cantidad==1){
-                       System.out.println();
-                    System.out.println("¿A quien quieres matar?");
-                    String morira = sc.next();
-                    String morira2= personajes.bruja.matar(morira);
-                    per4 = itera(morira2);
+                      
+                      System.out.println("¿quieres revivir a "+per2.getNombre()+" ?");
+                      System.out.println();
+                      System.out.println("1)si      2) no");
+                      System.out.println();
+                      int ggg = sc.nextInt();
+                      if(ggg==1){
 
-                    if((per.getNombre()).equals(morira2)==false){
-                       per4.setMuerte();
+                          per2.setVida();
+                          if(muertos.contiene(per2.getNombre())==true){
+                              System.out.println("Se quito de la lista de muertos?"+muertos.elimina(per2.getNombre()));
+                          }
+                          System.out.println();
+                          System.out.println();
+                          personajes.bruja.usarPocion("curativa");
+                          System.out.println("Reviviste a: "+per2.getNombre());
+                          System.out.println();
+                          System.out.println();
+                       System.out.println();
+                      }
+                      System.out.println();
+                      System.out.println();
+                      if(ggg==2){
+
+                          System.out.println("¿A quien quieres matar?");
+                          String morira = sc.next();
+                          String morira2= personajes.bruja.matar(morira);
+                          per4 = itera(morira);
+
+                          if((per.getNombre()).equals(morira)==false){
+                              per4.setMuerte();
                        if(muertos.contiene(per4.getNombre())==false){
                            muertos.agregaInicio(per4.getNombre());
                        }
                        //muer[1]=per4.getNombre();
                        personajes.bruja.usarPocion("veneno");
                     }
+                      }
+                    
                    }
                    }////
                   
@@ -418,12 +455,14 @@ public class Juego{
                p5.setEncantado();
                p6.setEncantado();
               }
-
+              System.out.println();
+              System.out.println();
+              System.out.println();
               per.protegido= false;
               System.out.println("Aldeanos vivos: "+aldeanosVivos());
               System.out.println("Lobos vivos: "+lobosVi());
               System.out.println("Personas encantadas: "+encantados());
-
+              //seleccionar opc para continuarx|
 
 
 

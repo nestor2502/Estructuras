@@ -16,7 +16,7 @@ public class UsaJuego{
 
 
          System.out.println();
-         System.out.println("                LOBOS DE CASTRONEGRO");
+         System.out.println("          LOBOS DE CASTRONEGRO");
          System.out.println();
          System.out.println();
          System.out.println();

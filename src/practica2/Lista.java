@@ -371,14 +371,17 @@ import java.util.Iterator;
         */
         public boolean contiene(T t){
 
-             Nodo n1 = new Nodo(cabeza.elemento);
              boolean resul=false;
+             if(longitud==0){
+                 return false;
+             }
+             if(longitud > 0){
+             Nodo n1 = new Nodo(cabeza.elemento);
 
              n1=cabeza;
-             if(longitud==0)
-                 return false;
+             
 
-             if(cabeza.elemento == t)
+              if(cabeza.elemento == t)
                  return true;
 
              int cont=0;
@@ -394,7 +397,7 @@ import java.util.Iterator;
 
              }
 
-             cabeza = n1;
+             cabeza = n1;}
 
              return resul;
         
@@ -505,7 +508,7 @@ import java.util.Iterator;
          ultimo.anterior= null;
          ultimo = null;
          
-         longitud=0;
+         longitud=0;    
 
 
         }
