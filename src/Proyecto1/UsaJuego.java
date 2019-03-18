@@ -13,5 +13,6 @@ public class UsaJuego{
 	  	usa.asignaJugadores();
 	  	usa.mostrarPersonajes();
 	  	usa.iniciaNoche();
+	  	usa.iniciaDia();
 	  }
 }

@@ -23,19 +23,34 @@ public class Dia{
     *
     */
 
-	public void informediario(String [] muertos){
+	public void informeDiario(Lista <String> muertos){
+
+            Iterator <String> iss = muertos.iterator();
+
 
 		    String muer=" ";
-
-		    System.out.println("Las personas muertas son");
-
-            this.muertos = new String [muertos.length] ;
-
-            for(int i =0; i< this.muertos.length;i++){
-                 
-                 System.out.println("El muerto "+i+" es: "+this.muertos[i]);
+            
+            if(muertos.getLongitud()==0){
+            	System.out.println();
+            	System.out.println("Hoy fue una buena noche, no murió nadie");
+            	System.out.println();
 
             }
+            if(muertos.getLongitud()>0){
+		    System.out.println("Las personas que murieron esta noche son: ");
+             
+             for(int i =0; i< muertos.getLongitud(); i++){
+              
+              String n1 = iss.next();
+              Persona p1 = itera(n1);
+              System.out.println();
+              System.out.println(p1.getNombre()+" que era "+ p1.getTipo());
+              System.out.println();
+
+             }
+		     }
+
+            
 	 }
 
 	public void seleccionaSospechoso(){
@@ -43,8 +58,6 @@ public class Dia{
 		 System.out.println("Es el momento de seleccinar al lobo");
 
 
-
-		 
 		 int opc=1;
 
 		 int i=0;
@@ -68,27 +81,37 @@ public class Dia{
 		 System.out.println("los sospechosos son:");
 		 System.out.println();
 		 System.out.println(sospechosos.toString());
-
-		 System.out.println("a quien deciden matar?");
+         System.out.println();
+		 System.out.println("¿A quien deciden matar?");
+		 System.out.println();
+		 System.out.println();
+		 System.out.println("Ingresen el nombre: ");
 		
          muerto =sc.next();
 
          System.out.println();
+        // if(sospechosos.contiene(muerto)==true){
          System.out.println("Unas ultimas palabras?"+muerto);
          System.out.println();
          System.out.println();
-         mensajecolgado(muerto);
+         System.out.println("Presione cualquier letra para continuar");
+         String see = sc.next();
+         Persona pr = itera(muerto);
+         pr.setMuerte();
+         System.out.println();
+         System.out.println("Mataron a "+muerto+"que era: "+pr.getTipo());
+
+
+         //}
 	     
 	}
 
 
-	public String matarSospechoso(){
-       return muerto;
-   }
          
 
 
 //	}
+/**
 	public void mensajecolgado(String nombre){
 
 		 Iterator <Persona> sospe = nocturnos.iterator();
@@ -122,6 +145,38 @@ public class Dia{
 
           System.out.println("Ha muertoque"+muerto+" era un"+tipo);
 	}
+    */
+         /**
+         *este metodo regresa un objeto persona que contiene el nombre de la persona que ingresa de parametro
+         *@param nombre
+         *@return prueba
+         */
+	     public Persona itera(String nombre ){
+         Persona prueba = new Persona("no se", "encuentra");
+         Iterator <Persona> it4  = nocturnos.iterator();
+         Iterator <Persona> it8 = aldeanos.iterator();
+          int long7 = nocturnos.getLongitud();
+         String busco = nombre;
+         
+               for(int i=0; i< long7; i++){
+               prueba = it4.next();
+               String nom = prueba.getNombre(); 
+               if(nom.equals(busco)){
+                return prueba;
+               }
+           }
+        
+           for(int i = 0;i< aldeanos.getLongitud(); i++){
+             
+              prueba = it8.next();
+                if((prueba.getNombre()).equals(nombre)){
+             return prueba;
+           }
+     }
+     
+     return prueba;
+
+}
 
 	
 }

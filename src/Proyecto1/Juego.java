@@ -28,12 +28,15 @@ public class Juego{
      Persona per3;
      //persona en caso de uso de pocion segunda per
      Persona per4;
-     Lista <Persona> players = new Lista <Persona>();
+     //arreglo con el nombre de muertos
+     Lista <String>  muer; 
+     Lista <String> muertos = new Lista <String>();
      Lista <Persona> nocturnos
 ;     Lista <Persona> aldeanos;
      //clase que asigna roll en el juego
      Jugadores personajes;
      Noche nocheVar;
+     Dia diaVar;
      Scanner sc= new Scanner(System.in);
 
      /**
@@ -65,6 +68,7 @@ public class Juego{
 
          //Se inicia noche y se recibe una lista con jugadores
          nocheVar = new Noche(nocturnos); 
+         diaVar = new Dia(nocturnos, aldeanos);
 
      }
 
@@ -135,7 +139,10 @@ public class Juego{
             per2 = itera(victi);
              if((per.getNombre()).equals(guardar1)==false){
                   per2.setMuerte();
+                  muertos.agregaInicio(per2.getNombre());
+                  //muer[0]=per2.getNombre();
              }
+
             
             // System.out.println("lo sentimos "+per2.getNombre()+" estaba protegido");
              System.out.println("esta persona esta viva: "+ per2.getMuerte());
@@ -181,7 +188,11 @@ public class Juego{
                     String revive=personajes.bruja.matar(morira);
                     per3 = itera(revive);
                     if(per.getNombre()!=revive){
-                       per2.setMuerte();
+                       per3.setMuerte();
+                       if(muertos.contiene(per3.getNombre())==false){
+                            muertos.agregaInicio(per3.getNombre());
+                       }
+                       //muer[1]= per3.getNombre();
                        personajes.bruja.usarPocion("veneno");
                     }}
              }
@@ -203,6 +214,10 @@ public class Juego{
                       if(opc3== 1){
 
                         per2.setVida();
+                        if(muertos.contiene(per2.getNombre())==true){
+                            System.out.println("Se quiro de la lista de muertos?"+muertos.elimina(per2.getNombre()));
+                       }
+                        //muer[0]=null;
                         personajes.bruja.usarPocion("curativa");
                     }
                     }
@@ -228,6 +243,10 @@ public class Juego{
 
                       if((per.getNombre()).equals(morira2)==false){
                        per4.setMuerte();
+                       if(muertos.contiene(per4.getNombre())==false){
+                           muertos.agregaInicio(per4.getNombre());
+                       }
+                      // muer[0]=per4.getNombre();
                        personajes.bruja.usarPocion("veneno");
                     }
                      }
@@ -253,6 +272,12 @@ public class Juego{
                    // String revive = personajes.bruja.revivir(suertudo);
                     //per3 = itera(revive);
                     per2.setVida();
+                    if(muertos.contiene(per2.getNombre())==true){
+                            System.out.println("Se quito de la lista de muertos?"+muertos.elimina(per2.getNombre()));
+                       }
+                       System.out.println();
+                       System.out.println();
+                    //muer[0]= null;
                     personajes.bruja.usarPocion("curativa");
                     System.out.println("Reviviste a: "+per2.getNombre());
                }
@@ -268,6 +293,10 @@ public class Juego{
 
                     if((per.getNombre()).equals(morira2)==false){
                        per4.setMuerte();
+                       if(muertos.contiene(per4.getNombre())==false){
+                           muertos.agregaInicio(per4.getNombre());
+                       }
+                       //muer[1]=per4.getNombre();
                        personajes.bruja.usarPocion("veneno");
                     }
                   }
@@ -281,6 +310,10 @@ public class Juego{
 
                     if((per.getNombre()).equals(morira2)==false){
                        per4.setMuerte();
+                       if(muertos.contiene(per4.getNombre())==false){
+                           muertos.agregaInicio(per4.getNombre());
+                       }
+                       //muer[1]=per4.getNombre();
                        personajes.bruja.usarPocion("veneno");
                     }
                    }
@@ -322,6 +355,22 @@ public class Juego{
 
 
      }
+
+     /**
+     *Metodo que inicia dia
+     *
+     */
+     public void iniciaDia(){
+      
+      diaVar.informeDiario(muertos);
+      diaVar.seleccionaSospechoso();
+     
+       System.out.println("Aldeanos vivos: "+aldeanosVivos());
+       System.out.println("Lobos vivos: "+lobosVi());
+       System.out.println("Personas encantadas: "+encantados());
+     }
+
+
      /**
      *Metodo que devuelve el total de personajes vivos sin contar a los lobos
      *@return personasVivas
