@@ -4,6 +4,9 @@ import practica2.Jugadores;
 import java.util.Scanner;
 import java.util.Iterator;
 
+/**
+*Clase que contiene la logica del juego
+*/
 public class Juego{ 
       
 
@@ -33,17 +36,10 @@ public class Juego{
      Noche nocheVar;
      Scanner sc= new Scanner(System.in);
 
-
-
-
      /**
-     public Juego(int numeroJugadores){
-     	this.numeroJugadores=numeroJugadores;
-     	jugadores = new String [numeroJugadores];
-
-
-     }*/
-
+     *Metodo que inicia el juego y asigna personajes a cada jugador
+     *
+     */
      public void asignaJugadores(){
 
      	System.out.println("¿Cuantos jugadores son?");
@@ -95,7 +91,7 @@ public class Juego{
            }
      }
       /**
-      *Metodo que llama a todos los personajes nocturnos
+      *Metodo que llama a todos los personajes nocturnos ademas de sus metodos
       */
      public void iniciaNoche(){
 
@@ -105,8 +101,11 @@ public class Juego{
         System.out.println("Despierta la vidente");
         System.out.println();
           nocheVar.espiar();
-          System.out.println();
           System.out.println("se duerme la vidente");
+          System.out.println();
+          System.out.println("Selecciona cualquier numero para continuar");
+          int seleccion7 = sc.nextInt();
+          System.out.println();
        }
 
        if(personajes.protector.getMuerte ()== true){
@@ -182,7 +181,7 @@ public class Juego{
                     String revive=personajes.bruja.matar(morira);
                     per3 = itera(revive);
                     if(per.getNombre()!=revive){
-                       per3.setMuerte();
+                       per2.setMuerte();
                        personajes.bruja.usarPocion("veneno");
                     }}
              }
@@ -216,8 +215,30 @@ public class Juego{
                System.out.println("tienes disponibles "+ personajes.bruja.pociones());
                System.out.println();
 
+               if(per2.getMuerte()==true){
+                     System.out.println("¿Quieres matar a alguien?");
+                     int acierto = sc.nextInt();
+                     System.out.println("1) si     2) no");
+                     if(acierto==1){
+                      System.out.println();
+                      System.out.println("¿A quien quieres matar?");
+                      String morira = sc.next();
+                      String morira2= personajes.bruja.matar(morira);
+                      per4 = itera(morira2);
+
+                      if((per.getNombre()).equals(morira2)==false){
+                       per4.setMuerte();
+                       personajes.bruja.usarPocion("veneno");
+                    }
+                     }
+                     
+                  }
+
                if(per2.getMuerte()==false){////
                 System.out.println("¿Cuantas quieres usar?");
+                System.out.println();
+                System.out.println("1) solo 1     2) ambas");
+                System.out.println();
                int cantidad = sc.nextInt();
                System.out.println();
                if(cantidad==2){
@@ -225,21 +246,22 @@ public class Juego{
                  System.out.println();
                  System.out.println("1)si      2) no");
                  System.out.println();
-                int opc = sc.nextInt();
+                 int opc = sc.nextInt();
                 if (opc ==1){
              
-                    System.out.println();
-                    System.out.println("1)si      2) no");
-                    String suertudo = sc.next();
-                    String revive = personajes.bruja.revivir(suertudo);
-                    per3 = itera(revive);
-                    per3.setVida();
+                         
+                   // String revive = personajes.bruja.revivir(suertudo);
+                    //per3 = itera(revive);
+                    per2.setVida();
                     personajes.bruja.usarPocion("curativa");
                     System.out.println("Reviviste a: "+per2.getNombre());
                }
             
                     System.out.println();
                     System.out.println("¿A quien quieres matar?");
+                    System.out.println();
+                    System.out.println("Ingresa el nombre");
+                    System.out.println();
                     String morira = sc.next();
                     String morira2= personajes.bruja.matar(morira);
                     per4 = itera(morira2);
@@ -263,24 +285,7 @@ public class Juego{
                     }
                    }
                    }////
-                  if(per2.getMuerte()==true){
-                     System.out.println("¿Quieres matar a alguien?");
-                     int acierto = sc.nextInt();
-                     System.out.println("1) si     2) no");
-                     if(acierto==1){
-                      System.out.println();
-                      System.out.println("¿A quien quieres matar?");
-                      String morira = sc.next();
-                      String morira2= personajes.bruja.matar(morira);
-                      per4 = itera(morira2);
-
-                      if((per.getNombre()).equals(morira2)==false){
-                       per4.setMuerte();
-                       personajes.bruja.usarPocion("veneno");
-                    }
-                     }
-                     
-                  }
+                  
 
              
            }
@@ -309,10 +314,109 @@ public class Juego{
                p6.setEncantado();
               }
 
+              System.out.println("Aldeanos vivos: "+aldeanosVivos());
+              System.out.println("Lobos vivos: "+lobosVi());
+              System.out.println("Personas encantadas: "+encantados());
+
 
 
 
      }
+     /**
+     *Metodo que devuelve el total de personajes vivos sin contar a los lobos
+     *@return personasVivas
+     */
+     public int aldeanosVivos(){
+
+          Iterator <Persona> contador1 = aldeanos.iterator();
+          Iterator <Persona> contador2 = nocturnos.iterator();
+
+          int personasVivas = 0;
+
+          for(int i =0; i< aldeanos.getLongitud(); i++){
+              
+               Persona temp = contador1.next();
+
+               if(temp.getMuerte()==true)
+                  personasVivas++;
+ 
+
+          }
+
+          for(int i =0; i< nocturnos.getLongitud(); i++){
+              
+               Persona temp2 = contador2.next();
+                
+               if((temp2.getTipo()).equals("lobo")==false&&temp2.getMuerte()==true)
+
+                  personasVivas++;
+ 
+
+          }
+       return personasVivas;
+
+       }
+
+       /**
+       *Metodo que retorna el total de lobos vivos
+       *@return lobosViv
+       */
+       public int lobosVi(){
+           
+           Iterator <Persona> cont3 = nocturnos.iterator();
+
+           int lobosViv =0;
+
+           for(int i =0 ; i< nocturnos.getLongitud(); i++){
+
+               Persona temp3 = cont3.next();
+
+               if((temp3.getTipo()).equals("lobo")==true&&temp3.getMuerte()==true)
+
+                  lobosViv++;
+ 
+           }
+        return lobosViv;
+       }
+
+       /**
+       *Metodo que devuelve el total de personas encantadas
+       *@return encantados
+       */
+       public int encantados(){
+
+        Iterator <Persona> contador6 = aldeanos.iterator();
+          Iterator <Persona> contador7 = nocturnos.iterator();
+
+          int personasEncantadas = 0;
+
+          for(int i =0; i< aldeanos.getLongitud(); i++){
+              
+               Persona temp = contador6.next();
+
+               if(temp.getEncantado()==true&&temp.getMuerte()==true)
+                  personasEncantadas++;
+ 
+
+          }
+
+          for(int i =0; i< nocturnos.getLongitud(); i++){
+              
+               Persona temp2 = contador7.next();
+                
+               if(temp2.getEncantado()==true&&temp2.getMuerte()==true)
+
+                  personasEncantadas++;
+ 
+
+          }
+       return personasEncantadas;
+
+
+       }
+
+     
+
      /**
      *este metodo regresa un objeto persona que contiene el nombre de la persona que ingresa de parametro
      *@param nombre

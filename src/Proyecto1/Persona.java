@@ -80,6 +80,12 @@ public class Persona{
 
      	 encantado=true;
      }
+      
+      public boolean getEncantado(){
+
+          return encantado ;
+      }
+
 
      /**
      *
@@ -87,7 +93,7 @@ public class Persona{
      */
      public void setMuerte(){
 
-     	this.vivo=false;
+     	this.vivo=false    ;
 
      }
 
