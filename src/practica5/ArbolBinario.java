@@ -56,8 +56,34 @@ public abstract class ArbolBinario<T>{
     public void bfs(Consumer<T> funcion){
 	      
 
+         if(raiz == null){
 
-         //s funcion.accept();
+        	return;
+         }
+
+
+         Cola <Vertice> cola = new Cola <Vertice>();
+
+         cola.mete(raiz);
+
+         while(cola.esVacia()==false){
+
+        	 Vertice vertice = cola.saca();
+
+        	 funcion.accept(vertice.elemento);
+
+        	 if(vertice.izquierdo != null ){
+
+        	 	 cola.mete(vertice.izquierdo);
+        	 }
+
+        	 if(vertice.derecho != null){
+
+                  cola.mete(vertice.derecho);
+        	 }
+        }
+
+        
     }
 
     public void dfs(int tipo, Consumer<T> funcion){
@@ -118,8 +144,8 @@ public abstract class ArbolBinario<T>{
     public void postOrden(Consumer<T> funcion, Vertice x){
 
          if(x != null) {
-         postOrden(x.izquierdo, x);
-         postOrden(x.derecho, x);
+         postOrden(funcion, x.izquierdo);
+         postOrden(funcion, x.derecho);
          funcion.accept(x.elemento);
     }
     }

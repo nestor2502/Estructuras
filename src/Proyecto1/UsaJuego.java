@@ -1,6 +1,12 @@
 package practica2;
 import java.util.Scanner;
-
+     /**
+     *@author Nestor Semer Vazquez Cordero
+     *@author Isay Balderas Salomon
+     *@version 1.0
+     *Implementacion del juego Lobos de castanegro
+     *
+     */   
 public class UsaJuego{
 
 

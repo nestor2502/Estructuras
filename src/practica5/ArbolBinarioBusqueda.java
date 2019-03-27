@@ -20,37 +20,38 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> extends ArbolBinario<
     @Override
     public void agrega(T elemento){
 	      
-          Vertice nuevoNodo = new Vertice(elemento);
-          if(raiz == null) {
+         Vertice nuevoNodo = new Vertice(elemento);
+         if(raiz == null) {
 
              raiz = nuevoNodo;
          } 
          else {
-         Vertice temporal = raiz;   
-        //Hacemos el recorrido para encontrar un lugar vacio
-         while(temporal != null) {
-              nuevoNodo.padre = temporal;
-              if(elemento.compareTo(temporal.elemento)<= 0) {
-                  temporal = temporal.izquierdo;
-                
-             }
+
+             Vertice temporal = raiz;   
+             //Hacemos el recorrido para encontrar un lugar vacio
+             while(temporal != null) {
+
+                 nuevoNodo.padre = temporal;
+                 if(elemento.compareTo(temporal.elemento)<= 0) {
+                     temporal = temporal.izquierdo;          
+                 }
              
 
-              else {
-                 temporal = temporal.derecho;
-                
-            }           
-        }
-        //Vemos en donde vamos a ponerlo
-         if(nuevoNodo.elemento.compareTo(nuevoNodo.padre.elemento)<0) {
-              nuevoNodo.padre.izquierdo = nuevoNodo;
-           }
+                 else {
+                     temporal = temporal.derecho;     
+                 }           
+             }
+             //Vemos en donde vamos a ponerlo
+             if(nuevoNodo.elemento.compareTo(nuevoNodo.padre.elemento)<0) {
+                 nuevoNodo.padre.izquierdo = nuevoNodo;
+              }
         
-         else {
-            nuevoNodo.padre.derecho = nuevoNodo;
-        }
+             else {
+                 nuevoNodo.padre.derecho = nuevoNodo;
+                }
         
-     }
+         }
+     
      elementos++; 
      }
 
@@ -59,19 +60,22 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> extends ArbolBinario<
 	     Vertice otroNodo = raiz; //creamos un nodo
          while(otroNodo != null) { // mientras no este vacio, seguimos, si no, regresamos vacio
 
-              if(otroNodo.elemento.compareTo(elemento)==0) {//revisamos en el nodo actual
-            return true;
-         }else if(elemento.compareTo( otroNodo.elemento)<0) {//revisamos en su nodo izquierdo
-            otroNodo = otroNodo.izquierdo;
-         }else {
-             otroNodo = otroNodo.derecho;//revisamos en su nodo derecho
+             if(otroNodo.elemento.compareTo(elemento)==0) {//revisamos en el nodo actual
+                 return true;
+             }
+             else if(elemento.compareTo( otroNodo.elemento)<0) {//revisamos en su nodo izquierdo
+                  otroNodo = otroNodo.izquierdo;
+                 }
+                 else {
+                     otroNodo = otroNodo.derecho;//revisamos en su nodo derecho
+                 }
          }
-     }
-     return false;
+         return false;
      }
 
     @Override
     public boolean elimina(T elemento){
+    	/**
 	     
          if(raiz == null ){
               return false;
@@ -86,8 +90,9 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> extends ArbolBinario<
 
          else if(elemento.equals(raiz.elemento)==false){
 
-              n
-         }
+              
+         }*/
+         return false;
     }
 }
 
