@@ -1,4 +1,4 @@
-package practica2;
+package arboles;
 
 /**
  * Clase que representa un árbol binario de búsqueda.
@@ -94,5 +94,40 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> extends ArbolBinario<
          }*/
          return false;
     }
+
+    public Vertice conectaIzquierda(Vertice padre, Vertice hijo){ 
+              
+         if (padre != null )
+
+             padre.izquierdo = hijo;
+         if  (hijo != null )
+
+             hijo.padre = padre;
+
+         if (padre == null && hijo != null){
+
+             padre = hijo;
+
+         }
+
+      }
+
+    public Vertice conectaDerecha(Vertice padre, Vertice hijo){ 
+      
+       if (padre != null )
+
+             padre.derecho = hijo;
+         if  (hijo != null )
+
+             hijo.padre = padre;
+
+         if (padre == null && hijo != null){
+
+             padre = hijo;
+
+         }
+
+     }
+      
 }
 

@@ -1,7 +1,7 @@
 package practica2;
 
 import java.util.function.Consumer;
-
+package arboles;
 /**
  * Clase que representa un Árbol Binario.
  */
@@ -21,18 +21,19 @@ public abstract class ArbolBinario<T>{
 	public Vertice(T elemento){
 	    
         this.elemento = elemento;
+        izquierdo = null;
+        derecho= null;
+        padre = null;
 	}
     }
 
     protected Vertice raiz;
-    protected int elementos=0;
+    protected int elementos;
     
     public ArbolBinario(){
 	
-         raiz.elemento = null;
-         raiz.izquierdo = null;
-         raiz.derecho = null;
-         raiz.padre = null;
+         raiz = null;
+         elementos = 0;
     }
     /**
     *Inicia un arbol con un arreglo
@@ -52,6 +53,83 @@ public abstract class ArbolBinario<T>{
     public abstract boolean elimina(T elemento);
 
     public abstract boolean contiene(T elemento);
+
+     public Vertice conectaIzquierda(Vertice padre, Vertice hijo){ 
+              
+         if (padre != null )
+
+             padre.izquierdo = hijo;
+         if  (hijo != null )
+
+             hijo.padre = padre;
+
+         if (padre == null && hijo != null){
+
+             padre = hijo;
+
+         }
+
+      }
+
+    public Vertice conectaDerecha(Vertice padre, Vertice hijo){ 
+      
+       if (padre != null )
+
+             padre.derecho = hijo;
+         if  (hijo != null )
+
+             hijo.padre = padre;
+
+         if (padre == null && hijo != null){
+
+             padre = hijo;
+
+         }
+
+     }
+
+     public void giraIzquierda(Vertice u){
+
+
+          if(u.derecho== null){
+
+             return;
+
+          }
+
+          else if (u.derecho != null) {
+
+            if(u.padre != null){
+
+                u.derecho.padre = u.padre;
+            }
+
+            u.padre = u.derecho;
+            u.derecho = u.derecho.izquierdo;
+            u.derecho.izquierdo.padre = u;
+            u.padre.izquierdo = u;
+
+
+          }
+     }
+
+     public void giraDerecha(Vertice v ){
+        
+         if(v.izquierdo == null){
+
+            return 
+         }
+
+         else if(v.izquierdo != null){
+
+              Vertice temp1 = v.izquierdo;
+           //funcion max pewndiente por implementar
+              v.izquierdo = max(a);
+              tem1.derecho = v;
+
+         }
+
+     }
 
     public void bfs(Consumer<T> funcion){
 	      
@@ -86,7 +164,7 @@ public abstract class ArbolBinario<T>{
         
     }
 
-    public void dfs(int tipo, Consumer<T> funcion){
+    public void dfs(int tipo, Consumer<T> funcion) throws IllegalArgumentException{
 	       
         switch(tipo){
 
@@ -101,6 +179,8 @@ public abstract class ArbolBinario<T>{
              case 3:  postOrden(funcion, raiz); 
 
                   break; 
+
+             default: throw new IllegalArgumentException(); 
         }
 
 
