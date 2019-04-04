@@ -1,4 +1,4 @@
-package arboles;
+package practica5;
 public enum Color{
      ROJO, NEGRO;
 

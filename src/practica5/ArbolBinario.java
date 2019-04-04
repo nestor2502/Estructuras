@@ -1,7 +1,8 @@
-package practica2;
+
+package practica5;
+import practica2.*;
 
 import java.util.function.Consumer;
-package arboles;
 /**
  * Clase que representa un Árbol Binario.
  */
@@ -54,7 +55,7 @@ public abstract class ArbolBinario<T>{
 
     public abstract boolean contiene(T elemento);
 
-     public Vertice conectaIzquierda(Vertice padre, Vertice hijo){ 
+     public void conectaIzquierda(Vertice padre, Vertice hijo){ 
               
          if (padre != null )
 
@@ -71,7 +72,7 @@ public abstract class ArbolBinario<T>{
 
       }
 
-    public Vertice conectaDerecha(Vertice padre, Vertice hijo){ 
+    public void conectaDerecha(Vertice padre, Vertice hijo){ 
       
        if (padre != null )
 
@@ -101,8 +102,25 @@ public abstract class ArbolBinario<T>{
 
             if(u.padre != null){
 
-                u.derecho.padre = u.padre;
+
+                 u.derecho.padre = u.padre;
+                 Vertice dad = u.padre;
+                 if(dad.izquierdo == u){
+
+                 dad.izquierdo = u.derecho;
+
+                 }
+                 if(dad.derecho == u){
+
+                 dad.izquierdo = u.derecho;
+                 }
+                 u.izquierdo.padre = dad;
+
             }
+
+            if(u.padre == null){
+                u.derecho.padre = null;
+             }
 
             u.padre = u.derecho;
             u.derecho = u.derecho.izquierdo;
@@ -113,19 +131,38 @@ public abstract class ArbolBinario<T>{
           }
      }
 
-     public void giraDerecha(Vertice v ){
+     public void giraDerecha(Vertice u ){
         
-         if(v.izquierdo == null){
+         if(u.izquierdo == null){
 
-            return 
+            return ;
          }
 
-         else if(v.izquierdo != null){
+         else if(u.izquierdo != null){
+             
+             if(u.padre != null){
 
-              Vertice temp1 = v.izquierdo;
-           //funcion max pewndiente por implementar
-              v.izquierdo = max(a);
-              tem1.derecho = v;
+                u.izquierdo.padre = u.padre;
+                Vertice dad = u.padre;
+             
+            
+             if(dad.izquierdo == u){
+
+                 dad.izquierdo = u.izquierdo;
+
+             }
+             if(dad.derecho == u){
+
+                 dad.izquierdo = u.izquierdo;
+                 u.izquierdo.padre = dad;
+             }}
+             if(u.padre == null){
+                u.izquierdo.padre = null;
+             }
+             u.padre = u.izquierdo;
+             u.izquierdo = u.izquierdo.derecho;
+             u.izquierdo.derecho.padre = u;
+             u.padre.derecho = u;
 
          }
 
