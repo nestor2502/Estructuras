@@ -34,8 +34,8 @@ public class TestArboles{
         //tree.giraDerecha(50);
         //tree.dfs(3, i -> System.out.println(i));
 
-        //tree.elimina(15);
-		//tree.dfs(2, i -> System.out.println(i));
+        tree.elimina(15);
+		tree.dfs(3, i -> System.out.println(i));
 		System.out.println();
 //		System.out.println(tree.predecesor(5));
 	}
