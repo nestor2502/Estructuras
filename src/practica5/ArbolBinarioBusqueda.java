@@ -74,60 +74,144 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> extends ArbolBinario<
      }
 
     @Override
-    public boolean elimina(T elemento){
-    	/**
-	     
-         if(raiz == null ){
-              return false;
-         }
+    public boolean elimina(T j) {
+	Verice aux = buscaNodo(j);
+	if(raiz == null) {
+		return false;
+	}
+//------------------------------------------------------------------------------
+	//No tiene hijos
+	if(aux.izquierdo == null && aux.derecho == null) {
+		if(aux == raiz) {
+			raiz = null;
+			elementos--;
+			return true;
+		}
+		
+		if(aux.padre.izquierdo == aux)
+			aux.padre.izquierdo = null;
+		else
+			aux.padre.derecho = null;
+		return true;
+	
+	}
+//-------------------------------------------------------------------------------------------------
+//Tiene un nodo hijo
+	//Caso izquierdo
+	if(aux.derecho == null && aux.izquierdo != null) {
+		if(aux == raiz) { //Caso especial
+			raiz = raiz.izquierdo;
+			elementos--;
+			return true;
+		}
+		
+		
+		if(aux.padre.izquierdo == aux)
+			aux.padre.izquierdo = aux.padre.izquierdo;
+		else
+			aux.padre.derecho = aux.padre.izquierdo;
+		
+		return true;
 
-         else if(raiz.elemento.compareTo(elemento)==0){
+	
 
-              raiz=null;
-              return true;
+	}
+	//Caso derecho
+//--------------------------------------------------------------------	
+	if(aux.izquierdo == null && aux.derecho != null) {
+		if(aux == raiz) {	//Caso especial
+			raiz = raiz.derecho;
+			elementos--;
+			return true;
+		}
+		
+		if(aux.padre.izquierdo == aux)
+			aux.padre.izquierdo = aux.padre.derecho;
+		else
+			aux.padre.derecho = aux.padre.derecho;
+		
+		return true;
 
-         }
+	}
+//--------------------------------------------------------------------
+	//Caso tiene 2 hijos
+	if(aux.izquierdo != null && aux.derecho != null) {
+		Vertice predecesor = predecesor(aux.elemento);
+		//Nodo temporal;
+		aux.elemento = predecesor.elemento;
+		if(predecesor.izquierdo != null) {
+		predecesor.padre.derecho = predecesor.izquierdo;
+		predecesor.izquierdo.padre = predecesor.padre;
+		predecesor = null;
+		elementos--;
+		return true;
+		}
+		
+		if(predecesor.izquierdo == null) {
+		predecesor.padre.derecho = null;
+		predecesor = null;
+		elementos--;
+		return true;
+		}
+		
+	}
+//Fin del programa	
+	return false;
+}
 
-         else if(elemento.equals(raiz.elemento)==false){
+ public Vertice predecesor(T y) {
+	Vertice encontrado = buscaNodo(y);
+	//arbol vacio
+	if(encontrado == null)
+		return null;
+	//revisamos que su izquierda no este vacia y buscamos el maximo en ese subarbol
+	if(encontrado.izquierdo != null) {
+	return maximo(encontrado.izquierdo.elemento);
+	}
+	else {
+		//Si no tiene arbol izquierdo, entonces subimos y buscamos a alguien que si lo tenga
+	Vertice aux = encontrado.padre;
+	while(aux != null && encontrado == aux.izquierdo) {
+		encontrado = aux;
+		aux = aux.padre;
+	}
+	
+	if(aux == null)
+		return null;
+	else 
+		return aux;
+	}
+	//return null;
+}
 
-              
-         }*/
-         return false;
-    }
-   /**
-    public Vertice conectaIzquierda(Vertice padre, Vertice hijo){ 
-              
-         if (padre != null )
+public Vertice buscaNodo(T x){
+	Vertice otroNodo = raiz; 	
+/**	if(otroNodo == raiz){
+		
+		return otroNodo;
+		
+	}	
+*/	
+	while(otroNodo != null){
+		if(otroNodo.elemento == x) {
+			return otroNodo;
+		}else if(x.compareTo(otroNodo.elemento) <= 0) {
+			otroNodo = otroNodo.izquierdo;
+		}else {
+			otroNodo = otroNodo.derecho;
+		}
+	}
+	
+	return null;
 
-             padre.izquierdo = hijo;
-         if  (hijo != null )
+}
 
-             hijo.padre = padre;
-
-         if (padre == null && hijo != null){
-
-             padre = hijo;
-
-         }
-
-      }
-
-    public Vertice conectaDerecha(Vertice padre, Vertice hijo){ 
-      
-       if (padre != null )
-
-             padre.derecho = hijo;
-         if  (hijo != null )
-
-             hijo.padre = padre;
-
-         if (padre == null && hijo != null){
-
-             padre = hijo;
-
-         }
-
-     }*/
-      
+public Verice maximo(T z) {
+	Verice encontrado = buscaNodo(z);
+	while(encontrado.derecho != null) {
+		encontrado = encontrado.derecho;
+	}
+	return encontrado;
+}
 }
 

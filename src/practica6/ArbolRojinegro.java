@@ -27,10 +27,10 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
         
         for(int i = 0; i< a.length; i++){
 
-             agrega (a[i]);
+             //agrega (a[i]);
         }
     }
-    
+    /**
     protected Color getColor(Vertice v){   
        //implementar un metodo que recorra el arbol y encuentre el vertice
 
@@ -64,5 +64,5 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     @Override
     public boolean elimina(T elemento){
     // Aquí va su código.
-    }
+    }*/
 }
