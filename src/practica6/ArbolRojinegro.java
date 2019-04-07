@@ -10,6 +10,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
 	   
 
        super(elemento);   
+       color = Color.ROJO;
 
 
 	}
@@ -27,42 +28,91 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
         
         for(int i = 0; i< a.length; i++){
 
-             //agrega (a[i]);
+             agrega (a[i]);
         }
     }
-    /**
+    
     protected Color getColor(Vertice v){   
        //implementar un metodo que recorra el arbol y encuentre el vertice
 
-       VerticeRojinegro ve =(VerticeRojinegro) encuentra(v);
+       VerticeRojinegro ve =(VerticeRojinegro) buscaNodo(v);
        return ve.color;
     }
 
     protected void setColor(Vertice v){
         
         //metodo pendiente por implementacion
-        VerticeRojinegro ve =(VerticeRojinegro) encuentra(ve);
+        //VerticeRojinegro ve =(VerticeRojinegro) buscaNodo(ve);
+        
 
-        if(ve.color== Color.ROJO){
+        if(v.color== Color.ROJO){
 
-             ve.color = Color.NEGRO;
+             v.color = Color.NEGRO;
         }
 
-        if(ve.color == Color.NEGRO){
+        if(v.color == Color.NEGRO){
 
-             ve.color = Color.ROJO;
+             v.color = Color.ROJO;
         }
     }
 
     @Override
     public void agrega(T elemento){
+
+        VerticeRojinegro nuevoNodo = new VerticeRojinegro(elemento);
+         if(raiz == null) {
+
+             raiz = nuevoNodo;
+             //nuevoNodo.color = Color.NEGRO;
+         } 
+         else {
+
+             Vertice temporal = raiz;   
+             //Hacemos el recorrido para encontrar un lugar vacio
+             while(temporal != null) {
+
+                 nuevoNodo.padre = temporal;
+                 if(elemento.compareTo(temporal.elemento)<= 0) {
+                     temporal = temporal.izquierdo;          
+                 }
+             
+
+                 else {
+                     temporal = temporal.derecho;     
+                 }           
+             }
+             //Vemos en donde vamos a ponerlo
+             if(nuevoNodo.elemento.compareTo(nuevoNodo.padre.elemento)<0) {
+                 nuevoNodo.padre.izquierdo = nuevoNodo;
+              }
+        
+             else {
+                 nuevoNodo.padre.derecho = nuevoNodo;
+                }
+        
+         }
+     //rebalanceo( T elemento);
+     elementos++;
 	
-             //metodo balancea aun pendiente por implementacion
-             balancea();
+
     }
 
     @Override
     public boolean elimina(T elemento){
     // Aquí va su código.
-    }*/
+        return false;
+    }
+
+    public VerticeRojinegro getTio(VerticeRojinegro v){
+     
+
+     if(v.padre.padre.izquierdo==v.padre)
+         return (VerticeRojinegro)v.padre.padre.derecho;
+
+     else if(v.padre.padre.derecho==v.padre)
+         return (VerticeRojinegro)v.padre.padre.izquierdo;
+        
+    }
+    public VerticeRojinegro getAbuelo(VerticeRojinegro v){}
+    public void rebalanceo(){}
 }

@@ -25,14 +25,17 @@ public class TestArboles{
 */
 //		System.out.println(tree.busca(0));
 //		System.out.println();
-		System.out.println(tree.elimina(30));
+		//System.out.println(tree.elimina(30));
 		System.out.println();
-		tree.dfs(2, i -> System.out.println(i));
+		tree.dfs(3, i -> System.out.println(i));
 		System.out.println();
         System.out.println();
         System.out.println();
-        tree.elimina(15);
-		tree.dfs(2, i -> System.out.println(i));
+        //tree.giraDerecha(50);
+        //tree.dfs(3, i -> System.out.println(i));
+
+        //tree.elimina(15);
+		//tree.dfs(2, i -> System.out.println(i));
 		System.out.println();
 //		System.out.println(tree.predecesor(5));
 	}

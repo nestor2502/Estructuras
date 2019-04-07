@@ -75,7 +75,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> extends ArbolBinario<
 
     @Override
     public boolean elimina(T j) {
-	Verice aux = buscaNodo(j);
+	Vertice aux = buscaNodo(j);
 	if(raiz == null) {
 		return false;
 	}
@@ -206,8 +206,8 @@ public Vertice buscaNodo(T x){
 
 }
 
-public Verice maximo(T z) {
-	Verice encontrado = buscaNodo(z);
+public Vertice maximo(T z) {
+	Vertice encontrado = buscaNodo(z);
 	while(encontrado.derecho != null) {
 		encontrado = encontrado.derecho;
 	}
