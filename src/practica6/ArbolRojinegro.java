@@ -21,7 +21,8 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
 
     public ArbolRojinegro(){
 	
-
+    raiz = null;
+         elementos = 0;
     }
 
     public ArbolRojinegro(T[] a){
@@ -32,7 +33,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
         }
     }
     
-    protected Color getColor(Vertice v){   
+    public Color getColor(Vertice v){   
        //implementar un metodo que recorra el arbol y encuentre el vertice
        T ele = v.elemento;
        VerticeRojinegro ver =(VerticeRojinegro) buscaVertice(ele);
@@ -83,7 +84,8 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
                 }
         
          }
-     //rebalanceo( T elemento);
+         VerticeRojinegro nes = (VerticeRojinegro )buscaVertice(elemento);
+      rebalanceo( nes);
      elementos++;
 	
 
@@ -118,7 +120,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
 
      // Caso 1
 
-         if(v.padre== null){
+         if(v.padre == null){
 
           v.color = Color.NEGRO;
 
@@ -127,7 +129,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
      
          if(v.padre != null){
 
-             VerticeRojinegro p = v.padre;
+             VerticeRojinegro p = (VerticeRojinegro)v.padre;
 
      //Caso 2
 
@@ -137,16 +139,18 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
              }
 
          //Caso 2.1
-
+                VerticeRojinegro a= new VerticeRojinegro(v.elemento);
+                VerticeRojinegro t= new VerticeRojinegro(v.elemento);
               //p rojo, hay abuelo (a) y un tio(t)
              if(p.color== Color.ROJO){
-                 VerticeRojinegro a = v.padre.padre;
+                  a = (VerticeRojinegro)v.padre.padre;
 
              if(v.padre.padre.izquierdo == v.padre)  
-                 VerticeRojinegro t = v.padre.padre.derecho;
+
+                  t = (VerticeRojinegro)v.padre.padre.derecho;
 
              if(v.padre.padre.derecho == v.padre)
-                  VerticeRojinegro t = v.padre.padre.izquierdo;
+                 t = (VerticeRojinegro)v.padre.padre.izquierdo;
 
      //Caso 3
 
@@ -171,8 +175,8 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
 
              // v y p estan cruzados, 1.- izquierdo, 2.- derecho
              
-             int direccionP;
-             int direccionV;
+             int direccionP=0;
+             int direccionV=0;
 
              if(v.padre.padre.izquierdo == v.padre)  
                  direccionP = 1;
@@ -229,7 +233,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
          }
 
 
-    }
+    }}
 
 
 

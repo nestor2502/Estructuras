@@ -5,7 +5,7 @@ public class TestArboles{
 
 			ArbolBinarioBusqueda <Integer> tree = new ArbolBinarioBusqueda <Integer>();
 		tree.agrega(50);
-		tree.agrega(30);
+		//tree.agrega(30);
 		tree.agrega(20);
 		tree.agrega(45);
 		tree.agrega(15);
@@ -34,9 +34,32 @@ public class TestArboles{
         //tree.giraDerecha(50);
         //tree.dfs(3, i -> System.out.println(i));
 
-        tree.elimina(15);
+        //tree.elimina(15);
 		tree.dfs(3, i -> System.out.println(i));
 		System.out.println();
+		tree.giraDerecha(tree.raiz());
+		tree.dfs(3, i -> System.out.println(i));
+		System.out.println();
+		System.out.println();
+        System.out.println();
+        System.out.println();
+
 //		System.out.println(tree.predecesor(5));
+
+
+        /////////////////Rojo Negro//////////
+
+        ArbolRojinegro<Integer> ryb = new ArbolRojinegro<Integer>();
+        ryb.agrega(50);
+	    ryb.agrega(20);
+	    //System.out.println(ryb.getColor(raiz2()));
+		//ryb.agrega(45);
+		//ryb.agrega(15);
+		//ryb.agrega(25);
+		//ryb.agrega(35);
+		//ryb.agrega(48);
+		//ryb.agrega(24);
+
+		ryb.dfs(3, i -> System.out.println(i));
 	}
 }

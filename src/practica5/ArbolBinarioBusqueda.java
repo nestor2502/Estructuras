@@ -213,5 +213,10 @@ public Vertice maximo(T z) {
 	}
 	return encontrado;
 }
+
+public Vertice raiz(){
+
+	return raiz;
+}
 }
 

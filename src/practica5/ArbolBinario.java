@@ -28,7 +28,7 @@ public abstract class ArbolBinario<T>{
 	}
     }
 
-    protected Vertice raiz;
+    public Vertice raiz;
     protected int elementos;
     
     public ArbolBinario(){
@@ -120,12 +120,18 @@ public abstract class ArbolBinario<T>{
 
             if(u.padre == null){
                 u.derecho.padre = null;
+                raiz = u.derecho;
              }
-
+            /**
             u.padre = u.derecho;
             u.derecho = u.derecho.izquierdo;
             u.derecho.izquierdo.padre = u;
-            u.padre.izquierdo = u;
+            u.padre.izquierdo = u;*/
+             Vertice aux = u.derecho;
+             u.padre = u.derecho;
+             u.derecho = aux.derecho;
+             aux.derecho.padre = u;
+             aux.derecho = u;
 
 
           }
@@ -152,17 +158,27 @@ public abstract class ArbolBinario<T>{
 
              }
              if(dad.derecho == u){
-
-                 dad.izquierdo = u.izquierdo;
-                 u.izquierdo.padre = dad;
+                 //se cambio
+                 dad.derecho = u.izquierdo;
+                 //u.izquierdo.padre = dad;
              }}
              if(u.padre == null){
                 u.izquierdo.padre = null;
-             }
+                raiz = u.izquierdo;
+             }/**
              u.padre = u.izquierdo;
              u.izquierdo = u.izquierdo.derecho;
              u.izquierdo.derecho.padre = u;
              u.padre.derecho = u;
+             */
+             //Vertice pivote = u;
+             Vertice aux = u.izquierdo;
+             u.padre = u.izquierdo;
+             u.izquierdo = aux.derecho;
+             aux.derecho.padre = u;
+             aux.derecho = u;
+
+           //raiz = aux;
 
          }
 
