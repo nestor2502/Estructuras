@@ -1,4 +1,4 @@
-package practica5;
+ package practica5;
 /**
  * Implementación de árboles rojinegros.
  */
@@ -21,8 +21,11 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
 
     public ArbolRojinegro(){
 	
-    raiz = null;
-         elementos = 0;
+       //  raiz = null;
+         //elementos = 0;
+        super();
+         //raiz.izquierdo= null;
+      //      raiz.derecho = null;
     }
 
     public ArbolRojinegro(T[] a){
@@ -36,7 +39,13 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     public Color getColor(Vertice v){   
        //implementar un metodo que recorra el arbol y encuentre el vertice
        T ele = v.elemento;
-       VerticeRojinegro ver =(VerticeRojinegro) buscaVertice(ele);
+       VerticeRojinegro ver = new VerticeRojinegro(null);
+
+
+       if(v instanceof ArbolRojinegro.VerticeRojinegro)
+
+       ver = (VerticeRojinegro) buscaVertice(ele);
+       
 
        return ver.color;
     }
@@ -44,15 +53,20 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     protected void setColor(Vertice v, Color c){
         
         //metodo pendiente por implementacion
+
+        if(v instanceof ArbolRojinegro.VerticeRojinegro){
+
         VerticeRojinegro ve =(VerticeRojinegro)v;
         
-         ve.color = c;
+         ve.color = c;}
     }
 
     @Override
     public void agrega(T elemento){
 
         VerticeRojinegro nuevoNodo = new VerticeRojinegro(elemento);
+        nuevoNodo.izquierdo = null;
+        nuevoNodo.derecho = null;
          if(raiz == null) {
 
              raiz = nuevoNodo;
@@ -85,7 +99,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
         
          }
          VerticeRojinegro nes = (VerticeRojinegro )buscaVertice(elemento);
-      rebalanceo( nes);
+      rebalanceo(nuevoNodo);
      elementos++;
 	
 
@@ -118,6 +132,8 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
 
     public void rebalanceo(VerticeRojinegro v){
 
+         //if(v instanceof ArbolRojinegro.VerticeRojinegro){
+
      // Caso 1
 
          if(v.padre == null){
@@ -127,7 +143,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
           return;
          }
      
-         if(v.padre != null){
+          else if(v.padre != null){
 
              VerticeRojinegro p = (VerticeRojinegro)v.padre;
 
@@ -154,7 +170,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
 
      //Caso 3
 
-             if(t.color == Color.ROJO || t == null){
+             if(t.color == Color.ROJO && t != null){
 
                 //coloreamos a t y p de negro y a de rojo
 
@@ -169,7 +185,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
      
          //Caso 3.1 t es negro o es dstinto a null
 
-             if(t.color == Color.NEGRO || t != null){
+             if(t.color == Color.NEGRO || t == null){
 
      //Caso 4
 
@@ -213,6 +229,14 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
              } 
      
      //Caso 5
+
+            if(v.padre.izquierdo == v)  
+                 direccionV = 1;
+             
+
+             if(v.padre.derecho == v)
+                 direccionV = 2;
+
              if(direccionV == direccionP){
 
                  p.color = Color.NEGRO;

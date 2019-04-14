@@ -1,7 +1,7 @@
 
 package practica5;
-import practica2.*;
-
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.function.Consumer;
 /**
  * Clase que representa un Árbol Binario.
@@ -57,33 +57,30 @@ public abstract class ArbolBinario<T>{
 
      public void conectaIzquierda(Vertice padre, Vertice hijo){ 
               
-         if (padre != null )
+         if (padre != null ){
 
-             padre.izquierdo = hijo;
-         if  (hijo != null )
+             if  (hijo == null )
+         	     padre.izquierdo = null;
 
-             hijo.padre = padre;
+             if  (hijo != null )
+                 padre.izquierdo = hijo;
 
-         if (padre == null && hijo != null){
+                 hijo.padre = padre;
 
-             padre = hijo;
-
-         }
-
-      }
+          }
+     }
 
     public void conectaDerecha(Vertice padre, Vertice hijo){ 
       
-       if (padre != null )
+       if (padre != null ){
 
-             padre.derecho = hijo;
+             if  (hijo == null )
+             padre.derecho = null;
          if  (hijo != null )
+             padre.derecho = hijo;
 
              hijo.padre = padre;
 
-         if (padre == null && hijo != null){
-
-             padre = hijo;
 
          }
 
@@ -127,12 +124,16 @@ public abstract class ArbolBinario<T>{
             u.derecho = u.derecho.izquierdo;
             u.derecho.izquierdo.padre = u;
             u.padre.izquierdo = u;*/
+            
              Vertice aux = u.derecho;
              u.padre = u.derecho;
-             u.derecho = aux.derecho;
+             u.derecho = aux.izquierdo;
              aux.derecho.padre = u;
-             aux.derecho = u;
-
+             aux.izquierdo  = u;
+            
+             //Vertice aux = u.derecho;
+             //u.padre = u.derecho;
+            // conectaDerecha(u,aux.derecho);
 
           }
      }
@@ -185,34 +186,25 @@ public abstract class ArbolBinario<T>{
      }
 
     public void bfs(Consumer<T> funcion){
+    	/**
+    	Cola <Vertice> cola = new Cola<Vertice>();
 	      
-
-         if(raiz == null){
-
-        	return;
-         }
-
-
-         Cola <Vertice> cola = new Cola <Vertice>();
-
+         //Cola<Vertice> cola = new LinkedList<>();
          cola.mete(raiz);
+         while(!cola.esVacia()){
 
-         while(cola.esVacia()==false){
+         	   Vertice v = cola.saca();
+         	   funcion.accept(v.elemento);
+         	   if(v.izquierdo!= null) 
+         	   	   cola.mete(v.izquierdo);
+               if(v.derecho!= null) 
+         	   	   cola.mete(v.derecho);
 
-        	 Vertice vertice = cola.saca();
+         }
+         System.out.println();
+	
+*/      bfs2(funcion, raiz);
 
-        	 funcion.accept(vertice.elemento);
-
-        	 if(vertice.izquierdo != null ){
-
-        	 	 cola.mete(vertice.izquierdo);
-        	 }
-
-        	 if(vertice.derecho != null){
-
-                  cola.mete(vertice.derecho);
-        	 }
-        }
 
         
     }
@@ -238,6 +230,29 @@ public abstract class ArbolBinario<T>{
 
 
 
+    }
+
+    public void bfs2(Consumer<T> funcion, Vertice x){
+
+    	
+
+    	 Queue<Vertice> cola = new LinkedList<Vertice>();
+	     cola.add(x);
+	
+	     while(!cola.isEmpty()) {
+		 Vertice vertice = cola.remove();
+		 funcion.accept(vertice.elemento);
+		 if(vertice.izquierdo != null) {
+			 cola.add(vertice.izquierdo);
+		 }
+		
+		 if(vertice.derecho != null) {
+			 cola.add(vertice.derecho);
+		 }
+	}
+
+	     //Queue<Vertice> cola = new LinkedList<Vertice>();
+         //cola.
     }
 
     public int getElementos(){
