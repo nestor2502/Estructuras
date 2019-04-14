@@ -44,6 +44,130 @@ public void agrega(T elemento) {
 	}
 	elementos++;
 }
+//-----------------------------------------------------------------
+public void rotarderecha(T x){
+	if(busca(x) == false)
+		return;
+	
+	Nodo k1 = buscaNodo(x);
+	
+	if(k1.izquierdo == null) {
+	return;
+	//Caso padre en null		
+}else if(k1.padre == null){
+	Nodo k2 = k1.izquierdo;
+	k1.izquierdo = k2.derecho;
+	k1.izquierdo.padre = k1;
+	k2.derecho = k1;
+	k1.padre = k2;
+	raiz = k2;
+	return;
+}else if(k1.padre.izquierdo == k1 && k1.izquierdo.derecho != null){
+	//Caso padre no es null y k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
+	Nodo k2 = k1.izquierdo;
+	Nodo k3 = k1.padre;
+	k1.izquierdo = k2.derecho;
+	k1.izquierdo.padre = k1;
+	k2.derecho = k1;
+	k1.padre = k2;
+	k3.izquierdo = k2;
+	k2.padre = k3;
+	return;
+}else if(k1.padre.derecho == k1 && k1.izquierdo.derecho != null) {
+	//Caso padre no es null y k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
+	Nodo k2 = k1.izquierdo;
+	Nodo k3 = k1.padre;
+	k1.izquierdo = k2.derecho;
+	k1.izquierdo.padre = k1;
+	k2.derecho = k1;
+	k1.padre = k2;
+	k3.derecho = k2;
+	k2.padre = k3;
+	return;
+}else if(k1.padre.izquierdo == k1 && k1.izquierdo.derecho == null) {
+	// Caso padre no es null, k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
+	Nodo k2 = k1.izquierdo;
+	Nodo k3 = k1.padre;
+	k2.derecho = k1;
+	k1.padre = k2;
+	k3.izquierdo = k2;
+	k2.padre = k3;
+	k1.izquierdo = null;
+	return;
+}else if(k1.padre.derecho == k1 && k1.izquierdo.derecho == null){
+	//Caso padre no es null, k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
+	Nodo k2 = k1.izquierdo;
+	Nodo k3 = k1.padre;
+	k2.derecho = k1;
+	k1.padre = k2;
+	k3.derecho = k2;
+	k2.padre = k3;
+	k1.izquierdo = null;
+	return;
+}
+ }
+//---------------------------------------------------------------------
+public void rotarizquierda(T x){
+	if(busca(x) == false)
+		return;
+	
+	Nodo k1 = buscaNodo(x);
+	
+	if(k1.derecho == null) {
+	return;
+	//Caso padre en null		
+}else if(k1.padre == null){
+	Nodo k2 = k1.derecho;
+	k1.derecho = k2.izquierdo;
+	k1.derecho.padre = k1;
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	raiz = k2;
+	return;
+}else if(k1.padre.izquierdo == k1 && k1.derecho.izquierdo != null){
+	//Caso padre no es null y k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
+	Nodo k2 = k1.derecho;
+	Nodo k3 = k1.padre;
+	k1.derecho = k2.izquierdo;
+	k1.izquierdo.padre = k1;
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	k3.izquierdo = k2;
+	k2.padre = k3;
+	return;
+}else if(k1.padre.derecho == k1 && k1.derecho.izquierdo != null) {
+	//Caso padre no es null y k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
+	Nodo k2 = k1.derecho;
+	Nodo k3 = k1.padre;
+	k1.derecho = k2.izquierdo;
+	k1.derecho.padre = k1;
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	k3.derecho = k2;
+	k2.padre = k3;
+	return;
+}else if(k1.padre.izquierdo == k1 && k1.derecho.izquierdo == null) {
+	// Caso padre no es null, k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
+	Nodo k2 = k1.derecho;
+	Nodo k3 = k1.padre;
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	k3.izquierdo = k2;
+	k2.padre = k3;
+	k1.derecho = null;
+	return;
+}else if(k1.padre.derecho == k1 && k1.derecho.izquierdo == null){
+	//Caso padre no es null, k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
+	Nodo k2 = k1.derecho;
+	Nodo k3 = k1.padre;
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	k3.derecho = k2;
+	k2.padre = k3;
+	k1.derecho = null;
+	return;
+}
+}	
 //-------------------------------------------------------------------
 public Nodo maximo(T z) {
 	Nodo encontrado = buscaNodo(z);
