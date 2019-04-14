@@ -44,12 +44,22 @@ public void agrega(T elemento) {
 	}
 	elementos++;
 }
+//---------------------------------------------------------------------
+public void Nodorotadoizquierda(T x){
+	Nodo y = buscaNodo(x);
+	rotarizquierda(y);
+}
+//---------------------------------------------------------------------
+public void Nodorotadoderecha(T x){
+	Nodo y = buscaNodo(x);
+	rotarderecha(y);
+}	
 //-----------------------------------------------------------------
-public void rotarderecha(T x){
-	if(busca(x) == false)
-		return;
+public void rotarderecha(Nodo x){
+//	if(busca(x) == false)
+//		return;
 	
-	Nodo k1 = buscaNodo(x);
+	Nodo k1 = x;
 	
 	if(k1.izquierdo == null) {
 	return;
