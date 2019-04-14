@@ -6,7 +6,7 @@ import java.util.function.Consumer;
 /**
  * Clase que representa un Árbol Binario.
  */
-public abstract class ArbolBinario<T>{
+public abstract class ArbolBinario<T extends Comparable<T>>{
 
     protected class Vertice{
 
@@ -86,102 +86,130 @@ public abstract class ArbolBinario<T>{
 
      }
 
-     public void giraIzquierda(Vertice u){
+     public void giraIzquierda(Vertice x){
 
-
-          if(u.derecho== null){
-
-             return;
-
-          }
-
-          else if (u.derecho != null) {
-
-            if(u.padre != null){
-
-
-                 u.derecho.padre = u.padre;
-                 Vertice dad = u.padre;
-                 if(dad.izquierdo == u){
-
-                 dad.izquierdo = u.derecho;
-
-                 }
-                 if(dad.derecho == u){
-
-                 dad.izquierdo = u.derecho;
-                 }
-                 u.izquierdo.padre = dad;
-
-            }
-
-            if(u.padre == null){
-                u.derecho.padre = null;
-                raiz = u.derecho;
-             }
-            /**
-            u.padre = u.derecho;
-            u.derecho = u.derecho.izquierdo;
-            u.derecho.izquierdo.padre = u;
-            u.padre.izquierdo = u;*/
-            
-             Vertice aux = u.derecho;
-             u.padre = u.derecho;
-             u.derecho = aux.izquierdo;
-             aux.derecho.padre = u;
-             aux.izquierdo  = u;
-            
-             //Vertice aux = u.derecho;
-             //u.padre = u.derecho;
-            // conectaDerecha(u,aux.derecho);
-
-          }
+	//if(busca(x.elemento) == false)
+	//	return;
+	
+	Vertice k1 = x;// buscaVertice(x.elemento);
+	
+	if(k1.derecho == null) {
+	return;
+	//Caso padre en null		
+}else if(k1.padre == null){
+	Vertice k2 = k1.derecho;
+	k1.derecho = k2.izquierdo;
+	k1.derecho.padre = k1;
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	raiz = k2;
+	return;
+}else if(k1.padre.izquierdo == k1 && k1.derecho.izquierdo != null){
+	//Caso padre no es null y k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
+	Vertice k2 = k1.derecho;
+	Vertice k3 = k1.padre;
+	k1.derecho = k2.izquierdo;
+	k1.izquierdo.padre = k1;
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	k3.izquierdo = k2;
+	k2.padre = k3;
+	return;
+}else if(k1.padre.derecho == k1 && k1.derecho.izquierdo != null) {
+	//Caso padre no es null y k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
+	Vertice k2 = k1.derecho;
+	Vertice k3 = k1.padre;
+	k1.derecho = k2.izquierdo;
+	k1.derecho.padre = k1;
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	k3.derecho = k2;
+	k2.padre = k3;
+	return;
+}else if(k1.padre.izquierdo == k1 && k1.derecho.izquierdo == null) {
+	// Caso padre no es null, k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
+	Vertice k2 = k1.derecho;
+	Vertice k3 = k1.padre;
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	k3.izquierdo = k2;
+	k2.padre = k3;
+	k1.derecho = null;
+	return;
+}else if(k1.padre.derecho == k1 && k1.derecho.izquierdo == null){
+	//Caso padre no es null, k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
+	Vertice k2 = k1.derecho;
+	Vertice k3 = k1.padre;
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	k3.derecho = k2;
+	k2.padre = k3;
+	k1.derecho = null;
+	return;
+}
      }
 
-     public void giraDerecha(Vertice u ){
+     public void giraDerecha(Vertice x ){
         
-         if(u.izquierdo == null){
-
-            return ;
-         }
-
-         else if(u.izquierdo != null){
-             
-             if(u.padre != null){
-
-                u.izquierdo.padre = u.padre;
-                Vertice dad = u.padre;
-             
-            
-             if(dad.izquierdo == u){
-
-                 dad.izquierdo = u.izquierdo;
-
-             }
-             if(dad.derecho == u){
-                 //se cambio
-                 dad.derecho = u.izquierdo;
-                 //u.izquierdo.padre = dad;
-             }}
-             if(u.padre == null){
-                u.izquierdo.padre = null;
-                raiz = u.izquierdo;
-             }/**
-             u.padre = u.izquierdo;
-             u.izquierdo = u.izquierdo.derecho;
-             u.izquierdo.derecho.padre = u;
-             u.padre.derecho = u;
-             */
-             //Vertice pivote = u;
-             Vertice aux = u.izquierdo;
-             u.padre = u.izquierdo;
-             u.izquierdo = aux.derecho;
-             aux.derecho.padre = u;
-             aux.derecho = u;
-
-           //raiz = aux;
-
-         }
+         //if(busca(x.elemento) == false)
+		//return;
+	
+	Vertice k1 = x;	//buscaVertice(x.elemento);
+	
+	if(k1.izquierdo == null) {
+	return;
+	//Caso padre en null		
+}else if(k1.padre == null){
+	Vertice k2 = k1.izquierdo;
+	k1.izquierdo = k2.derecho;
+	k1.izquierdo.padre = k1;
+	k2.derecho = k1;
+	k1.padre = k2;
+	raiz = k2;
+	return;
+}else if(k1.padre.izquierdo == k1 && k1.izquierdo.derecho != null){
+	//Caso padre no es null y k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
+	Vertice k2 = k1.izquierdo;
+	Vertice k3 = k1.padre;
+	k1.izquierdo = k2.derecho;
+	k1.izquierdo.padre = k1;
+	k2.derecho = k1;
+	k1.padre = k2;
+	k3.izquierdo = k2;
+	k2.padre = k3;
+	return;
+}else if(k1.padre.derecho == k1 && k1.izquierdo.derecho != null) {
+	//Caso padre no es null y k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
+	Vertice k2 = k1.izquierdo;
+	Vertice k3 = k1.padre;
+	k1.izquierdo = k2.derecho;
+	k1.izquierdo.padre = k1;
+	k2.derecho = k1;
+	k1.padre = k2;
+	k3.derecho = k2;
+	k2.padre = k3;
+	return;
+}else if(k1.padre.izquierdo == k1 && k1.izquierdo.derecho == null) {
+	// Caso padre no es null, k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
+	Vertice k2 = k1.izquierdo;
+	Vertice k3 = k1.padre;
+	k2.derecho = k1;
+	k1.padre = k2;
+	k3.izquierdo = k2;
+	k2.padre = k3;
+	k1.izquierdo = null;
+	return;
+}else if(k1.padre.derecho == k1 && k1.izquierdo.derecho == null){
+	//Caso padre no es null, k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
+	Vertice k2 = k1.izquierdo;
+	Vertice k3 = k1.padre;
+	k2.derecho = k1;
+	k1.padre = k2;
+	k3.derecho = k2;
+	k2.padre = k3;
+	k1.izquierdo = null;
+	return;
+}
 
      }
 
@@ -297,6 +325,41 @@ public abstract class ArbolBinario<T>{
          funcion.accept(x.elemento);
     }
     }
+public Vertice buscaVertice(T x){
+	Vertice otroNodo = raiz; 	
+/**	if(otroNodo == raiz){
+		
+		return otroNodo;
+		
+	}	
+*/	
+	while(otroNodo != null){
+		if(otroNodo.elemento == x) {
+			return otroNodo;
+		}else if(x.compareTo(otroNodo.elemento) <= 0) {
+			otroNodo = otroNodo.izquierdo;
+		}else {
+			otroNodo = otroNodo.derecho;
+		}
+	}
+	
+	return null;
+
+}
+
+public boolean busca(T r) {
+	Vertice otroNodo = raiz; //creamos un nodo que va a la raiz
+	while(otroNodo != null) { // mientras no este vacio, seguimos, si no, regresamos vacio
+		if(otroNodo.elemento == r) {//revisamos en el nodo actual
+			return true;
+		}else if( r.compareTo(otroNodo.elemento) <= 0) {//revisamos en su nodo izquierdo
+			otroNodo = otroNodo.izquierdo;
+		}else {
+			otroNodo = otroNodo.derecho;//revisamos en su nodo derecho
+		}
+	}
+	return false;
+}
 
 
 

@@ -15,8 +15,8 @@ public class TestArboles{
 		//tree.agrega(48);
 		//tree.agrega(24);
 //		tree.agrega(11);
-		//tree.giraIzquierda(tree.raiz());
-		//tree.bfs(i-> System.out.println(i));
+		tree.giraDerecha(tree.raiz());
+		tree.bfs(i-> System.out.println(i));
 	
 //		tree.recorrido_en_orden(tree.raiz);
 /**		System.out.println("");
@@ -54,7 +54,7 @@ public class TestArboles{
 
         /////////////////Rojo Negro//////////
 
-        ArbolRojinegro <Integer> ryb = new ArbolRojinegro <Integer>();
+        //ArbolRojinegro <Integer> ryb = new ArbolRojinegro <Integer>();
         //ryb.agrega(50);
 	    //ryb.agrega(20);
 	    //System.out.println(ryb.getColor(raiz2()));
@@ -65,6 +65,6 @@ public class TestArboles{
 		//ryb.agrega(48);
 		//ryb.agrega(24);
 
-		ryb.bfs(i -> System.out.println(i));
+		//ryb.bfs(i -> System.out.println(i));
 	}
 }
