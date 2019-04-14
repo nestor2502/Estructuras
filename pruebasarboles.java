@@ -64,7 +64,7 @@ public void rotarderecha(Nodo x){
 	if(k1.izquierdo == null) {
 	return;
 	//Caso padre en null		
-}else if(k1.padre == null){
+}else if(k1.padre == null && k1.izquierdo.derecho != null){
 	Nodo k2 = k1.izquierdo;
 	k1.izquierdo = k2.derecho;
 	k1.izquierdo.padre = k1;
@@ -72,6 +72,13 @@ public void rotarderecha(Nodo x){
 	k1.padre = k2;
 	raiz = k2;
 	return;
+	}else if(k1.padre == null && k1.izquierdo.derecho == null){
+	Nodo k2 = k1.izquierdo;
+	k2.derecho = k1;
+	k1.padre = k1;
+	k1.izquierdo = null;
+	raiz = k2;
+	return;	
 }else if(k1.padre.izquierdo == k1 && k1.izquierdo.derecho != null){
 	//Caso padre no es null y k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
 	Nodo k2 = k1.izquierdo;
@@ -126,12 +133,19 @@ public void rotarizquierda(Nodo x){
 	if(k1.derecho == null) {
 	return;
 	//Caso padre en null		
-}else if(k1.padre == null){
+}else if(k1.padre == null && k1.derecho.izquierdo != null){
 	Nodo k2 = k1.derecho;
 	k1.derecho = k2.izquierdo;
 	k1.derecho.padre = k1;
 	k2.izquierdo = k1;
 	k1.padre = k2;
+	raiz = k2;
+	return;
+}else if(k1.padre == null && k1.derecho.izquierdo == null){
+	Nodo k2 = k1.derecho;
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	k1.derecho = null;
 	raiz = k2;
 	return;
 }else if(k1.padre.izquierdo == k1 && k1.derecho.izquierdo != null){
