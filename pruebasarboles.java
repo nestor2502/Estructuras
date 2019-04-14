@@ -117,11 +117,11 @@ public void rotarderecha(Nodo x){
 }
  }
 //---------------------------------------------------------------------
-public void rotarizquierda(T x){
-	if(busca(x) == false)
-		return;
+public void rotarizquierda(Nodo x){
+//	if(busca(x) == false)
+//		return;
 	
-	Nodo k1 = buscaNodo(x);
+	Nodo k1 = x;
 	
 	if(k1.derecho == null) {
 	return;
