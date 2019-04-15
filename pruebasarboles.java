@@ -259,11 +259,10 @@ public boolean elimina(T j) {
 		}
 		
 		
-		if(aux.padre.izquierdo == aux)
-			aux.padre.izquierdo = aux.padre.izquierdo;
-		else
-			aux.padre.derecho = aux.padre.izquierdo;
-		
+		aux.elemento = aux.izquierdo.elemento;
+		aux.izquierdo.padre = aux.padre;
+		aux.izquierdo = null;
+		elementos--;
 		return true;
 
 	
@@ -278,11 +277,10 @@ public boolean elimina(T j) {
 			return true;
 		}
 		
-		if(aux.padre.izquierdo == aux)
-			aux.padre.izquierdo = aux.padre.derecho;
-		else
-			aux.padre.derecho = aux.padre.derecho;
-		
+		aux.elemento = aux.derecho.elemento;
+		aux.derecho.padre = aux.padre;
+		aux.derecho = null;
+		elementos--;
 		return true;
 
 	}
@@ -311,7 +309,6 @@ public boolean elimina(T j) {
 //Fin del programa	
 	return false;
 }
-
 //---------------------------------------------------------------------
 public Nodo buscaNodo(T x){
 	Nodo otroNodo = raiz; 	
