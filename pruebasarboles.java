@@ -249,6 +249,7 @@ public boolean elimina(T j) {
 	
 	}
 //-------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------
 //Tiene un nodo hijo
 	//Caso izquierdo
 	if(aux.derecho == null && aux.izquierdo != null) {
@@ -258,10 +259,17 @@ public boolean elimina(T j) {
 			return true;
 		}
 		
-		
-		aux.elemento = aux.izquierdo.elemento;
+		if(aux.padre.derecho == aux) {
+		aux.izquierdo.padre =aux.padre;
+		aux.padre.derecho = aux.izquierdo;
+		}else {
 		aux.izquierdo.padre = aux.padre;
-		aux.izquierdo = null;
+		aux.padre.izquierdo = aux.izquierdo;
+		
+		}
+//		aux.elemento = aux.izquierdo.elemento;
+//		aux.izquierdo.padre = aux.padre;
+//		aux.izquierdo = null;
 		elementos--;
 		return true;
 
@@ -276,10 +284,17 @@ public boolean elimina(T j) {
 			elementos--;
 			return true;
 		}
-		
-		aux.elemento = aux.derecho.elemento;
+		if(aux.padre.derecho == aux) {
+		aux.derecho.padre =aux.padre;
+		aux.padre.derecho = aux.derecho;
+		}else {
 		aux.derecho.padre = aux.padre;
-		aux.derecho = null;
+		aux.padre.izquierdo = aux.derecho;
+		
+		}
+//		aux.elemento = aux.derecho.elemento;
+//		aux.derecho.padre = aux.padre;
+//		aux.derecho = null;
 		elementos--;
 		return true;
 
