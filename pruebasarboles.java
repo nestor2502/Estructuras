@@ -305,16 +305,26 @@ public boolean elimina(T j) {
 //--------------------------------------------------------------------
 	//Caso tiene 2 hijos
 	if(aux.izquierdo != null && aux.derecho != null) {
-		Nodo predecesor = predecesor(aux.elemento);
-		//Nodo temporal;
-		predecesor.padre = aux.padre;
-		predecesor.derecho = aux.derecho;
-		aux.derecho.padre = predecesor;
-		if(aux.padre.izquierdo == aux) {
-			aux.padre.izquierdo = predecesor;
-		}else {
-			aux.padre.derecho = predecesor;
-		}
+		Nodo predecesor = predecesor(aux.elemento);	
+//Caso raiz(especial)		
+		if(aux == raiz) { //Se borra la raiz
+			if(predecesor == raiz.izquierdo){ //Caso donde el predecesor esta a la ziquierda de la raiz
+				raiz.izquierdo = null;
+				raiz.elemento = predecesor.elemento;
+			}else {//Caso donde el predecesor no esta a la izquierda de la raiz, 1)donde el predecesor no tiene hijo izquierdo, 2)predecesor tiene hijo izquierdo
+				raiz.elemento = predecesor.elemento;
+				if(predecesor.izquierdo != null){//Tiene hijo izquierdo
+				predecesor.izquierdo.padre = predecesor.padre;
+				predecesor.padre.derecho = predecesor.izquierdo;
+			}else//No tiene hijo izquierdo
+				predecesor.padre.derecho = null;
+			}
+		}else{//Caso General
+			//Hy dos casos, el predecesor tiene hijo izquierdo null o no
+			T temporal = predecesor.elemento;
+			elimina(predecesor.elemento);
+			aux.elemento = temporal;
+		}		
 		elementos--;
 		return true;
 	}
