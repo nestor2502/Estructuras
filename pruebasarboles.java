@@ -228,6 +228,9 @@ public Nodo predecesor(T y) {
 
 //----------------------------------------------------------------------
 public boolean elimina(T j) {
+	//Revisa que de verdad exista el nodo
+	if(busca(j) == false)
+		return false;
 	Nodo aux = buscaNodo(j);
 	if(raiz == null) {
 		return false;
@@ -304,22 +307,16 @@ public boolean elimina(T j) {
 	if(aux.izquierdo != null && aux.derecho != null) {
 		Nodo predecesor = predecesor(aux.elemento);
 		//Nodo temporal;
-		aux.elemento = predecesor.elemento;
-		if(predecesor.izquierdo != null) {
-		predecesor.padre.derecho = predecesor.izquierdo;
-		predecesor.izquierdo.padre = predecesor.padre;
-		predecesor = null;
+		predecesor.padre = aux.padre;
+		predecesor.derecho = aux.derecho;
+		aux.derecho.padre = predecesor;
+		if(aux.padre.izquierdo == aux) {
+			aux.padre.izquierdo = predecesor;
+		}else {
+			aux.padre.derecho = predecesor;
+		}
 		elementos--;
 		return true;
-		}
-		
-		if(predecesor.izquierdo == null) {
-		predecesor.padre.derecho = null;
-		predecesor = null;
-		elementos--;
-		return true;
-		}
-		
 	}
 //Fin del programa	
 	return false;
