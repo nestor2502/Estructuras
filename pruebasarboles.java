@@ -44,6 +44,34 @@ public void agrega(T elemento) {
 	}
 	elementos++;
 }
+//--------------------------------------------------------------------
+public Nodo minimo(T z) {
+	Nodo encontrado = buscaNodo(z);
+	while(encontrado.izquierdo != null) {
+		encontrado = encontrado.izquierdo;
+	}
+	return encontrado;
+}
+//-------------------------------------------------------------------
+public Nodo sucesor(T z) {
+	Nodo encontrado = buscaNodo(z);
+	if(encontrado == null)
+		return null;
+	
+	if(encontrado.derecho != null) {
+		return minimo(encontrado.derecho.elemento);
+	}else {
+		Nodo aux = encontrado.padre;
+		while(aux != null && encontrado == aux.derecho) {
+			encontrado = aux;
+			aux = aux.padre;
+		}
+		if(aux == null)
+			return null;
+		else 
+			return aux;
+	}
+}	
 //---------------------------------------------------------------------
 public void Nodorotadoizquierda(T x){
 	Nodo y = buscaNodo(x);
