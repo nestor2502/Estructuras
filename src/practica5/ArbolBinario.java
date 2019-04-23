@@ -57,160 +57,92 @@ public abstract class ArbolBinario<T extends Comparable<T>>{
 
      public void conectaIzquierda(Vertice padre, Vertice hijo){ 
               
-         if (padre != null ){
+          if (padre != null ){
 
              if  (hijo == null )
          	     padre.izquierdo = null;
 
-             if  (hijo != null )
+             if  (hijo != null ){
                  padre.izquierdo = hijo;
 
-                 hijo.padre = padre;
+                 hijo.padre = padre;}
 
           }
      }
 
     public void conectaDerecha(Vertice padre, Vertice hijo){ 
       
-       if (padre != null ){
+        if (padre != null ){
 
              if  (hijo == null )
              padre.derecho = null;
-         if  (hijo != null )
+         if  (hijo != null ){
              padre.derecho = hijo;
 
-             hijo.padre = padre;
-
+             hijo.padre = padre;}
 
          }
 
      }
 
-     public void giraIzquierda(Vertice x){
+    public void giraIzquierda(Vertice u){
 
-	//if(busca(x.elemento) == false)
-	//	return;
-	
-	Vertice k1 = x;// buscaVertice(x.elemento);
-	
-	if(k1.derecho == null) {
-	return;
-	//Caso padre en null		
-}else if(k1.padre == null){
-	Vertice k2 = k1.derecho;
-	k1.derecho = k2.izquierdo;
-	k1.derecho.padre = k1;
-	k2.izquierdo = k1;
-	k1.padre = k2;
-	raiz = k2;
-	return;
-}else if(k1.padre.izquierdo == k1 && k1.derecho.izquierdo != null){
-	//Caso padre no es null y k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
-	Vertice k2 = k1.derecho;
-	Vertice k3 = k1.padre;
-	k1.derecho = k2.izquierdo;
-	k1.izquierdo.padre = k1;
-	k2.izquierdo = k1;
-	k1.padre = k2;
-	k3.izquierdo = k2;
-	k2.padre = k3;
-	return;
-}else if(k1.padre.derecho == k1 && k1.derecho.izquierdo != null) {
-	//Caso padre no es null y k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
-	Vertice k2 = k1.derecho;
-	Vertice k3 = k1.padre;
-	k1.derecho = k2.izquierdo;
-	k1.derecho.padre = k1;
-	k2.izquierdo = k1;
-	k1.padre = k2;
-	k3.derecho = k2;
-	k2.padre = k3;
-	return;
-}else if(k1.padre.izquierdo == k1 && k1.derecho.izquierdo == null) {
-	// Caso padre no es null, k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
-	Vertice k2 = k1.derecho;
-	Vertice k3 = k1.padre;
-	k2.izquierdo = k1;
-	k1.padre = k2;
-	k3.izquierdo = k2;
-	k2.padre = k3;
-	k1.derecho = null;
-	return;
-}else if(k1.padre.derecho == k1 && k1.derecho.izquierdo == null){
-	//Caso padre no es null, k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
-	Vertice k2 = k1.derecho;
-	Vertice k3 = k1.padre;
-	k2.izquierdo = k1;
-	k1.padre = k2;
-	k3.derecho = k2;
-	k2.padre = k3;
-	k1.derecho = null;
-	return;
-}
+         if(u.derecho== null){
+             return;
+          }
+          else if (u.derecho != null) {     
+            if(u.padre == null){
+                u.derecho.padre = null;
+                raiz = u.derecho;
+             }
+            else if(u.padre != null){
+                 u.derecho.padre = u.padre;
+                 Vertice dad = u.padre;
+                 if(dad.izquierdo == u){
+
+                 dad.izquierdo = u.derecho;
+                 }
+                 if(dad.derecho == u){
+                 dad.izquierdo = u.derecho;
+                 }
+            }             
+             Vertice aux = u.derecho;
+             u.padre = u.derecho;
+             conectaDerecha(u, aux.izquierdo);   
+             if(aux.izquierdo != null )
+             aux.izquierdo.padre = u;
+             conectaIzquierda(aux, u);         
+          }
      }
 
-     public void giraDerecha(Vertice x ){
-        
-         //if(busca(x.elemento) == false)
-		//return;
-	
-	Vertice k1 = x;	//buscaVertice(x.elemento);
-	
-	if(k1.izquierdo == null) {
-	return;
-	//Caso padre en null		
-}else if(k1.padre == null){
-	Vertice k2 = k1.izquierdo;
-	k1.izquierdo = k2.derecho;
-	k1.izquierdo.padre = k1;
-	k2.derecho = k1;
-	k1.padre = k2;
-	raiz = k2;
-	return;
-}else if(k1.padre.izquierdo == k1 && k1.izquierdo.derecho != null){
-	//Caso padre no es null y k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
-	Vertice k2 = k1.izquierdo;
-	Vertice k3 = k1.padre;
-	k1.izquierdo = k2.derecho;
-	k1.izquierdo.padre = k1;
-	k2.derecho = k1;
-	k1.padre = k2;
-	k3.izquierdo = k2;
-	k2.padre = k3;
-	return;
-}else if(k1.padre.derecho == k1 && k1.izquierdo.derecho != null) {
-	//Caso padre no es null y k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
-	Vertice k2 = k1.izquierdo;
-	Vertice k3 = k1.padre;
-	k1.izquierdo = k2.derecho;
-	k1.izquierdo.padre = k1;
-	k2.derecho = k1;
-	k1.padre = k2;
-	k3.derecho = k2;
-	k2.padre = k3;
-	return;
-}else if(k1.padre.izquierdo == k1 && k1.izquierdo.derecho == null) {
-	// Caso padre no es null, k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
-	Vertice k2 = k1.izquierdo;
-	Vertice k3 = k1.padre;
-	k2.derecho = k1;
-	k1.padre = k2;
-	k3.izquierdo = k2;
-	k2.padre = k3;
-	k1.izquierdo = null;
-	return;
-}else if(k1.padre.derecho == k1 && k1.izquierdo.derecho == null){
-	//Caso padre no es null, k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
-	Vertice k2 = k1.izquierdo;
-	Vertice k3 = k1.padre;
-	k2.derecho = k1;
-	k1.padre = k2;
-	k3.derecho = k2;
-	k2.padre = k3;
-	k1.izquierdo = null;
-	return;
-}
-
+     public void giraDerecha(Vertice u ){
+         
+         if(u.izquierdo == null){
+            return ;
+         }
+         else if(u.izquierdo != null){
+             if(u.padre != null){
+                u.izquierdo.padre = u.padre;
+                Vertice dad = u.padre;
+             if(dad.izquierdo == u){
+                 dad.izquierdo = u.izquierdo;
+             }
+             if(dad.derecho == u){
+                 //se cambio
+                 dad.derecho = u.izquierdo;
+             }
+         }
+             if(u.padre == null){
+                u.izquierdo.padre = null;
+                raiz = u.izquierdo;
+             }
+             Vertice aux = u.izquierdo;
+             u.padre = u.izquierdo;
+             conectaIzquierda(u,aux.derecho );     
+               if(aux.derecho != null )
+             aux.derecho.padre = u;
+             conectaDerecha(aux, u);
+         }
      }
 
     public void bfs(Consumer<T> funcion){
