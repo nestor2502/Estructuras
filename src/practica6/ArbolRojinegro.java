@@ -65,7 +65,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     */
     @Override
     public void agrega(T elemento){
-    	 Vertice nuevo = new Vertice(elemento);
+    	 Vertice nuevo = new VerticeRojinegro(elemento);
          if(raiz == null) {
              raiz = nuevo;
          } 
@@ -162,7 +162,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
                  //t.color = Color.NEGRO;
                  setColor(t, Color.NEGRO);
                  //a.color = Color.ROJO;
-                 setColor(a, Color.NEGRO);
+                 setColor(a, Color.ROJO);
                  rebalanceo1(a);
                  return;
              }}
@@ -209,7 +209,7 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
                  //p.color = Color.NEGRO;
              	 setColor(p, Color.NEGRO);
                  //a.color = Color.ROJO;
-                 setColor(a, Color.NEGRO);
+                 setColor(a, Color.ROJO);
                  //giramos en direccion contraria de v
                  if(direccionV == 1){
                       giraDerecha(a);
