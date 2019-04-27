@@ -199,13 +199,11 @@ import java.util.Iterator;
                 
                  temp = new Nodo (cabeza.elemento);            
                  cabeza = null;
-                 cabeza.anterior= null;
-                 cabeza.siguiente = null;
+                 
                  
 
                  ultimo = null;
-                 ultimo.anterior= null;
-                 ultimo.siguiente = null;
+                 
                  longitud--;
                   return temp.elemento;
                  }

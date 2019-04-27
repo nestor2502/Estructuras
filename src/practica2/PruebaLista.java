@@ -21,6 +21,11 @@ public class PruebaLista{
          Lista<String> test= new Lista<String>(arr1);
          Lista<String> test3= new Lista<String>();
          Lista<String> test4= new Lista<String>();
+         Lista<String> test5 = new Lista<String>();
+
+         test5.agregaFinal(hola);
+         String destinatario = test5.eliminaPrimero();
+         //String recuperacion = test5.saca();
 
          ///////////////////////////////////////
           System.out.println("Pueba contructor vacio: ");
