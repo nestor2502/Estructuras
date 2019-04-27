@@ -26,12 +26,10 @@ public void agrega(T elemento) {
 		//Hacemos el recorrido para encontrar un lugar vacio
 		while(temporal != null) {
 			nuevoNodo.padre = temporal;
-			if(elemento.compareTo(temporal.elemento)< 0) {
-				temporal = temporal.izquierdo;
-				
+			if(elemento.compareTo(temporal.elemento)<= 0) {
+				temporal = temporal.izquierdo;				
 			}else {
-				temporal = temporal.derecho;
-				
+				temporal = temporal.derecho;				
 			}			
 		}
 		//Vemos en donde vamos a ponerlo
@@ -71,155 +69,7 @@ public Nodo sucesor(T z) {
 		else 
 			return aux;
 	}
-}	
-//---------------------------------------------------------------------
-public void Nodorotadoizquierda(T x){
-	Nodo y = buscaNodo(x);
-	rotarizquierda(y);
 }
-//---------------------------------------------------------------------
-public void Nodorotadoderecha(T x){
-	Nodo y = buscaNodo(x);
-	rotarderecha(y);
-}	
-//-----------------------------------------------------------------
-public void rotarderecha(Nodo x){
-//	if(busca(x) == false)
-//		return;
-	
-	Nodo k1 = x;
-	
-	if(k1.izquierdo == null) {
-	return;
-	//Caso padre en null		
-}else if(k1.padre == null && k1.izquierdo.derecho != null){
-	Nodo k2 = k1.izquierdo;
-	k1.izquierdo = k2.derecho;
-	k1.izquierdo.padre = k1;
-	k2.derecho = k1;
-	k1.padre = k2;
-	raiz = k2;
-	return;
-	}else if(k1.padre == null && k1.izquierdo.derecho == null){
-	Nodo k2 = k1.izquierdo;
-	k2.derecho = k1;
-	k1.padre = k1;
-	k1.izquierdo = null;
-	raiz = k2;
-	return;	
-}else if(k1.padre.izquierdo == k1 && k1.izquierdo.derecho != null){
-	//Caso padre no es null y k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
-	Nodo k2 = k1.izquierdo;
-	Nodo k3 = k1.padre;
-	k1.izquierdo = k2.derecho;
-	k1.izquierdo.padre = k1;
-	k2.derecho = k1;
-	k1.padre = k2;
-	k3.izquierdo = k2;
-	k2.padre = k3;
-	return;
-}else if(k1.padre.derecho == k1 && k1.izquierdo.derecho != null) {
-	//Caso padre no es null y k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
-	Nodo k2 = k1.izquierdo;
-	Nodo k3 = k1.padre;
-	k1.izquierdo = k2.derecho;
-	k1.izquierdo.padre = k1;
-	k2.derecho = k1;
-	k1.padre = k2;
-	k3.derecho = k2;
-	k2.padre = k3;
-	return;
-}else if(k1.padre.izquierdo == k1 && k1.izquierdo.derecho == null) {
-	// Caso padre no es null, k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
-	Nodo k2 = k1.izquierdo;
-	Nodo k3 = k1.padre;
-	k2.derecho = k1;
-	k1.padre = k2;
-	k3.izquierdo = k2;
-	k2.padre = k3;
-	k1.izquierdo = null;
-	return;
-}else if(k1.padre.derecho == k1 && k1.izquierdo.derecho == null){
-	//Caso padre no es null, k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
-	Nodo k2 = k1.izquierdo;
-	Nodo k3 = k1.padre;
-	k2.derecho = k1;
-	k1.padre = k2;
-	k3.derecho = k2;
-	k2.padre = k3;
-	k1.izquierdo = null;
-	return;
-}
- }
-//---------------------------------------------------------------------
-public void rotarizquierda(Nodo x){
-//	if(busca(x) == false)
-//		return;
-	
-	Nodo k1 = x;
-	
-	if(k1.derecho == null) {
-	return;
-	//Caso padre en null		
-}else if(k1.padre == null && k1.derecho.izquierdo != null){
-	Nodo k2 = k1.derecho;
-	k1.derecho = k2.izquierdo;
-	k1.derecho.padre = k1;
-	k2.izquierdo = k1;
-	k1.padre = k2;
-	raiz = k2;
-	return;
-}else if(k1.padre == null && k1.derecho.izquierdo == null){
-	Nodo k2 = k1.derecho;
-	k2.izquierdo = k1;
-	k1.padre = k2;
-	k1.derecho = null;
-	raiz = k2;
-	return;
-}else if(k1.padre.izquierdo == k1 && k1.derecho.izquierdo != null){
-	//Caso padre no es null y k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
-	Nodo k2 = k1.derecho;
-	Nodo k3 = k1.padre;
-	k1.derecho = k2.izquierdo;
-	k1.izquierdo.padre = k1;
-	k2.izquierdo = k1;
-	k1.padre = k2;
-	k3.izquierdo = k2;
-	k2.padre = k3;
-	return;
-}else if(k1.padre.derecho == k1 && k1.derecho.izquierdo != null) {
-	//Caso padre no es null y k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
-	Nodo k2 = k1.derecho;
-	Nodo k3 = k1.padre;
-	k1.derecho = k2.izquierdo;
-	k1.derecho.padre = k1;
-	k2.izquierdo = k1;
-	k1.padre = k2;
-	k3.derecho = k2;
-	k2.padre = k3;
-	return;
-}else if(k1.padre.izquierdo == k1 && k1.derecho.izquierdo == null) {
-	// Caso padre no es null, k1 es su hijo izquierdo e hijo derecho del hijo que rota no es vacio
-	Nodo k2 = k1.derecho;
-	Nodo k3 = k1.padre;
-	k2.izquierdo = k1;
-	k1.padre = k2;
-	k3.izquierdo = k2;
-	k2.padre = k3;
-	k1.derecho = null;
-	return;
-}else if(k1.padre.derecho == k1 && k1.derecho.izquierdo == null){
-	//Caso padre no es null, k1 es su hijo derecho e hijo derecho del hijo que rota no es vacio
-	Nodo k2 = k1.derecho;
-	Nodo k3 = k1.padre;
-	k2.izquierdo = k1;
-	k1.padre = k2;
-	k3.derecho = k2;
-	k2.padre = k3;
-	k1.derecho = null;
-	return;
-}
-}	
 //-------------------------------------------------------------------
 public Nodo maximo(T z) {
 	Nodo encontrado = buscaNodo(z);
@@ -256,10 +106,9 @@ public Nodo predecesor(T y) {
 
 //----------------------------------------------------------------------
 public boolean elimina(T j) {
-	//Revisa que de verdad exista el nodo
+	Nodo aux = buscaNodo(j);
 	if(busca(j) == false)
 		return false;
-	Nodo aux = buscaNodo(j);
 	if(raiz == null) {
 		return false;
 	}
@@ -272,14 +121,15 @@ public boolean elimina(T j) {
 			return true;
 		}
 		
-		if(aux.padre.izquierdo == aux)
+		if(aux.padre.izquierdo == aux) {
 			aux.padre.izquierdo = null;
-		else
+		}else {
 			aux.padre.derecho = null;
+		}
+		elementos--;
 		return true;
 	
 	}
-//-------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------
 //Tiene un nodo hijo
 	//Caso izquierdo
@@ -359,17 +209,116 @@ public boolean elimina(T j) {
 //Fin del programa	
 	return false;
 }
+
 //---------------------------------------------------------------------
+public void rotarderecha(Nodo x){
+	Nodo k1 = x; //renombramos a nuestro nodo
+	
+	if(k1.izquierdo == null) // regresas, no se puede girar
+	return;
+	Nodo k2 = k1.izquierdo;	
+	if(k1.padre == null){			//casos donde no tienen padres
+		if(k1.izquierdo.derecho != null){
+		k1.izquierdo = k2.derecho;
+		k1.izquierdo.padre = k1;
+		}else{
+		k1.izquierdo = null;
+	}
+	k2.derecho = k1;
+	k1.padre = k2;
+	raiz = k2;
+	return;
+	}else{					//casos donde tienen padres
+	Nodo k3 = k1.padre;
+	if(k3.derecho == k1){
+		if(k1.izquierdo.derecho != null){
+		k1.izquierdo = k2.derecho;
+		k1.izquierdo.padre = k1;
+		}else{
+		k1.izquierdo = null;	
+		}
+	k2.derecho = k1;
+	k1.padre = k2;
+	k3.derecho = k2;
+	k2.padre = k3;
+	} else {
+		if(k1.izquierdo.derecho != null){
+		k1.izquierdo = k2.derecho;
+		k1.izquierdo.padre = k1;
+		}else{
+		k1.izquierdo = null;
+	}
+	k2.derecho = k1;
+	k1.padre = k2;
+	k3.izquierdo = k2;
+	k2.padre = k3;	
+	}
+	return;
+}
+}
+//---------------------------------------------------------------------
+public void Nodorotadoizquierda(T x){
+	Nodo y = buscaNodo(x);
+	rotarizquierda(y);
+}
+//---------------------------------------------------------------------
+public void Nodorotadoderecha(T x){
+	Nodo y = buscaNodo(x);
+	rotarderecha(y);
+}
+//---------------------------------------------------------------------
+public void rotarizquierda(Nodo x){
+	Nodo k1 = x; //renombramos a nuestro nodo
+	
+	if(k1.derecho == null) // regresas, no se puede girar
+	return;
+	Nodo k2 = k1.derecho;	
+	if(k1.padre == null){			//casos donde no tienen padres
+		if(k1.derecho.izquierdo != null){
+		k1.derecho = k2.izquierdo;
+		k1.derecho.padre = k1;
+		}else{
+		k1.derecho = null;
+	}
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	raiz = k2;
+	return;
+	}else{					//casos donde tienen padres
+	Nodo k3 = k1.padre;
+	if(k3.derecho == k1){
+		if(k1.derecho.izquierdo != null){
+		k1.derecho = k2.izquierdo;
+		k1.derecho.padre = k1;
+		}else{
+		k1.derecho = null;	
+		}
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	k3.derecho = k2;
+	k2.padre = k3;
+	} else {
+		if(k1.derecho.izquierdo != null){
+		k1.derecho = k2.izquierdo;
+		k1.derecho.padre = k1;
+		}else{
+		k1.derecho = null;
+	}
+	k2.izquierdo = k1;
+	k1.padre = k2;
+	k3.izquierdo = k2;
+	k2.padre = k3;	
+	}
+	return;
+}
+	}
+//---------------------------------------------------------------------
+
 public Nodo buscaNodo(T x){
 	Nodo otroNodo = raiz; 	
-/**	if(otroNodo == raiz){
-		
-		return otroNodo;
-		
-	}	
-*/	
+
 	while(otroNodo != null){
-		if(otroNodo.elemento == x) {
+		if(otroNodo.elemento.compareTo(x) == 0) {
 			return otroNodo;
 		}else if(x.compareTo(otroNodo.elemento) <= 0) {
 			otroNodo = otroNodo.izquierdo;
@@ -407,12 +356,15 @@ public void bsf(Nodo nodo) {
 //-------------------------------------------------------------------------
 public boolean busca(T r) {
 	Nodo otroNodo = raiz; //creamos un nodo que va a la raiz
+	
+	
+	
 	while(otroNodo != null) { // mientras no este vacio, seguimos, si no, regresamos vacio
-		if(otroNodo.elemento == r) {//revisamos en el nodo actual
+		if(otroNodo.elemento.compareTo(r) == 0) {//revisamos en el nodo actual
 			return true;
-		}else if( r.compareTo(otroNodo.elemento) <= 0) {//revisamos en su nodo izquierdo
+		}else if( r.compareTo(otroNodo.elemento) < 0) {//revisamos en su nodo izquierdo
 			otroNodo = otroNodo.izquierdo;
-		}else {
+		}else{
 			otroNodo = otroNodo.derecho;//revisamos en su nodo derecho
 		}
 	}
@@ -420,11 +372,11 @@ public boolean busca(T r) {
 }
 //----------------------------------------------------------------------
 //LPR
-public void recorrido_en_orden(Nodo x) {
+public void inorder(Nodo x) {
 	if(x != null) {
-		recorrido_en_orden(x.izquierdo);
+		inorder(x.izquierdo);
 		System.out.print(x.elemento + " ");
-		recorrido_en_orden(x.derecho);
+		inorder(x.derecho);
 	}
 		
 }
@@ -454,6 +406,7 @@ public void postorder(Nodo z) {
 		public Nodo derecho;
 		public Nodo padre;
 		
+		
 		public Nodo(T elemento){
 			this.izquierdo = null;
 			this.derecho = null;
@@ -466,31 +419,31 @@ public void postorder(Nodo z) {
 	public static void main(String [] args) {
 		pruebasarboles <Integer> tree = new pruebasarboles <Integer>();
 		tree.agrega(50);
-		tree.agrega(30);
-		tree.agrega(20);
-		tree.agrega(45);
-		tree.agrega(15);
+		tree.agrega(75);
 		tree.agrega(25);
+//		tree.elimina(75);
+		tree.agrega(100);
+		tree.agrega(65);
+//		tree.elimina(50);
+		tree.agrega(0);
 		tree.agrega(35);
-		tree.agrega(48);
-		tree.agrega(24);
-//		tree.agrega(11);
-		
-//		tree.recorrido_en_orden(tree.raiz);
-/**		System.out.println("");
-		tree.preorder(tree.raiz);
-		System.out.println("");
-		tree.postorder(tree.raiz);
-		System.out.println("");
-		System.out.println("el arbol tiene " + tree.elementos + " elementos");
-*/
-//		System.out.println(tree.busca(0));
-//		System.out.println();
-		System.out.println(tree.elimina(30));
+//		tree.agrega(100);
+		tree.agrega(200);
+		tree.agrega(90);
+		tree.agrega(500);
+		tree.agrega(-10);
+		tree.agrega(-40);
+		tree.agrega(-60);
+		tree.agrega(300);
+		tree.elimina(50);
+//System.out.println(tree.sucesor(60).elemento);
+//		tree.Nodorotadoizquierda(50);
+//		tree.elimina(25);
 		System.out.println();
-		tree.recorrido_en_orden(tree.raiz);
+		System.out.println(tree.busca(500));
 		System.out.println();
-//		System.out.println(tree.predecesor(5));
+		tree.bsf(tree.raiz);
+		System.out.println();
 	}
 
 }
