@@ -1,7 +1,7 @@
 
 
 /**
- * Clase que representa un árbol binario de búsqueda.
+ * Clase que representa un Ã¡rbol binario de bÃºsqueda.
  */
 public class ArbolBinarioBusqueda<T extends Comparable<T>> extends ArbolBinario<T>{
 
@@ -188,8 +188,9 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> extends ArbolBinario<
     			T temporal = predecesor.elemento;
     			elimina(predecesor.elemento);
     			aux.elemento = temporal;
-    		}		
-    		elementos--;
+			return true;
+    		}	
+		elementos--;
     		return true;
     	}
     //Fin del programa	
