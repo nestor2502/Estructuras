@@ -131,6 +131,7 @@ public void agrega(T elemento){
 		}else {
 			nuevoNodo.padre.derecho = nuevoNodo;
 		}
+		//Damos su altura, actualizamos alturas y balanceamos de ser necesario
 		nuevoNodo.altura = getAltura(nuevoNodo);
 		actualizaAltura(nuevoNodo);
 		balancea(nuevoNodo);
@@ -142,7 +143,7 @@ public void agrega(T elemento){
 public boolean busca(T r) {
 	Nodo otroNodo = raiz; //creamos un nodo que va a la raiz
 	while(otroNodo != null) { // mientras no este vacio, seguimos, si no, regresamos vacio
-		if(otroNodo.elemento == r) {//revisamos en el nodo actual
+		if(otroNodo.elemento.compareTo(r)==0) {//revisamos en el nodo actual
 			return true;
 		}else if( r.compareTo(otroNodo.elemento) <= 0) {//revisamos en su nodo izquierdo
 			otroNodo = otroNodo.izquierdo;
@@ -154,14 +155,13 @@ public boolean busca(T r) {
 }
 //-------------------------------------------------------------------------
 public void elimina(T j){
-	Nodo aux = buscaNodo(j);
 	if(busca(j) == false)
 		return;
 	
 	if(raiz == null) 
 		return;
 	
-
+	Nodo aux = buscaNodo(j);
 //------------------------------------------------------------------------------
 	//No tiene hijos
 	if(aux.izquierdo == null && aux.derecho == null) {
@@ -170,18 +170,16 @@ public void elimina(T j){
 			elementos--;
 			return;
 		}else{
-		Nodo padre_pre = aux.padre;
-		if(aux.padre.izquierdo == aux) {//se agregan padre de los borrados
-
-			aux.padre.izquierdo = null;
-			
+			Nodo padre_pred = aux.padre;
+		if(aux.padre.izquierdo == aux) {
+			aux.padre.izquierdo = null;			
 		}else {
-			aux.padre.derecho = null;
-	
+			aux.padre.derecho = null;	
 		}
 		aux.padre = null;
-		actualizaAltura(padre_pre);
-		balancea(padre_pre);
+		actualizaAltura(padre_pred);
+		balancea(padre_pred);
+//		aux.padre = null;
 		elementos--;
 		return;
 		}
@@ -198,16 +196,15 @@ public void elimina(T j){
 			elementos--;
 			return;
 		}
-		Nodo hijoizq = aux.izquierdo;
+		Nodo padreaux = aux.padre;
+		aux.izquierdo.padre = aux.padre;
 		if(aux.padre.derecho == aux) {
-		aux.izquierdo.padre =aux.padre;
 		aux.padre.derecho = aux.izquierdo;
 		}else {
-		aux.izquierdo.padre = aux.padre;
 		aux.padre.izquierdo = aux.izquierdo;		
 		}
-		actualizaAltura(hijoizq);
-		balancea(hijoizq);
+		actualizaAltura(padreaux);
+		balancea(padreaux);
 		elementos--;
 		return;
 
@@ -224,17 +221,15 @@ public void elimina(T j){
 			return;
 		}
 		
-		Nodo hijoder = aux.derecho;
-		
+		Nodo padreaux = aux.padre;
+		aux.derecho.padre = aux.padre;
 		if(aux.padre.derecho == aux) {
-		aux.derecho.padre =aux.padre;
 		aux.padre.derecho = aux.derecho;
 		}else {
-		aux.derecho.padre = aux.padre;
 		aux.padre.izquierdo = aux.derecho;		
 		}
-		actualizaAltura(hijoder);
-		balancea(hijoder);
+		actualizaAltura(padreaux);
+		balancea(padreaux);
 		elementos--;
 		return;
 
@@ -443,25 +438,38 @@ public void balancea(Nodo n){ // 1, -1 y 0 estan bien balanceados, por lo tanto,
 	if(n == null)//entramos en este si el nodo es null
 		return;	//termina la recursion
 
-	if(getBalance(n) == 2){//Tiene mas del lado izquierdo		
+	if(getBalance(n) == 2){//Tiene mas del lado izquierdo
+		
 			if(getBalance(n.izquierdo) >= 0) {//esta del lado izquierdo				
-		rotarderecha(n);
-			}else{//esta del lado derecho del hijo izquierdo, dos giros				
+		
+				rotarderecha(n);
+			
+			}else{//esta del lado derecho del hijo izquierdo, dos giros
+				
 		rotarizquierda(n.izquierdo);
 		rotarderecha(n);
-		}			
-	}else if(getBalance(n) == -2){//Tiene mas del lado derecho		
-		if(getBalance(n.derecho) <= 0) {//todo esta a la derecha				
-		rotarizquierda(n);
-			}else {//esta del lado izquierdo del hijo derecho, dos giros				
-				rotarderecha(n.derecho);			
-				rotarizquierda(n);
+		
 			}			
-	}else{
+	
+	}else if(getBalance(n) == -2){//Tiene mas del lado derecho
+		
+		if(getBalance(n.derecho) <= 0) {//todo esta a la derecha				
+		
+			rotarizquierda(n);
+		
+		}else {//esta del lado izquierdo del hijo derecho, dos giros				
+		
+		rotarderecha(n.derecho);			
+		rotarizquierda(n);
+		
+		}
+		
+	}
+	
 n = n.padre;
 balancea(n);
 	}
-}
+
 
 	
 
@@ -469,10 +477,10 @@ balancea(n);
 public Nodo buscaNodo(T x){
 	Nodo otroNodo = raiz; 	
 
-	while(otroNodo != null){
-		if(otroNodo.elemento == x) {
+	while(otroNodo != null) {
+		if(otroNodo.elemento.compareTo(x)==0) {
 			return otroNodo;
-		}else if(x.compareTo(otroNodo.elemento) <= 0) {
+		}else if(x.compareTo(otroNodo.elemento) < 0) {
 			otroNodo = otroNodo.izquierdo;
 		}else {
 			otroNodo = otroNodo.derecho;
@@ -487,6 +495,9 @@ public Nodo buscaNodo(T x){
 public static void main(String [] args){
 	ArbolAvl<Integer> avl = new ArbolAvl<Integer>();
 	avl.agrega(100);
+//	avl.agrega(200);
+//	avl.raiz.derecho = null;
+//	avl.actualizaAltura(avl.raiz);
 	avl.agrega(200);
 	avl.agrega(50);
 	avl.agrega(75);
@@ -496,14 +507,16 @@ public static void main(String [] args){
 	avl.agrega(80);
 	avl.agrega(20);
 	avl.agrega(90);
-	avl.agrega(10);
+	avl.agrega(10);	
 	avl.agrega(400);
-	avl.agrega(300);
-	avl.agrega(1000);
-	avl.agrega(2000);
-	avl.elimina(2000);
-	avl.elimina(0);
-	avl.elimina(10);
+	avl.agrega(300);	
+	avl.elimina(50);
+//	avl.elimina(300);
+//	avl.agrega(1000);
+//	avl.elimina(100);
+//	avl.elimina(40);
+//	avl.elimina(0);
+//	avl.elimina(10);
 /**
 	avl.elimina(2000);
 	avl.elimina(52);
@@ -518,12 +531,14 @@ public static void main(String [] args){
 	avl.bsf(avl.raiz);
 	System.out.println();
 	System.out.println(avl.raiz.elemento);
-	System.out.println(avl.raiz.altura);
-	System.out.println(avl.raiz.derecho.elemento);
-	System.out.println(avl.raiz.izquierdo.elemento);
-	System.out.println(avl.getBalance(avl.raiz.izquierdo));
-	System.out.println(avl.getBalance(avl.raiz.derecho));
-	System.out.println();
+//	System.out.println(avl.raiz.altura);
+//	System.out.println(avl.getBalance(avl.raiz));
+//	System.out.println(avl.busca(400));
+//	System.out.println(avl.raiz.derecho.elemento);
+//	System.out.println(avl.raiz.izquierdo.elemento);
+//	System.out.println(avl.getBalance(avl.raiz.izquierdo));
+//	System.out.println(avl.getBalance(avl.raiz.derecho));
+//	System.out.println();
 //	System.out.println(avl.getBalance(avl.raiz));
 //	System.out.println(avl.raiz.izquierdo.altura);
 //	System.out.println(avl.raiz.izquierdo.elemento);
@@ -536,4 +551,3 @@ public static void main(String [] args){
 //	System.out.println();
 	}
 }
-
