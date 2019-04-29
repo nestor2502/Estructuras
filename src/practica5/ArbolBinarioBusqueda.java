@@ -1,4 +1,4 @@
-
+package practica5;
 
 /**
  * Clase que representa un árbol binario de búsqueda.

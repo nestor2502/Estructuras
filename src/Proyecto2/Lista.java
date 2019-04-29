@@ -1,4 +1,4 @@
-package practica2;
+package Proyecto2;
 import java.util.Iterator;
 
     import java.util.Iterator;

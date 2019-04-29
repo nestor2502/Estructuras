@@ -1,43 +1,37 @@
+package practica5;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.function.Consumer;
 /**
- * @author Balderas Salomon Isay Damar
- * @author Nestor Semer Vazquez Cordero
- * Clase que representa un Árbol Binario.
+ * Clase que representa un arbol Binario.
  */
 public abstract class ArbolBinario<T extends Comparable<T>>{
 
-/**
- * 
- * Vertices del arbol binario
- *
- */
     protected class Vertice{
 
-	public T elemento;
-	public Vertice izquierdo;
-	public Vertice derecho;
-	public Vertice padre;
+    public T elemento;
+    public Vertice izquierdo;
+    public Vertice derecho;
+    public Vertice padre;
 
-	/**
+    /**
     *Constructor vertice 
     *@param elemento
     */
-	public Vertice(T elemento){
-	    
+    public Vertice(T elemento){
+
         this.elemento = elemento;
         izquierdo = null;
         derecho= null;
         padre = null;
-	}
+    }
     }
 
-    protected Vertice raiz;
+    public Vertice raiz;
     protected int elementos;
-    /**
-     * Constructor del arbol
-     */
+
     public ArbolBinario(){
-	
+
          raiz = null;
          elementos = 0;
     }
@@ -47,34 +41,25 @@ public abstract class ArbolBinario<T extends Comparable<T>>{
     */
     public ArbolBinario(T[] arreglo){
 
-
+         this.elementos = arreglo.length;
          for(int i=0;i<arreglo.length;i++) {
              agrega(arreglo[i]);
          }  
     }
- /**
-  * Metodos abstractos de agrega, contiene y elimina
-  * @param elemento
-  */
 
     public abstract void agrega(T elemento);
+
 
     public abstract boolean elimina(T elemento);
 
     public abstract boolean contiene(T elemento);
-    /**
-     * Metodo que conecta dos vertices
-     * poniendo el hijo a la izquierda
-     * @param padre
-     * @param hijo
-     */
 
      public void conectaIzquierda(Vertice padre, Vertice hijo){ 
-              
+
           if (padre != null ){
 
              if  (hijo == null )
-         	     padre.izquierdo = null;
+                 padre.izquierdo = null;
 
              if  (hijo != null ){
                  padre.izquierdo = hijo;
@@ -83,14 +68,9 @@ public abstract class ArbolBinario<T extends Comparable<T>>{
 
           }
      }
-/**
- * Metodo que conecta dos vertices
- * Poniendo el hijo a la derecha
- * @param padre
- * @param hijo
- */
+
     public void conectaDerecha(Vertice padre, Vertice hijo){ 
-      
+
         if (padre != null ){
 
              if  (hijo == null )
@@ -103,10 +83,7 @@ public abstract class ArbolBinario<T extends Comparable<T>>{
          }
 
      }
-/**
- * Metodo que gira cierto vertice a la izquierda
- * @param u
- */
+
     public void giraIzquierda(Vertice u){
 
          if(u.derecho== null){
@@ -136,12 +113,9 @@ public abstract class ArbolBinario<T extends Comparable<T>>{
              conectaIzquierda(aux, u);         
           }
      }
-/**
- * Metodo que gira cierto vertice a la derecha
- * @param u
- */
+
      public void giraDerecha(Vertice u ){
-         
+
          if(u.izquierdo == null){
             return ;
          }
@@ -169,43 +143,35 @@ public abstract class ArbolBinario<T extends Comparable<T>>{
              conectaDerecha(aux, u);
          }
      }
-/**
- * Metodo que da el recorrido bsf de un arbol
- * @param funcion
- */
-    public void bfs(Consumer<T> funcion){
-    	
-    	Cola<Vertice> cola = new Cola<Vertice>();
 
+    public void bfs(Consumer<T> funcion){
+        
+        Cola <Vertice> cola = new Cola<Vertice>();
+          
+         //Cola<Vertice> cola = new LinkedList<>();
          cola.mete(raiz);
          while(!cola.esVacia()){
-         	   Vertice v = cola.saca();
-         	   funcion.accept(v.elemento);
-         	   if(v.izquierdo!= null) 
-         	   	   cola.mete(v.izquierdo);
+               Vertice v = cola.saca();
+               funcion.accept(v.elemento);
+               if(v.izquierdo!= null) 
+                   cola.mete(v.izquierdo);
                if(v.derecho!= null) 
-         	   	   cola.mete(v.derecho);
+                   cola.mete(v.derecho);
          }
          System.out.println();
-	
- //     bfs2(funcion, raiz);
+    
+     bfs2(funcion, raiz);
 
 
-        
+
     }
-/**
- * Metodo que , dependiendo del numero y funcion, te da el recorrido
- * pre orden, en orden o post orden.
- * @param tipo
- * @param funcion
- * @throws IllegalArgumentException
- */
+
     public void dfs(int tipo, Consumer<T> funcion) throws IllegalArgumentException{
-	       
+
         switch(tipo){
 
              case 1: preOrden(funcion, raiz);
- 
+
                  break;
 
              case 2: inOrden(funcion, raiz);
@@ -223,26 +189,35 @@ public abstract class ArbolBinario<T extends Comparable<T>>{
 
     }
 
+    public void bfs2(Consumer<T> funcion, Vertice x){
 
-  /**
-   * Regresa el numero de elementos  
-   * @return
-   */
+     Cola <Vertice> cola2 = new Cola<Vertice>();
+         cola2.mete(x);
+    
+         while(!cola2.esVacia()) {
+         Vertice vertice = cola2.saca();
+         funcion.accept(vertice.elemento);
+         if(vertice.izquierdo != null) {
+             cola2.mete(vertice.izquierdo);
+         }
+        
+         if(vertice.derecho != null) {
+             cola2.mete(vertice.derecho);
+         }
+    }
+    }
+
     public int getElementos(){
-	
+
 
             return elementos;
     }
 
-/**
- * Metodo auxiliar que da el preorden del arbol
- * @param funcion
- * @param x
- */
+
     public void preOrden(Consumer<T> funcion, Vertice x ){
 
 
-        
+
          if(x != null) {
              funcion.accept(x.elemento);
              preOrden(funcion, x.izquierdo);
@@ -253,27 +228,19 @@ public abstract class ArbolBinario<T extends Comparable<T>>{
 
 
     }
-/**
- * Metodo que da el recorrido inorder del arbol
- * @param funcion
- * @param x
- */
+
     public void inOrden(Consumer<T> funcion, Vertice x ){
 
          if(x != null) {
          inOrden(funcion , x.izquierdo);
          funcion.accept(x.elemento);
          inOrden(funcion, x.derecho);
-         
+
     }
 
 
     }
-/**
- * Metodo que da el recorrido postorden 
- * @param funcion
- * @param x
- */
+
     public void postOrden(Consumer<T> funcion, Vertice x){
 
          if(x != null) {
@@ -282,27 +249,40 @@ public abstract class ArbolBinario<T extends Comparable<T>>{
          funcion.accept(x.elemento);
     }
     }
-    /**
-     * Metodo que busca un vertice con x 
-     * @param x
-     * @return Vertice regresa el vertice con el elemento
-     * @return null el nodo no se encontro
-     */
 public Vertice buscaVertice(T x){
-	Vertice otroNodo = raiz; 	
-	
-	while(otroNodo != null){
-		if(otroNodo.elemento.compareTo(x) == 0) {
-			return otroNodo;
-		}else if(x.compareTo(otroNodo.elemento) < 0) {
-			otroNodo = otroNodo.izquierdo;
-		}else {
-			otroNodo = otroNodo.derecho;
-		}
-	}
-	
-	return null;
+    Vertice otroNodo = raiz;    
+/** if(otroNodo == raiz){
+        
+        return otroNodo;
+        
+    }   
+*/  
+    while(otroNodo != null){
+        if(otroNodo.elemento == x) {
+            return otroNodo;
+        }else if(x.compareTo(otroNodo.elemento) <= 0) {
+            otroNodo = otroNodo.izquierdo;
+        }else {
+            otroNodo = otroNodo.derecho;
+        }
+    }
 
+    return null;
+
+}
+
+public boolean busca(T r) {
+    Vertice otroNodo = raiz; //creamos un nodo que va a la raiz
+    while(otroNodo != null) { // mientras no este vacio, seguimos, si no, regresamos vacio
+        if(otroNodo.elemento == r) {//revisamos en el nodo actual
+            return true;
+        }else if( r.compareTo(otroNodo.elemento) <= 0) {//revisamos en su nodo izquierdo
+            otroNodo = otroNodo.izquierdo;
+        }else {
+            otroNodo = otroNodo.derecho;//revisamos en su nodo derecho
+        }
+    }
+    return false;
 }
 
 

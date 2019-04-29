@@ -246,5 +246,45 @@ public class ArbolRojinegro<T extends Comparable<T>> extends ArbolBinarioBusqued
     return null;
 
 }
+
+      public T buscaVertice2(T x){
+         Vertice otroNodo = raiz; 
+         Vertice buscado = new Vertice(x); 
+    
+         while(otroNodo != null){
+             if(x.compareTo(otroNodo.elemento)==0) {
+                 return otroNodo.elemento;
+             }
+             else if(x.compareTo(otroNodo.elemento) <= 0) {
+                 otroNodo = otroNodo.izquierdo;
+                 
+             }
+             else {
+                 otroNodo = otroNodo.derecho;
+                 
+             }
+         }
+    
+    return null;
+
+}
+     public boolean existeVertice(T x){
+         Vertice otroNodo = raiz;  
+    
+         while(otroNodo != null){
+             if(x.compareTo(otroNodo.elemento)==0) {
+                 return true;
+             }
+             else if(x.compareTo(otroNodo.elemento) <= 0) {
+                 otroNodo = otroNodo.izquierdo;
+             }
+             else {
+                 otroNodo = otroNodo.derecho;
+             }
+         }
+    
+    return false;
+
+}
    
 }

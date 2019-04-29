@@ -23,8 +23,14 @@ public class PruebaLista{
          Lista<String> test4= new Lista<String>();
          Lista<String> test5 = new Lista<String>();
 
+         System.out.println("se agrega al final");
+         System.out.println();
+
          test5.agregaFinal(hola);
-         String destinatario = test5.eliminaPrimero();
+         System.out.println();
+         System.out.println();
+
+         //String destinatario = test5.eliminaPrimero();
          //String recuperacion = test5.saca();
 
          ///////////////////////////////////////

@@ -1,4 +1,4 @@
-package practica2;
+package practica5;
 import java.util.Iterator;
 
     import java.util.Iterator;
@@ -188,7 +188,7 @@ import java.util.Iterator;
         //debe lanzar NoSuchElementException
         public T eliminaPrimero() throws NoSuchElementException{
 
-                Nodo temp;
+                  Nodo temp;
 
              if(longitud == 0){
 
