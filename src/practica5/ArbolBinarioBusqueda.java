@@ -249,4 +249,26 @@ public Vertice raiz(){
 
 	return raiz;
 }
+//--------------------------------------------------------------------
+/**
+ * Metodo que devuelve un vertice
+ * @param x
+ * @return Vertice
+ */
+public Vertice buscaNodo(T x){
+	Vertice otroNodo = raiz; 	
+	while(otroNodo != null){
+		if(otroNodo.elemento.compareTo(x)==0) {
+			return otroNodo;
+		}else if(x.compareTo(otroNodo.elemento) <= 0) {
+			otroNodo = otroNodo.izquierdo;
+		}else {
+			otroNodo = otroNodo.derecho;
+		}
+	}
+	
+	return null;
+
+}
+
 }
