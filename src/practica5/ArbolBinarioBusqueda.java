@@ -1,7 +1,8 @@
 package practica5;
-
 /**
- * Clase que representa un árbol binario de búsqueda.
+ * @author Nestor Semer Vazquez Cordero
+ * @author Balderas Salomon Isay Damar
+ * Clase que representa un Arbol binario de busqueda.
  */
 public class ArbolBinarioBusqueda<T extends Comparable<T>> extends ArbolBinario<T>{
 
@@ -93,7 +94,7 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> extends ArbolBinario<
     	if(contiene(j) == false)
     		return false;
     	
-    	Vertice aux = buscaNodo(j);
+    	Vertice aux = buscaVertice(j);
     	
     	if(raiz == null) {
     		return false;
@@ -224,23 +225,6 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> extends ArbolBinario<
 		return aux;
 	}
 	//return null;
-}
-//-------------------------------------------------------------------------------------
-
-public Vertice buscaNodo(T x){
-	Vertice otroNodo = raiz; 	
-	while(otroNodo != null){
-		if(otroNodo.elemento.compareTo(x)==0) {
-			return otroNodo;
-		}else if(x.compareTo(otroNodo.elemento) <= 0) {
-			otroNodo = otroNodo.izquierdo;
-		}else {
-			otroNodo = otroNodo.derecho;
-		}
-	}
-	
-	return null;
-
 }
 
 //------------------------------------------------------------------------------------------------
