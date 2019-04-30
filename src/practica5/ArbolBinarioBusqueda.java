@@ -91,111 +91,108 @@ public class ArbolBinarioBusqueda<T extends Comparable<T>> extends ArbolBinario<
  */
     @Override
     public boolean elimina(T j) {
-    	if(contiene(j) == false)
-    		return false;
-    	
-    	Vertice aux = buscaVertice(j);
-    	
-    	if(raiz == null) {
-    		return false;
-    	}
-    //------------------------------------------------------------------------------
-    	//No tiene hijos
-    	if(aux.izquierdo == null && aux.derecho == null) {
-    		if(aux == raiz) {
-    			raiz = null;
-    			elementos--;
-    			return true;
-    		}
-    		
-    		if(aux.padre.izquierdo == aux) {
-    			aux.padre.izquierdo = null;
-    		}else {
-    			aux.padre.derecho = null;
-    		}
-    		elementos--;
-    		return true;
-    	
-    	}
-    //-------------------------------------------------------------------------------------------------
-    //Tiene un nodo hijo
-    	//Caso izquierdo
-    	if(aux.derecho == null && aux.izquierdo != null) {
-    		if(aux == raiz) { //Caso especial
-    			raiz = raiz.izquierdo;
-    			elementos--;
-    			return true;
-    		}
-    		
-    		if(aux.padre.derecho == aux) {
-    		aux.izquierdo.padre =aux.padre;
-    		aux.padre.derecho = aux.izquierdo;
-    		}else {
-    		aux.izquierdo.padre = aux.padre;
-    		aux.padre.izquierdo = aux.izquierdo;
-    		
-    		}
-//    		aux.elemento = aux.izquierdo.elemento;
-//    		aux.izquierdo.padre = aux.padre;
-//    		aux.izquierdo = null;
-    		elementos--;
-    		return true;
+    Vertice aux = buscaNodo(j);
+    if(busca(j) == false)
+        return false;
+    if(raiz == null) {
+        return false;
+    }
+//------------------------------------------------------------------------------
+    //No tiene hijos
+    if(aux.izquierdo == null && aux.derecho == null) {
+        if(aux == raiz) {
+            raiz = null;
+            elementos--;
+            return true;
+        }
+        
+        if(aux.padre.izquierdo == aux) {
+            aux.padre.izquierdo = null;
+        }else {
+            aux.padre.derecho = null;
+        }
+        elementos--;
+        return true;
+    
+    }
+//-------------------------------------------------------------------------------------------------
+//Tiene un nodo hijo
+    //Caso izquierdo
+    if(aux.derecho == null && aux.izquierdo != null) {
+        if(aux == raiz) { //Caso especial
+            raiz = raiz.izquierdo;
+            elementos--;
+            return true;
+        }
+        
+        if(aux.padre.derecho == aux) {
+        aux.izquierdo.padre =aux.padre;
+        aux.padre.derecho = aux.izquierdo;
+        }else {
+        aux.izquierdo.padre = aux.padre;
+        aux.padre.izquierdo = aux.izquierdo;
+        
+        }
+//      aux.elemento = aux.izquierdo.elemento;
+//      aux.izquierdo.padre = aux.padre;
+//      aux.izquierdo = null;
+        elementos--;
+        return true;
 
-    	
+    
 
-    	}
-    	//Caso derecho
-    //--------------------------------------------------------------------	
-    	if(aux.izquierdo == null && aux.derecho != null) {
-    		if(aux == raiz) {	//Caso especial
-    			raiz = raiz.derecho;
-    			elementos--;
-    			return true;
-    		}
-    		if(aux.padre.derecho == aux) {
-    		aux.derecho.padre =aux.padre;
-    		aux.padre.derecho = aux.derecho;
-    		}else {
-    		aux.derecho.padre = aux.padre;
-    		aux.padre.izquierdo = aux.derecho;
-    		
-    		}
-//    		aux.elemento = aux.derecho.elemento;
-//    		aux.derecho.padre = aux.padre;
-//    		aux.derecho = null;
-    		elementos--;
-    		return true;
+    }
+    //Caso derecho
+//--------------------------------------------------------------------  
+    if(aux.izquierdo == null && aux.derecho != null) {
+        if(aux == raiz) {   //Caso especial
+            raiz = raiz.derecho;
+            elementos--;
+            return true;
+        }
+        if(aux.padre.derecho == aux) {
+        aux.derecho.padre =aux.padre;
+        aux.padre.derecho = aux.derecho;
+        }else {
+        aux.derecho.padre = aux.padre;
+        aux.padre.izquierdo = aux.derecho;
+        
+        }
+//      aux.elemento = aux.derecho.elemento;
+//      aux.derecho.padre = aux.padre;
+//      aux.derecho = null;
+        elementos--;
+        return true;
 
-    	}
-    //--------------------------------------------------------------------
-    	//Caso tiene 2 hijos
-    	if(aux.izquierdo != null && aux.derecho != null) {
-    		Vertice predecesor = predecesor(aux.elemento);	
-    //Caso raiz(especial)		
-    		if(aux == raiz) { //Se borra la raiz
-    			if(predecesor == raiz.izquierdo){ //Caso donde el predecesor esta a la ziquierda de la raiz
-    				raiz.izquierdo = null;
-    				raiz.elemento = predecesor.elemento;
-    			}else {//Caso donde el predecesor no esta a la izquierda de la raiz, 1)donde el predecesor no tiene hijo izquierdo, 2)predecesor tiene hijo izquierdo
-    				raiz.elemento = predecesor.elemento;
-    				if(predecesor.izquierdo != null){//Tiene hijo izquierdo
-    				predecesor.izquierdo.padre = predecesor.padre;
-    				predecesor.padre.derecho = predecesor.izquierdo;
-    			}else//No tiene hijo izquierdo
-    				predecesor.padre.derecho = null;
-    			}
-    		}else{//Caso General
-    			//Hy dos casos, el predecesor tiene hijo izquierdo null o no
-    			T temporal = predecesor.elemento;
-    			elimina(predecesor.elemento);
-    			aux.elemento = temporal;
-			return true;
-    		}	
-		elementos--;
-    		return true;
-    	}
-    //Fin del programa	
-    	return false;
+    }
+//--------------------------------------------------------------------
+    //Caso tiene 2 hijos
+    if(aux.izquierdo != null && aux.derecho != null) {
+        Vertice predecesor = predecesor(aux.elemento); 
+//Caso raiz(especial)       
+        if(aux == raiz) { //Se borra la raiz
+            if(predecesor == raiz.izquierdo){ //Caso donde el predecesor esta a la ziquierda de la raiz
+                raiz.izquierdo = null;
+                raiz.elemento = predecesor.elemento;
+            }else {//Caso donde el predecesor no esta a la izquierda de la raiz, 1)donde el predecesor no tiene hijo izquierdo, 2)predecesor tiene hijo izquierdo
+                raiz.elemento = predecesor.elemento;
+                if(predecesor.izquierdo != null){//Tiene hijo izquierdo
+                predecesor.izquierdo.padre = predecesor.padre;
+                predecesor.padre.derecho = predecesor.izquierdo;
+            }else//No tiene hijo izquierdo
+                predecesor.padre.derecho = null;
+            }
+        }else{//Caso General
+            //Hy dos casos, el predecesor tiene hijo izquierdo null o no
+            T temporal = predecesor.elemento;
+            elimina(predecesor.elemento);
+            aux.elemento = temporal;
+        }       
+        elementos--;
+        return true;
+    }
+//Fin del programa  
+    return false;
     }
 /**
  * Metodo que te regresa el vertice predecesor de cierto elemento
@@ -269,6 +266,23 @@ public Vertice buscaNodo(T x){
 	
 	return null;
 
+}
+
+public boolean busca(T r) {
+    Vertice otroNodo = raiz; //creamos un nodo que va a la raiz
+    
+    
+    
+    while(otroNodo != null) { // mientras no este vacio, seguimos, si no, regresamos vacio
+        if(otroNodo.elemento.compareTo(r) == 0) {//revisamos en el nodo actual
+            return true;
+        }else if( r.compareTo(otroNodo.elemento) < 0) {//revisamos en su nodo izquierdo
+            otroNodo = otroNodo.izquierdo;
+        }else{
+            otroNodo = otroNodo.derecho;//revisamos en su nodo derecho
+        }
+    }
+    return false;
 }
 
 }

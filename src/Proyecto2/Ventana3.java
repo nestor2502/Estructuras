@@ -52,7 +52,7 @@ public class Ventana3 extends javax.swing.JFrame {
 
 
         for(int i =0; i< archivos.length;i++){
-
+        	 if(archivos[i].equals("")==false)
              jComboBox1.addItem((i+1)+".- "+archivos[i]);
 
         }

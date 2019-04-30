@@ -136,12 +136,20 @@ public class ManejoDocumentos {
      *de documentos ordenados
      */
      public void ordenaDocumentos(){
+
      	 Iterator <Documento> iterator2 = doc_ingresados.iterator();
          Documento [] nuevo = new Documento[doc_ingresados.getLongitud()];
+         Documento d1 = new Documento("");
+         for(int i =0; i< nuevo.length;i++){
+         	 nuevo[i]=d1;
+         }
          int i =0;
+         d1.setSimilitud(0.0);
          while(iterator2.hasNext()==true){
-         	 nuevo[i]= iterator2.next();
-         	 i++;
+         	 Documento d2 = iterator2.next();
+         	 if(d2.getSimilitud()>0.0){
+         	 nuevo[i]= d2;
+         	 i++;}
          }
 
          for(int k =0; k<nuevo.length;k++){
@@ -154,7 +162,21 @@ public class ManejoDocumentos {
          	 	  }
          	 }
          }
-
+         
+         int l=0;/**
+         for(int n=0;n< nuevo.length;n++){
+         	 if(nuevo[i].compareTo(d1)>0){        	 	   
+         	 	   l++;
+         	 }
+         }
+         //doc_ordenados= new Documento[doc_ingresados.getLongitud()];
+         int m=0;
+         for(int n=0;n< nuevo.length;n++){
+         	 if(nuevo[i].compareTo(d1)>0){
+         	 	   doc_ordenados[m]=nuevo[n];
+         	 	   m++;
+         	 }
+         }*/
          doc_ordenados= nuevo;
 
      }
