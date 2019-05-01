@@ -1,4 +1,6 @@
 package practica5;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.function.Consumer;
 /**
  * @author Balderas Salomon Isay Damar
@@ -172,26 +174,27 @@ public abstract class ArbolBinario<T extends Comparable<T>>{
  * Metodo que da el recorrido bsf de un arbol
  * @param funcion
  */
-    public void bfs(Consumer<T> funcion){
-    	
-    	Cola<Vertice> cola = new Cola<Vertice>();
+    public void bfs(Consumer<T> funcion)
+        {
+               bfs2(funcion, raiz);
+}
 
-         cola.mete(raiz);
-         while(!cola.esVacia()){
-         	   Vertice v = cola.saca();
-         	   funcion.accept(v.elemento);
-         	   if(v.izquierdo!= null) 
-         	   	   cola.mete(v.izquierdo);
-               if(v.derecho!= null) 
-         	   	   cola.mete(v.derecho);
-         }
-         System.out.println();
-	
- //     bfs2(funcion, raiz);
+    public void bfs2(Consumer<T> funcion, Vertice x){
 
+    	 Queue<Vertice> cola = new LinkedList<Vertice>();
+	     cola.add(x);
 
-        
-    }
+	     while(!cola.isEmpty()) {
+		 Vertice vertice = cola.remove();
+		 funcion.accept(vertice.elemento);
+		 if(vertice.izquierdo != null) {
+			 cola.add(vertice.izquierdo);
+		 }
+
+		 if(vertice.derecho != null) {
+			 cola.add(vertice.derecho);
+		 }
+	}}
 /**
  * Metodo que , dependiendo del numero y funcion, te da el recorrido
  * pre orden, en orden o post orden.
