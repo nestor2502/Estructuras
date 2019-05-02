@@ -55,11 +55,87 @@ public class Monticulo {
              agrega(elementos[i]);
          }  
     }
-
+     
+     /**
+     *Metodo que elimina el primer elemento del arreglo
+     *@return eliminado
+     */
     public int elimina(){
-	// Aquí va su código.
-        return -1;
+         if(esVacio()==false){
+
+         int eliminado = elementos[0];
+         swap(ultimoIndice, 0);
+         elementos[ultimoIndice]=0;
+         ultimoIndice--;
+         acomoda2(0);
+         System.out.println(":(");
+         return eliminado;
+         }
+         
+         return -1;
+	
     }
+
+     /**
+     *Metodo que acomoda el arreglo des de un nodo de arrba hacia abajo
+     *@param index
+     */
+     public void acomoda2(int indice){
+        //mayor que hijo izquierdo?
+         boolean mayor1=false;
+         //mayor que hijo derecho?
+         boolean mayor2=false;
+
+          if(esHoja(indice) == true)
+             return;
+       
+         if(esHoja(hi(indice))==false){
+             if(comparador.compare(elementos[indice], elementos[hi(indice)])>0){
+                 mayor1= true;}
+         }
+         if(esHoja(hd(indice))==false){
+             if(comparador.compare(elementos[indice], elementos[hd(indice)])>0){
+                 mayor2= true;
+             }
+         }
+
+         //si el elemento es mayor a ambos hijos
+         if(mayor1==true&&mayor2==true){
+             int index = minimo(indice);
+             swap(indice, index);
+             //int indiceAux2= indice2;
+             acomoda2(index);
+             return;    
+         }
+         //si es mayor que solo uno(izquierdo)
+         if(mayor1==true&&mayor2==false){
+             int index = hi(indice);
+             swap(indice, index);
+             //int indiceAux2= indice2;
+             acomoda2(index);
+             return;
+         }
+         //si es mayor que solo uno(derecho)
+         if(mayor1==false&&mayor2==true){
+             int index = hd(indice);
+             swap(indice, index);
+             //int indiceAux2= indice2;
+             acomoda2(index);
+             return;
+         }       
+
+     }
+
+     /**
+     *metodo que returna la posicion a la cual debe intercambiar
+     */
+     public int minimo(int i){
+         if(comparador.compare(elementos[hd(i)], elementos[hi(i)])>=0)
+            return hi(i);
+         else if(comparador.compare(elementos[hd(i)], elementos[hi(i)])<0)
+            return hd(i);
+         return -1;
+     }
 
     public boolean contiene(int elemento){
 	      
@@ -83,15 +159,14 @@ public class Monticulo {
 
     public void agrega(int i){
          //si el arreglo está lleno se grea un nuevo arreglo con el doble del tamaño
-         /**
+         
          if(ultimoIndice+1==elementos.length-1){
              int []  nuevo = new int[elementos.length*2];
              for(int j =0; j< elementos.length;j++){
                  nuevo[j]= elementos[j];
                  elementos= nuevo;
              }
-         }*/
-
+         }
          ultimoIndice++;
          elementos[ultimoIndice]=i;
          indiceAux = ultimoIndice;
@@ -101,7 +176,7 @@ public class Monticulo {
     }
     
     /**
-    *
+    *Metodo que acomoda despues de balancear
     *
     */
     public void acomoda(int indice){
@@ -146,7 +221,7 @@ public class Monticulo {
     *@param posicion
     *@return hijo izquierdo
     */
-    public int getIzquierdo(int i){
+    public int hi(int i){
          return (2*i+1);
     }
 
@@ -155,7 +230,7 @@ public class Monticulo {
     *@param posicion
     *@return hijo derecho
     */
-    public int getDerecho(int i){
+    public int hd(int i){
          return (2*i+2);
     }
      
@@ -169,6 +244,12 @@ public class Monticulo {
          elementos[a]= elementos[b];
          elementos[b]=temp;
     }
+
+     public boolean esHoja(int index){
+         if((2*index+1>ultimoIndice)&&(2*index+2>ultimoIndice)){
+            return true;}
+         return false;
+     }
 
     public void muestra(){
          for(int i =0; i< ultimoIndice+1;i++){
@@ -187,7 +268,7 @@ public class Monticulo {
            num =  1;
         if(a<b)
             num= -1;
-        if(a>b)
+        if(a==b)
             num = 0;
          return num;
          
