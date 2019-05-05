@@ -110,11 +110,11 @@ import java.util.Iterator;
 
              if(tamaño==0){
                   cabeza = null;
-                  cabeza.siguiente = ultimo;
-                  cabeza.anterior= null;
+                  //cabeza.siguiente = ultimo;
+                  //cabeza.anterior= null;
                   ultimo = null;
-                  ultimo.siguiente=null;
-                  ultimo.anterior=cabeza;
+                  //ultimo.siguiente=null;
+                  //ultimo.anterior=cabeza;
 
                  }
 
@@ -689,14 +689,14 @@ import java.util.Iterator;
         @Override
         public String toString(){
             
-            Nodo n1 = new Nodo(cabeza.elemento);
-            n1= cabeza;
             String  nuevo =" ";
             
             if(longitud==0){
                 nuevo = "[ ]";
                 return nuevo;
             }
+            Nodo n1 = new Nodo(cabeza.elemento);
+            n1= cabeza;
             if(longitud==1){
                 nuevo = "[ "+cabeza.elemento.toString()+" ]";
             }
