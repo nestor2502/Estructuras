@@ -104,9 +104,19 @@ public class Ordenamientos{/**
     
     public static <T extends Comparable<T>> void selectionSort(T[] a){
     // Aquí va su código.  
-    }
+    }*/
 
     public static void heapSort(int[] a){
-	// Aquí va su código.
-    }*/
+
+    	 Monticulo m1 = new Monticulo(a);
+    	 
+    	 for(int i=0;i< a.length;i++){
+    	 	 a[i]=m1.elimina();
+
+    	 }
+         //a = arr;
+
+
+	     
+    }
 }

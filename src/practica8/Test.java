@@ -8,14 +8,23 @@ public class Test{
         //int[] arr = new int[0];
 	 	Monticulo m1 = new Monticulo(arr);
 	 	m1.muestra();
-	 	System.out.println();
+	 	/**
+	 	Ordenamientos or = new Ordenamientos();
+	 	or.heapSort(arr);
+	 	for(int i:arr){
+
+	 	System.out.println(i);
+	 	}
 	 	System.out.println();
 
-	 	
-	 	int a = m1.elimina();
-	 	System.out.println(a);
-	 	m1.muestra();
-	 	System.out.println();
+	 	*/
+	 	for(int i:arr){
+
+	 	System.out.println(m1.elimina());
+	 	}
+	 	//int a = m1.elimina();
+	 	//m1.muestra();
+	 	//System.out.println();
 	   	
 	   }
 }

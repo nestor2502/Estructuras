@@ -38,22 +38,46 @@ public class Monticulo {
     *@param elementos
     */
     public Monticulo(int[] elementos){
+    	double inicio1 = (double)(elementos.length/2);
+    	int inicio =(int)inicio1-1; 
 	     this.elementos = new int[100];
          ultimoIndice = -1;
          ComparaEnteros compara = new ComparaEnteros();
          comparador = compara;
-         for(int i =0; i< elementos.length;i++){
+         for(int i =0; i<elementos.length;i++){
              //se puede modificar este metodo comenzando por la mitad
-             agrega(elementos[i]);
+             //agrega(elementos[i]);
+         	 this.elementos[i]=elementos[i];
+         	 ultimoIndice++;
          }
+         //for(int i=inicio;i>=0;i--){
+         
+         while(inicio!=-1){
+         	 acomoda2(inicio);
+         	 inicio--;
+         }
+    
     }
 
     public Monticulo(int[] elementos, Comparator<Integer> comparador){
+         double inicio1 = (double)(elementos.length/2);
+    	int inicio =(int)inicio1-1; 
+	     this.elementos = new int[100];
+         ultimoIndice = -1;
+         //ComparaEnteros compara = new ComparaEnteros();
          this.comparador = comparador;
-         for(int i=0; i< elementos.length;i++){
+         for(int i =0; i<elementos.length;i++){
              //se puede modificar este metodo comenzando por la mitad
-             agrega(elementos[i]);
-         }  
+             //agrega(elementos[i]);
+         	 this.elementos[i]=elementos[i];
+         	 ultimoIndice++;
+         }
+         //for(int i=inicio;i>=0;i--){
+         
+         while(inicio!=-1){
+         	 acomoda2(inicio);
+         	 inicio--;
+         } 
     }
      
      /**
@@ -68,7 +92,7 @@ public class Monticulo {
          elementos[ultimoIndice]=0;
          ultimoIndice--;
          acomoda2(0);
-         System.out.println(":(");
+         //System.out.println(":(");
          return eliminado;
          }
          
@@ -77,7 +101,8 @@ public class Monticulo {
     }
 
      /**
-     *Metodo que acomoda el arreglo des de un nodo de arrba hacia abajo
+     *Metodo que acomoda el arreglo des de un nodo de arriba hacia abajo
+     *sirve para eliminar
      *@param index
      */
      public void acomoda2(int indice){
@@ -89,11 +114,11 @@ public class Monticulo {
           if(esHoja(indice) == true)
              return;
        
-         if(esHoja(hi(indice))==false){
+         if(esHoja(indice)==false){
              if(comparador.compare(elementos[indice], elementos[hi(indice)])>0){
                  mayor1= true;}
          }
-         if(esHoja(hd(indice))==false){
+         if(esHoja(indice)==false){
              if(comparador.compare(elementos[indice], elementos[hd(indice)])>0){
                  mayor2= true;
              }
@@ -105,7 +130,7 @@ public class Monticulo {
              swap(indice, index);
              //int indiceAux2= indice2;
              acomoda2(index);
-             return;    
+             //return;    
          }
          //si es mayor que solo uno(izquierdo)
          if(mayor1==true&&mayor2==false){
@@ -113,7 +138,7 @@ public class Monticulo {
              swap(indice, index);
              //int indiceAux2= indice2;
              acomoda2(index);
-             return;
+             //return;
          }
          //si es mayor que solo uno(derecho)
          if(mayor1==false&&mayor2==true){
@@ -121,7 +146,7 @@ public class Monticulo {
              swap(indice, index);
              //int indiceAux2= indice2;
              acomoda2(index);
-             return;
+             //return;
          }       
 
      }
@@ -177,7 +202,7 @@ public class Monticulo {
     
     /**
     *Metodo que acomoda despues de balancear
-    *
+    *sirve para agregar
     */
     public void acomoda(int indice){
         //int indice = i;
@@ -246,7 +271,7 @@ public class Monticulo {
     }
 
      public boolean esHoja(int index){
-         if((2*index+1>ultimoIndice)&&(2*index+2>ultimoIndice)){
+         if(((2*index+1)>ultimoIndice)&&((2*index+2)>ultimoIndice)){
             return true;}
          return false;
      }
