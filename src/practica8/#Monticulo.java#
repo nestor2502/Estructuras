@@ -7,7 +7,7 @@ public class Monticulo {
 
     private int[] elementos;
     private Comparator<Integer> comparador;
-    private int ultimoIndice;
+    private int ultimoIndice
     int indiceAux=0;
     
     /**
@@ -40,16 +40,16 @@ public class Monticulo {
     public Monticulo(int[] elementos){
     	double inicio1 = (double)(elementos.length/2);
     	int inicio =(int)inicio1-1; 
-	     this.elementos = elementos; //new int[100];
-         ultimoIndice = elementos.length-1;
+	     this.elementos = new int[100];
+         ultimoIndice = -1;
          ComparaEnteros compara = new ComparaEnteros();
          comparador = compara;
-         //for(int i =0; i<elementos.length;i++){
+         for(int i =0; i<elementos.length;i++){
              //se puede modificar este metodo comenzando por la mitad
              //agrega(elementos[i]);
-         	// this.elementos[i]=elementos[i];
-         	 //ultimoIndice++;
-         //}
+         	 this.elementos[i]=elementos[i];
+         	 ultimoIndice++;
+         }
          //for(int i=inicio;i>=0;i--){
          
          while(inicio!=-1){
@@ -79,18 +79,14 @@ public class Monticulo {
          	 inicio--;
          } 
     }
-     	
+     
      /**
      *Metodo que elimina el primer elemento del arreglo
      *@return eliminado
      */
     public int elimina(){
          if(esVacio()==false){
-         	/**
-         if(ultimoIndice==0){
-         	return elementos[0];
-         }*/
-         
+
          int eliminado = elementos[0];
          swap(ultimoIndice, 0);
          elementos[ultimoIndice]=0;
@@ -119,13 +115,13 @@ public class Monticulo {
              return;
        
          if(esHoja(indice)==false){
-         	if(hi(indice)<=ultimoIndice){
-             if(comparador.compare(elementos[indice], elementos[hi(indice)])>0)
+             if(comparador.compare(elementos[indice], elementos[hi(indice)])>0){
                  mayor1= true;}
-             if(hd(indice)<=ultimoIndice){
-             if(comparador.compare(elementos[indice], elementos[hd(indice)])>0)
-                 mayor2= true;}
-             
+         }
+         if(esHoja(indice)==false){
+             if(comparador.compare(elementos[indice], elementos[hd(indice)])>0){
+                 mayor2= true;
+             }
          }
 
          //si el elemento es mayor a ambos hijos
@@ -281,8 +277,7 @@ public class Monticulo {
      }
 
     public void muestra(){
-         for(int i =0; i< elementos.length;i++){
-         //for(int i =0; i< ultimoIndice+1;i++){
+         for(int i =0; i< ultimoIndice+1;i++){
 
             System.out.println(elementos[i]+"     "+i);
          }
