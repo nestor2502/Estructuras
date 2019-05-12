@@ -6,14 +6,14 @@ public class Dispersiones{
 
     public static int dispersionXOR(byte[] a){
 
-      
+      return -1;
     }
     
     public static int dispersionBJ(byte[] a){
-	// Aquí va su código.
+	 return -1;
     }
     
     public static int dispersionDJB(byte[] a){
-	// Aquí va su código.
+	  return -1;
     }
 }
