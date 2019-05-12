@@ -122,7 +122,7 @@ public class TablaDeDispersion<K, V>{
              elementos++;
          }
          //si ya hay una lista agregamoes el nuevo elemento al final
-         if(tabla[posicion]!=null){
+         else if(tabla[posicion]!=null){
              l1 = tabla[posicion];
              Entrada e1 = new Entrada(llave, valor);
              //si no se encuentra la llave entonces se agrega
