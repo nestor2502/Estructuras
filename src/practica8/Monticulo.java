@@ -40,10 +40,25 @@ public class Monticulo {
     public Monticulo(int[] elementos){
     	double inicio1 = (double)(elementos.length/2);
     	int inicio =(int)inicio1-1; 
-	     this.elementos = elementos; //new int[100];
+        this.elementos = new int[elementos.length];
+         for(int i =0; i<elementos.length;i++){
+            this.elementos[i]=elementos[i];
+             //ultimoIndice++;
+             }
+	     
          ultimoIndice = elementos.length-1;
-         ComparaEnteros compara = new ComparaEnteros();
-         comparador = compara;
+         //ComparaEnteros compara = new ComparaEnteros();
+         //comparador = compara;
+         comparador = (a, b)->{
+         	  int num =0;
+         if(a>b)
+           num =  1;
+        if(a<b)
+            num= -1;
+        if(a==b)
+            num = 0;
+         return num;
+         };
          //for(int i =0; i<elementos.length;i++){
              //se puede modificar este metodo comenzando por la mitad
              //agrega(elementos[i]);
@@ -281,8 +296,8 @@ public class Monticulo {
      }
 
     public void muestra(){
-         for(int i =0; i< elementos.length;i++){
-         //for(int i =0; i< ultimoIndice+1;i++){
+         //for(int i =0; i< elementos.length;i++){
+         for(int i =0; i< ultimoIndice+1;i++){
 
             System.out.println(elementos[i]+"     "+i);
          }
