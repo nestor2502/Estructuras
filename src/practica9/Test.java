@@ -19,5 +19,10 @@ public class Test{
              System.out.println("valores: "+valores.toString());
              System.out.println("llaves: "+llaves.toString());
              System.out.println("Total de elementos: "+tabla.getElementos());
-	}
+             System.out.println("");
+             System.out.println("La tabla contiene la llave hola?: "+tabla.contieneLlave("hola"));
+             System.out.println("La tabla contiene el valor ho?: "+tabla.contieneValor("ho"));
+	}      
+
+
 }

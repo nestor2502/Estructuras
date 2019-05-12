@@ -179,6 +179,7 @@ public class TablaDeDispersion<K, V>{
 
     public boolean contieneValor(V valor){
 	     for (int i =0; i< tabla.length;i++){
+             if(tabla[i]!= null){
              Lista <Entrada> l2 = tabla[i];
              Iterator<Entrada> it = l2.iterator();
              while(it.hasNext()){
@@ -188,7 +189,7 @@ public class TablaDeDispersion<K, V>{
                          return true;
                      }
                  }
-         }
+         }}
         return false;
     }
 
