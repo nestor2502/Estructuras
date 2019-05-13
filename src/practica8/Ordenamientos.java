@@ -105,18 +105,15 @@ public class Ordenamientos{/**
     public static <T extends Comparable<T>> void selectionSort(T[] a){
     // Aquí va su código.  
     }*/
-
+    
+    /**
+    *Metodo de ordenamiento
+    *@param a arreglo a ordenar
+    */
     public static void heapSort(int[] a){
-
-    	 Monticulo m1 = new Monticulo(a);
-    	 
+    	 Monticulo m1 = new Monticulo(a);	 
     	 for(int i=0;i< a.length;i++){
     	 	 a[i]=m1.elimina();
-
     	 }
-         //a = arr;
-
-
-	     
     }
 }

@@ -63,6 +63,24 @@ public class Test{
 	 	//int a = m1.elimina();
 	 	//m1.muestra();
 	 	//System.out.println();
+	   	System.out.println("Prueba de heapSort");
 	   	
+	   	int [] arr3 = {4,10,27,42,41,26,31,44,33,19};
+	   	Ordenamientos ordena = new Ordenamientos();
+	   	System.out.println("Original");
+	   	System.out.println();
+	   	for(int i:arr3){
+
+	 	System.out.println(i);
+	 	}
+	   	ordena.heapSort(arr3);
+	   	System.out.println();
+	   	System.out.println("Ordenado");
+	   	System.out.println();
+	   	for(int i:arr3){
+
+	 	System.out.println(i);
+	 	}
+
 	   }
 }
