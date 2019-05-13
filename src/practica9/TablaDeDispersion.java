@@ -15,6 +15,17 @@ public class TablaDeDispersion<K, V>{
 	     this.llave = llave;
          this.valor = valor;
 	}
+    
+    @Override
+    public boolean equals(Object t){
+        boolean ig = false;
+        if(t instanceof TablaDeDispersion.Entrada){
+         Entrada g = (Entrada)t;
+        if(llave.equals(g.llave) && valor.equals(g.valor))
+             ig = true; }
+
+         return ig;   
+    }
     }
 
     private Lista<Entrada>[] tabla;
@@ -124,7 +135,7 @@ public class TablaDeDispersion<K, V>{
          //si ya hay una lista agregamoes el nuevo elemento al final
          else if(tabla[posicion]!=null){
              l1 = tabla[posicion];
-             Entrada e1 = new Entrada(llave, valor);
+              Entrada e1 = new Entrada(llave, valor);
              //si no se encuentra la llave entonces se agrega
              if(l1.contiene(e1)==false){
                  l1.agregaFinal(e1);
@@ -143,19 +154,19 @@ public class TablaDeDispersion<K, V>{
 	     if(contieneLlave(llave)==false)
              return null;
          else{
-             for(int i =0;i<tabla.length;i++){
-                 Lista <Entrada> l2 = tabla[i];
+             //for(int i =0;i<tabla.length;i++){
+                 Lista <Entrada> l2 = tabla[asignaLugar(llave)];
                  //Iterator <String []> iterator = doc_transformado.iterator();
                  Iterator<Entrada> it = l2.iterator();
                  while(it.hasNext()){
                      Entrada temp = it.next();
                      //si las llaves coinciden se devuelve el valor
-                     if(temp.llave == llave){
+                     if(temp.llave.equals(llave)){
                          return temp.valor;
                      }
                  }
 
-             }
+             //}
          }
          return null;
     }
@@ -206,7 +217,10 @@ public class TablaDeDispersion<K, V>{
          if(contieneLlave(llave)==true){
              Lista <Entrada> l3 =tabla[asignaLugar(llave)];
              temp=getValor(llave); 
-             l3.elimina(new Entrada(llave,temp)); 
+             Entrada tem = new Entrada(llave,temp);
+             l3.elimina(tem); 
+            // System.out.println("Se encuentra en la lista? "+l3.contiene(tem));
+             //System.out.println(l3.elimina(tem) );
              if(l3.getLongitud()==0)
                 tabla[asignaLugar(llave)]= null;
              
@@ -246,5 +260,14 @@ public class TablaDeDispersion<K, V>{
          }
          return valores;
 	
+    }
+
+    /**
+    *Metodo de pruebas
+    *me retorna la posicion d3onde se almacena una llave
+    */
+    public int posicion(K llave){
+        return asignaLugar(llave);
+
     }
 }

@@ -380,7 +380,7 @@ import java.util.Iterator;
              n1=cabeza;
              
 
-              if(cabeza.elemento == t)
+              if(n1.elemento.equals(t))
                  return true;
 
              int cont=0;
@@ -389,7 +389,7 @@ import java.util.Iterator;
 
                  cabeza= cabeza.siguiente;
 
-                 if(cabeza.elemento == t)
+                 if(cabeza.elemento.equals(t))
                      resul =  true;
 
                  cont++;
@@ -439,7 +439,7 @@ import java.util.Iterator;
              }
 
 
-             if(cabeza.elemento == t){
+             if(cabeza.elemento.equals(t)){
                  /**
                  cabeza=cabeza.siguiente; 
                  cabeza.anterior.siguiente= null;
@@ -458,7 +458,7 @@ import java.util.Iterator;
 
 
 
-                     if(cabeza.elemento == t){
+                     if(cabeza.elemento.equals(t)){
 
                         if(cabeza.siguiente == null){
                               

@@ -14,6 +14,10 @@ public class Dispersiones{
     }
     
     public static int dispersionDJB(byte[] a){
-	  return -1;
+    	 int djb = 5381;
+    	 for(int i =0; i<a.length;i++){
+    	 	 djb= djb*33 +(a[1 & 0xFF]);
+    	 }
+	  return djb;
     }
 }
