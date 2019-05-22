@@ -47,7 +47,7 @@ public class Test{
              System.out.println("");
              System.out.println("");
              System.out.println("Prueba de dispersion");
-             TablaDeDispersion <String,String> tabla3 = new TablaDeDispersion <String,String>(x -> Dispersiones.dispersionDJB(x.getBytes()));
+             TablaDeDispersion <String,String> tabla3 = new TablaDeDispersion <String,String>(70, x -> Dispersiones.dispersionDJB(x.getBytes()));
              tabla3.agrega("hola1","ho1");
              tabla3.agrega("hola2","ho2");
              tabla3.agrega("hola3","ho3");
@@ -70,8 +70,8 @@ public class Test{
               Lista<String> llaves3 = tabla3.getLlaves();
              System.out.println("valores: "+valores3.toString());
              System.out.println("llaves: "+llaves3.toString());
-
-
+              System.out.println("factor de carga: "+tabla3.getCarga());
+              System.out.println("tamalo de la tabla: "+tabla3.getTamaño());
 
 
 	}      

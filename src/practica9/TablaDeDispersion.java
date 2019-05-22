@@ -44,7 +44,7 @@ public class TablaDeDispersion<K, V>{
      *Constructor vacio
      */
      public TablaDeDispersion(){
-	     tabla = nuevoArreglo(64*2);
+	     tabla = nuevoArreglo(CAPACIDAD_MINIMA);
          //dispersor = k.hashCode();
          elementos=0;
      }
@@ -73,7 +73,7 @@ public class TablaDeDispersion<K, V>{
      */
     public TablaDeDispersion(Dispersor<K> dispersor){
 
-	     tabla = nuevoArreglo(64*2);
+	     tabla = nuevoArreglo(CAPACIDAD_MINIMA);
          this.dispersor = dispersor;
          elementos=0;
     }
@@ -142,6 +142,24 @@ public class TablaDeDispersion<K, V>{
                  elementos++;}
              }
 
+          if(getCarga()>CARGA_MAXIMA){
+             
+              Lista<Entrada>[] temp = nuevoArreglo(tabla.length*2);
+              for(int i = 0; i< tabla.length;i++){
+              	   if(tabla[i]!= null){
+              	   	Lista<Entrada> l5 = tabla[i];
+              	   	Iterator<Entrada> it = l5.iterator();
+              	   	while(it.hasNext()){
+              	   		Entrada temp2 = it.next();
+              	   		K llave1= temp2.llave;
+              	   		V valor1= temp2.valor;
+              	   		agrega(llave1,valor1);
+              	   	}
+
+              	   }
+              }
+          }
+
          }
     
     /**
@@ -170,7 +188,12 @@ public class TablaDeDispersion<K, V>{
          }
          return null;
     }
-
+    
+    /**
+    *Metodo que te dice si la tabla contiene un allave
+    *@param llave
+    *@return contieneLlave
+    */
     public boolean contieneLlave(K llave){
          
 	     if(tabla[asignaLugar(llave)]!=null){
@@ -187,7 +210,12 @@ public class TablaDeDispersion<K, V>{
         return false;
 
     }
-
+     
+     /**
+     *Metodo que te dice si la tabla contiene el valor ingresado
+     *@param valor
+     *@return contieneValor
+     */
     public boolean contieneValor(V valor){
 	     for (int i =0; i< tabla.length;i++){
              if(tabla[i]!= null){
@@ -203,7 +231,11 @@ public class TablaDeDispersion<K, V>{
          }}
         return false;
     }
-
+    
+    /**
+    *Metodo que dice si es la tabla es vacia
+    *@return esVacia
+    */
     public boolean esVacia(){
 	     
          if(elementos==0)
@@ -211,7 +243,12 @@ public class TablaDeDispersion<K, V>{
          else
              return false;
     }
-
+     
+     /**
+     *Metodo que elimina un elemento en la tabla de dispersion
+     *@param llave
+     *@return temp elemento que se elimino
+     */
     public V elimina(K llave){
 	     V temp =null;
          if(contieneLlave(llave)==true){
@@ -227,11 +264,19 @@ public class TablaDeDispersion<K, V>{
          }
          return temp;
     }
-
+     
+    /**
+    *Metodo qeu retorna la cantidad de elemntos almacenados en la tabla
+    *@return elementos
+    */
     public int getElementos(){
 	     return elementos;
     }
-
+    
+    /**
+    *Metodo que obtiene todas las llaves almacenadas esn la tabla de dispersion
+    *@return lista
+    */
     public Lista<K> getLlaves(){
 	     Lista<K> llaves = new Lista<K>();
          for (int i =0; i< tabla.length;i++){
@@ -246,7 +291,11 @@ public class TablaDeDispersion<K, V>{
          return llaves;
 
     }
-
+    
+    /**
+    *Metodo que obtiene todos los valores de la tabla
+    *
+    */
     public Lista<V> getValores(){
         Lista<V> valores = new Lista<V>();
          for (int i =0; i< tabla.length;i++){
@@ -263,11 +312,28 @@ public class TablaDeDispersion<K, V>{
     }
 
     /**
+    *Metodo que devuelve el factor de carga de una tabla
+    *@return carga
+    */
+    public double getCarga(){
+    	 double carga = (double) getElementos()/tabla.length;
+         return carga;
+    }
+
+    /**
     *Metodo de pruebas
     *me retorna la posicion d3onde se almacena una llave
     */
     public int posicion(K llave){
         return asignaLugar(llave);
 
+    }
+
+    /**
+    *Metodo auxiliar
+    *@return tamano de la tabla
+    */
+    public int getTamaño(){
+    	return tabla.length;
     }
 }
