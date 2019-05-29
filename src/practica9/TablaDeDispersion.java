@@ -8,13 +8,13 @@ public class TablaDeDispersion<K, V>{
 
     private class Entrada{
 
-	public K llave;
-	public V valor;
+    public K llave;
+    public V valor;
 
-	public Entrada(K llave, V valor){
-	     this.llave = llave;
+    public Entrada(K llave, V valor){
+         this.llave = llave;
          this.valor = valor;
-	}
+    }
     
     @Override
     public boolean equals(Object t){
@@ -36,15 +36,15 @@ public class TablaDeDispersion<K, V>{
 
 
     private Lista<Entrada>[] nuevoArreglo(int tamano){
-	@SuppressWarnings("unchecked")
-	Lista<Entrada>[] arreglo = (Lista<Entrada>[]) new Lista[tamano];
-	return arreglo;
+    @SuppressWarnings("unchecked")
+    Lista<Entrada>[] arreglo = (Lista<Entrada>[]) new Lista[tamano];
+    return arreglo;
     }
      /**
      *Constructor vacio
      */
      public TablaDeDispersion(){
-	     tabla = nuevoArreglo(CAPACIDAD_MINIMA);
+         tabla = nuevoArreglo(CAPACIDAD_MINIMA);
          //dispersor = k.hashCode();
          elementos=0;
      }
@@ -73,7 +73,7 @@ public class TablaDeDispersion<K, V>{
      */
     public TablaDeDispersion(Dispersor<K> dispersor){
 
-	     tabla = nuevoArreglo(CAPACIDAD_MINIMA);
+         tabla = nuevoArreglo(CAPACIDAD_MINIMA);
          this.dispersor = dispersor;
          elementos=0;
     }
@@ -84,7 +84,7 @@ public class TablaDeDispersion<K, V>{
     *@param dispersor 
     */
     public TablaDeDispersion(int capacidad, Dispersor<K> dispersor){
-	      int capacidadInicial;
+          int capacidadInicial;
          if(capacidad>=64){
              capacidadInicial = capacidad*2;
              double m = Math.log(capacidadInicial)/Math.log(2);
@@ -136,27 +136,34 @@ public class TablaDeDispersion<K, V>{
          else if(tabla[posicion]!=null){
              l1 = tabla[posicion];
               Entrada e1 = new Entrada(llave, valor);
+              //si se encuentra la llave se ssustituye
+             if(contieneLlave(llave)==true){
+                 V v =   elimina(llave);
+                 System.out.println("se elimino el repetido");
+                 agrega (llave, valor);
+              }
              //si no se encuentra la llave entonces se agrega
              if(l1.contiene(e1)==false){
                  l1.agregaFinal(e1);
                  elementos++;}
+            
              }
 
           if(getCarga()>CARGA_MAXIMA){
              
               Lista<Entrada>[] temp = nuevoArreglo(tabla.length*2);
               for(int i = 0; i< tabla.length;i++){
-              	   if(tabla[i]!= null){
-              	   	Lista<Entrada> l5 = tabla[i];
-              	   	Iterator<Entrada> it = l5.iterator();
-              	   	while(it.hasNext()){
-              	   		Entrada temp2 = it.next();
-              	   		K llave1= temp2.llave;
-              	   		V valor1= temp2.valor;
-              	   		agrega(llave1,valor1);
-              	   	}
+                   if(tabla[i]!= null){
+                    Lista<Entrada> l5 = tabla[i];
+                    Iterator<Entrada> it = l5.iterator();
+                    while(it.hasNext()){
+                        Entrada temp2 = it.next();
+                        K llave1= temp2.llave;
+                        V valor1= temp2.valor;
+                        agrega(llave1,valor1);
+                    }
 
-              	   }
+                   }
               }
           }
 
@@ -169,7 +176,7 @@ public class TablaDeDispersion<K, V>{
     */
     public V getValor(K llave){
          V valor = null;
-	     if(contieneLlave(llave)==false)
+         if(contieneLlave(llave)==false)
              return null;
          else{
              //for(int i =0;i<tabla.length;i++){
@@ -196,7 +203,7 @@ public class TablaDeDispersion<K, V>{
     */
     public boolean contieneLlave(K llave){
          
-	     if(tabla[asignaLugar(llave)]!=null){
+         if(tabla[asignaLugar(llave)]!=null){
              Lista <Entrada> l2 = tabla[asignaLugar(llave)];
              Iterator<Entrada> it = l2.iterator();
              while(it.hasNext()){
@@ -217,7 +224,7 @@ public class TablaDeDispersion<K, V>{
      *@return contieneValor
      */
     public boolean contieneValor(V valor){
-	     for (int i =0; i< tabla.length;i++){
+         for (int i =0; i< tabla.length;i++){
              if(tabla[i]!= null){
              Lista <Entrada> l2 = tabla[i];
              Iterator<Entrada> it = l2.iterator();
@@ -237,7 +244,7 @@ public class TablaDeDispersion<K, V>{
     *@return esVacia
     */
     public boolean esVacia(){
-	     
+         
          if(elementos==0)
              return true;
          else
@@ -250,7 +257,7 @@ public class TablaDeDispersion<K, V>{
      *@return temp elemento que se elimino
      */
     public V elimina(K llave){
-	     V temp =null;
+         V temp =null;
          if(contieneLlave(llave)==true){
              Lista <Entrada> l3 =tabla[asignaLugar(llave)];
              temp=getValor(llave); 
@@ -270,7 +277,7 @@ public class TablaDeDispersion<K, V>{
     *@return elementos
     */
     public int getElementos(){
-	     return elementos;
+         return elementos;
     }
     
     /**
@@ -278,7 +285,7 @@ public class TablaDeDispersion<K, V>{
     *@return lista
     */
     public Lista<K> getLlaves(){
-	     Lista<K> llaves = new Lista<K>();
+         Lista<K> llaves = new Lista<K>();
          for (int i =0; i< tabla.length;i++){
              if(tabla[i]!= null){
              Lista <Entrada> l2 = tabla[i];
@@ -308,7 +315,7 @@ public class TablaDeDispersion<K, V>{
                  }}
          }
          return valores;
-	
+    
     }
 
     /**
@@ -316,7 +323,7 @@ public class TablaDeDispersion<K, V>{
     *@return carga
     */
     public double getCarga(){
-    	 double carga = (double) getElementos()/tabla.length;
+         double carga = (double) getElementos()/tabla.length;
          return carga;
     }
 
@@ -334,6 +341,6 @@ public class TablaDeDispersion<K, V>{
     *@return tamano de la tabla
     */
     public int getTamaño(){
-    	return tabla.length;
+        return tabla.length;
     }
 }

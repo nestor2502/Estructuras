@@ -1,9 +1,9 @@
 package practica9;
 
 public class Test{
-	public static void main(String[] args) {
-		/**
-		int  capacidadInicial = 100;
+    public static void main(String[] args) {
+        /**
+        int  capacidadInicial = 100;
 
              double m = Math.log(capacidadInicial)/Math.log(2);
              //int k = (int)Math.ceil(m);
@@ -65,16 +65,26 @@ public class Test{
 
 
              //System.out.println("valor de la llave hola1 "+tabla3.getValor("hola1"));
-             System.out.println("Se elimina llave hola3: "+tabla3.elimina("hola3"));
+             //System.out.println("Se elimina llave hola3: "+tabla3.elimina("hola3"));
              Lista<String> valores3 = tabla3.getValores();
               Lista<String> llaves3 = tabla3.getLlaves();
              System.out.println("valores: "+valores3.toString());
              System.out.println("llaves: "+llaves3.toString());
+             System.out.println("");
+             System.out.println("");
+             System.out.println("SE agrega un elemento con la misma llave pero distinto elemento");
+             tabla3.agrega("hola3","se cambia3");
+             Lista<String> valores4 = tabla3.getValores();
+             Lista<String> llaves4 = tabla3.getLlaves();
+             System.out.println("valores: "+valores4.toString());
+             System.out.println("llaves: "+llaves4.toString());
+             System.out.println("");
+             System.out.println("");
               System.out.println("factor de carga: "+tabla3.getCarga());
-              System.out.println("tamalo de la tabla: "+tabla3.getTamaño());
+              System.out.println("tamaño de la tabla: "+tabla3.getTamaño());
 
 
-	}      
+    }      
 
 
 }
