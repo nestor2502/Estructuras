@@ -218,7 +218,7 @@ public class Monticulo {
              int []  nuevo = new int[elementos.length*2];
              for(int j =0; j< elementos.length;j++){
                  nuevo[j]= elementos[j];
-                 elementos= nuevo;
+                 //elementos= nuevo;
              }
          }
          ultimoIndice++;
