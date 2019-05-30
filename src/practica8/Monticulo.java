@@ -114,6 +114,9 @@ public class Monticulo {
          //System.out.println(":(");
          return eliminado;
          }
+         else if(esVacio()){
+         	throw new IllegalStateException();
+         }
          
          return -1;
 	
@@ -200,11 +203,18 @@ public class Monticulo {
     public int getTamano(){
 	     return ultimoIndice+1;
     }
-
+    public int getUltimoIndice(){
+    	return ultimoIndice;
+    }
+    
+    /**
+    *Metodo <q>ue agrega un elemento al monticulo
+    *@param i
+    */
     public void agrega(int i){
          //si el arreglo está lleno se grea un nuevo arreglo con el doble del tamaño
          
-         if(ultimoIndice+1==elementos.length-1){
+         if(ultimoIndice==elementos.length-1){
              int []  nuevo = new int[elementos.length*2];
              for(int j =0; j< elementos.length;j++){
                  nuevo[j]= elementos[j];
@@ -222,6 +232,7 @@ public class Monticulo {
     /**
     *Metodo que acomoda despues de balancear
     *sirve para agregar
+    *@param indice
     */
     public void acomoda(int indice){
         //int indice = i;
@@ -294,7 +305,10 @@ public class Monticulo {
             return true;}
          return false;
      }
-
+    
+    /**
+    *Metodo para pruebas
+    */
     public void muestra(){
          //for(int i =0; i< elementos.length;i++){
          for(int i =0; i< ultimoIndice+1;i++){
