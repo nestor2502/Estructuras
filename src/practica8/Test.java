@@ -8,11 +8,11 @@ public class Test{
         //int[] arr = new int[0];
         System.out.println("primer monticulo");
 	 	Monticulo m1 = new Monticulo(arr);
-	 	//m1.muestra();
+	    m1.muestra();
 	 	System.out.println("Ultimo indice"+ m1.getUltimoIndice());
 	 	System.out.println();
 	 	System.out.println("se agrega un elemtno");
-	 	//m1.agrega(50);
+	 	m1.agrega(50);
 	 	m1.muestra();
 	 	int [] arr2= new int[arr.length];
 	 	/**
@@ -123,7 +123,7 @@ public class Test{
         System.out.println();
         System.out.println();
 	 	System.out.println();
-
+        /**
 	 	System.out.println("Test constructor vacio");
         System.out.println();
         System.out.println();
@@ -143,9 +143,9 @@ public class Test{
 	 	System.out.println();
 	 	m3.agrega(3);
 	 	m3.muestra();
-	 	
+	 	System.out.println();
 	 	m3.agrega(1);
-	 	m3.muestra();
+	 	m3.muestra();*/
 	 	/**for(int i:arr2){
 
 	 	System.out.println(i);

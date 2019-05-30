@@ -19,7 +19,16 @@ public class Monticulo {
          elementos = new int[100];
          ultimoIndice = -1;
          ComparaEnteros compara = new ComparaEnteros();
-         comparador = compara;
+         comparador = (a, b)->{
+         	  int num =0;
+         if(a>b)
+           num =  1;
+        if(a<b)
+            num= -1;
+        if(a==b)
+            num = 0;
+         return num;
+         };
     }
     
     /**
@@ -207,23 +216,26 @@ public class Monticulo {
     	return ultimoIndice;
     }
     
+
     /**
     *Metodo <q>ue agrega un elemento al monticulo
     *@param i
     */
     public void agrega(int i){
          //si el arreglo está lleno se grea un nuevo arreglo con el doble del tamaño
-         
+          int []  nuevo;
+          System.out.println("elemento "+2+" : "+elementos[3]);
          if(ultimoIndice==elementos.length-1){
-             int []  nuevo = new int[elementos.length*2];
-             for(int j =0; j< elementos.length;j++){
+             nuevo = new int[elementos.length*2];
+             for(int j =0; j<= ultimoIndice;j++){
+             	System.out.println("elemento "+3+" : "+elementos[j]);
                  nuevo[j]= elementos[j];
-                 //elementos= nuevo;
              }
+                 elementos= nuevo;
          }
          ultimoIndice++;
          elementos[ultimoIndice]=i;
-         indiceAux = ultimoIndice;
+         //indiceAux = ultimoIndice;
          acomoda(ultimoIndice);
          
 	
