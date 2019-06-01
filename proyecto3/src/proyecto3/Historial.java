@@ -118,6 +118,11 @@ public class Historial extends javax.swing.JFrame {
         comenzar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         comenzar.setForeground(new java.awt.Color(254, 254, 254));
         comenzar.setText("Comenzar");
+        comenzar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comenzarActionPerformed(evt);
+            }
+        });
         getContentPane().add(comenzar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 120, 50));
 
         cerrar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
@@ -165,6 +170,16 @@ public class Historial extends javax.swing.JFrame {
         Instrucciones obj= new Instrucciones();
         obj.setVisible(true);
     }//GEN-LAST:event_instruccionesActionPerformed
+
+    private void comenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comenzarActionPerformed
+        try{
+        Proyecto3 obj = new Proyecto3();
+        }
+        catch(InterruptedException e){
+            System.out.println(e.getMessage());
+        }
+       
+    }//GEN-LAST:event_comenzarActionPerformed
 
     /**
      * @param args the command line arguments

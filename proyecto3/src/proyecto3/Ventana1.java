@@ -30,14 +30,14 @@ public class Ventana1 extends javax.swing.JFrame {
          iniciar.setContentAreaFilled(false);
          registrarse.setContentAreaFilled(false);
          //se esta comentadndo para poder leer la base y no crear una nueva
-         base = new Base();
+         //base = new Base();
          try{   
-             
+             /**
                 //ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(new FileOutputStream("/home/nestor2502/Escritorio/Test1.txt"));
                 ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(new FileOutputStream("BaseDatos"));
                 escribiendo_fichero.writeObject(base);
                 escribiendo_fichero.close();
-                
+                */
                 ObjectInputStream recuperando_fichero= new ObjectInputStream(new FileInputStream("BaseDatos"));
                  base =(Base )recuperando_fichero.readObject();
                 recuperando_fichero.close();
