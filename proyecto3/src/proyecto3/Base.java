@@ -25,11 +25,27 @@ public class Base implements  Serializable{
     	 boolean contiene = false;
     	 String usuario = obj.getUsuario();
     	 String contraseña = obj.getContraseña();
-    	 String llave = usuario.concat(contraseña);
+         String correo = obj.getCorreo();
+    	 String llave = correo.concat(contraseña);
     	 if(tabla.contieneLlave(llave)){
     	 	 contiene = true;
     	 }
          return contiene;
+    }
+    
+    public Usuario getUsuario(String llave){
+         Usuario us = null;
+         us = tabla .getValor(llave);
+         return us;
+    }
+    /**
+     * 
+     * @param llave
+     * @return contiene
+     */
+    public boolean existeUsuario(String llave){
+               
+         return tabla.contieneLlave(llave);
     }
      
      /**
@@ -49,12 +65,13 @@ public class Base implements  Serializable{
     	 }
           return contiene;
     }
+    
 
     public void agrega(Usuario obj){
     	 String usuario = obj.getUsuario();
     	 String contraseña = obj.getContraseña();
     	 String correo = obj.getCorreo();
-    	 String llave = usuario.concat(contraseña);
+    	 String llave = correo.concat(contraseña);
     	 usuarios.agregaFinal(usuario);
     	 correos.agregaFinal(correo);
          tabla.agrega(llave, obj);
@@ -65,7 +82,7 @@ public class Base implements  Serializable{
     	 String usuario = obj.getUsuario();
     	 String contraseña = obj.getContraseña();
     	 String correo = obj.getCorreo();
-    	 String llave = usuario.concat(contraseña);
+    	 String llave = correo.concat(contraseña);
     	 int cont=0;
     	 if(existeNombreUsuario(obj)){
              advertencia+="Este nombre de usuario ya esta en uso";

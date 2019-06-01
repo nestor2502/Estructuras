@@ -1,6 +1,12 @@
 package proyecto3;
-    import java.util.NoSuchElementException;
+import java.util.Iterator;
+import java.util.*;
+import java.io.Serializable;
+
     import java.util.Iterator;
+    import java.util.NoSuchElementException;
+
+
      /**
      *@author Nestor Semer Vazquez Cordero
      *@author Isay Balderas Salomon
@@ -8,12 +14,12 @@ package proyecto3;
      *Clase que implementa ua lista
      *
      */   
-      public class Lista<T> implements Iterable<T>{
+      public class Lista<T> implements Iterable<T> , Serializable{
 
 
         // Clase interna para representar los nodos de nuestras listas.
         
-        private class Nodo{
+        private class Nodo implements  Serializable{
         
         public T elemento;
         public Nodo siguiente;
@@ -99,7 +105,7 @@ package proyecto3;
 
         /**
         *Constructor que toma un arreglo y mete sus elementos a la lista 
-        *@param arreglo
+     * @param arreglo
         */
         public Lista(T[] arreglo){
 
@@ -107,11 +113,11 @@ package proyecto3;
 
              if(tamaño==0){
                   cabeza = null;
-                  cabeza.siguiente = ultimo;
-                  cabeza.anterior= null;
+                  //cabeza.siguiente = ultimo;
+                  //cabeza.anterior= null;
                   ultimo = null;
-                  ultimo.siguiente=null;
-                  ultimo.anterior=cabeza;
+                  //ultimo.siguiente=null;
+                  //ultimo.anterior=cabeza;
 
                  }
 
@@ -154,7 +160,6 @@ package proyecto3;
     
         /**
         *Regresa el primer elemento de la lista
-        *@return T, elemento al principio de la lista
         */
         //si la lista es vacía, deben lanzar una NoSuchElementException.
         public T getPrimero(){
@@ -162,7 +167,7 @@ package proyecto3;
              return cabeza.elemento;
 
          }
-         
+
         public T getEnmedio(){
 
             return cabeza.siguiente.elemento;
@@ -170,7 +175,6 @@ package proyecto3;
 
         /**
         *Regresa el ultimo elemento de la lista, 
-        *@return T, ultimo elemento de la lista
         */
         //si la lista es vacía, deben lanzar una NoSuchElementException.
         public T getUltimo(){
@@ -182,7 +186,6 @@ package proyecto3;
 
         /**
         *Elimina el primer elemento de la lista, si la lista es vacia 
-        *@return T , elemento eliminar dentro de la lista
         *@throws NoSuchElementException 
         */
         //debe lanzar NoSuchElementException
@@ -199,13 +202,12 @@ package proyecto3;
                 
                  temp = new Nodo (cabeza.elemento);            
                  cabeza = null;
- //                cabeza.anterior= null;
-  //               cabeza.siguiente = null;
+                 //cabeza.siguiente = null;
                  
 
                  ultimo = null;
-  //               ultimo.anterior= null;
-   //              ultimo.siguiente = null;
+                 //ultimo.anterior= null;
+                 //ultimo.siguiente = null;
                  longitud--;
                   return temp.elemento;
                  }
@@ -233,7 +235,6 @@ package proyecto3;
 
         /**
         *Elimina el ultimo elemento de la lista, si la lista es vacia 
-        *@return T, elemina el ultimo elemento
         *@throws NoSuchElementException
         */
         //debe lanzar NoSuchElementException
@@ -279,7 +280,6 @@ package proyecto3;
 
         /**
         *Recibe un elemento y lo agrega al inicio de la lista
-        *@param t , agrega un elemento al inicio
         */
         public void agregaInicio(T t){
 
@@ -336,7 +336,6 @@ package proyecto3;
 
         /**
         *Recibe un elemento y lo agrega al final de la lista
-        *@param t , elemento que se agrega al final de la lista
         */
         public void agregaFinal(T t){
 
@@ -371,8 +370,6 @@ package proyecto3;
         /**
         *Recibe un elemento, si el elemento se encuentra en la lista devuelve true
         *si no false 
-        *@return boolean, 
-        *@param t elemento a buscar dentro de la lista
         */
         public boolean contiene(T t){
 
@@ -386,7 +383,7 @@ package proyecto3;
              n1=cabeza;
              
 
-              if(cabeza.elemento == t)
+              if(n1.elemento.equals(t))
                  return true;
 
              int cont=0;
@@ -395,7 +392,7 @@ package proyecto3;
 
                  cabeza= cabeza.siguiente;
 
-                 if(cabeza.elemento == t)
+                 if(cabeza.elemento.equals(t))
                      resul =  true;
 
                  cont++;
@@ -406,7 +403,7 @@ package proyecto3;
 
              return resul;
         
-}
+        }
         
 
         /**
@@ -423,85 +420,83 @@ package proyecto3;
         /**
         *Recibe un elemento y elimina su primera ocurrencia en la lista,
         *devuelve true si el elemento se eliminó, false en otro claso
-        *@return boolean
-        *@param t elementp a borrar dentro de la lista
         */
         public boolean elimina(T t){
-            int cont=0;
-            int cont2=0;  //contador para encontrar la primera incidencia
-            boolean valor=false;
-            Nodo n1 = new Nodo(cabeza.elemento);
-            n1=cabeza;
 
-            if(contiene(t)==false){
+             int cont=0;
+             int cont2=0;  //contador para encontrar la primera incidencia
+             boolean valor=false;
+             Nodo n1 = new Nodo(cabeza.elemento);
+             n1=cabeza;
 
-               return false;
+             if(contiene(t)==false){
 
-            }
+                return false;
 
-            if((longitud == 1) & (cabeza.elemento == t)){
+             }
 
-                limpia();
-                return contiene(t);
-            }
+             if((longitud == 1) & (cabeza.elemento == t)){
 
-
-            if(cabeza.elemento == t){
-                /**
-                cabeza=cabeza.siguiente; 
-                cabeza.anterior.siguiente= null;
-                cabeza.anterior= null;
-                longitud--;
-                */
-                eliminaPrimero();
-                valor = true;
-            }
-
-            else {//comienza a recorrer la lista a partir del segundo elemento
-                
-                while(cont2 <1){
-
-                    cabeza = cabeza.siguiente;
+                 limpia();
+                 return contiene(t);
+             }
 
 
+             if(cabeza.elemento.equals(t)){
+                 /**
+                 cabeza=cabeza.siguiente; 
+                 cabeza.anterior.siguiente= null;
+                 cabeza.anterior= null;
+                 longitud--;
+                 */
+                 eliminaPrimero();
+                 valor = true;
+             }
 
-                    if(cabeza.elemento == t){
+             else {//comienza a recorrer la lista a partir del segundo elemento
+                 
+                 while(cont2 <1){
 
-                       if(cabeza.siguiente == null){
+                     cabeza = cabeza.siguiente;
+
+
+
+                     if(cabeza.elemento.equals(t)){
+
+                        if(cabeza.siguiente == null){
+                              
+                             cabeza.anterior.siguiente=null;
+                             ultimo = cabeza.anterior;
+                             //cabeza.siguiente.anterior=cabeza.anterior;
+                             //eliminaUltimo();
+                             cabeza= ultimo;
+                             cont2++;
+                             longitud--;
+                             }
+
+                         if(cabeza.siguiente != null){
+                      
+                             cabeza.anterior.siguiente=cabeza.siguiente;
+                             cabeza.siguiente.anterior=cabeza.anterior;    
+                             cont2++;
+                             longitud--;
+                             }
                              
-                            cabeza.anterior.siguiente=null;
-                            ultimo = cabeza.anterior;
-                            //cabeza.siguiente.anterior=cabeza.anterior;
-                            //eliminaUltimo();
-                            cabeza= ultimo;
-                            cont2++;
-                            longitud--;
-                            }
-
-                        if(cabeza.siguiente != null){
+                         valor = true;
+ 
+                         }
+                
+                     cont++;
                      
-                            cabeza.anterior.siguiente=cabeza.siguiente;
-                            cabeza.siguiente.anterior=cabeza.anterior;    
-                            cont2++;
-                            longitud--;
-                            }
-                            
-                        valor = true;
+                     }
 
-                        }
-               
-                    cont++;
-                    
-                    }
+                     cabeza=n1;
+                 }
+             
+             
+             return valor;
 
-                    cabeza=n1;
-                }
-            
-            
-            return valor;
-
-        }
-
+         }
         
 
         /**
@@ -515,16 +510,14 @@ package proyecto3;
          ultimo.anterior= null;
          ultimo = null;
          
-         longitud=0;
+         longitud=0;    
+
 
         }
         
 
         /**
         *Este método toma un índice i y regresa el i-ésimo elemento de la lista.
-        *@param indx introduce el indice de la lista
-        *@return T regresa el elemento en la posicion indx
-        *@throws IndexOutOfBoundsException el indice no se encuentra dentro de la lista
         */
         //Deben lanzar una IndexOutOfBoundsException si el índice es menor a 0 o mayor o igual al tamaño de la lista.
         public T get(int indx)throws IndexOutOfBoundsException{
@@ -558,9 +551,7 @@ package proyecto3;
 
         /**
         *Toma un índice i y un elemento y mete el elemento en la posición i de la lista.
-        *@param indx indice dentro de la lista
-        *@param t elemento a introducir
-        * @throws IndexOutOfBoundsException, la posicion no existe
+        //
         */
         public void inserta(int indx, T t)throws IndexOutOfBoundsException{
 
@@ -607,7 +598,6 @@ package proyecto3;
 
         /**
         *Este método nos regresa un arreglo con los mismos elementos de nuestra lista en el mismo orden.
-        *@return nos devuelve un arreglo igual a la lista
         */
         public Object[] toArray(){
          
@@ -639,7 +629,6 @@ package proyecto3;
 
         /**
         *Este método nos regresa una lista con los elementos de nuestra lista en orden inverso. 
-        *@return devuelve una lista pero al reves.
         */
         public Lista<T> reversa(){ 
 
@@ -669,7 +658,6 @@ package proyecto3;
 
         /**
         *Este método nos regresa una copia de nuestra lista.
-        *@return Lista<T>, devuelve una lista igual
         */
         public Lista<T> copia(){
         
@@ -700,19 +688,18 @@ package proyecto3;
 
         /**
         *El método regresa una cadena con la información de nuestra lista.
-        *@return String, devuelve la lista impresa,
         */
         @Override
         public String toString(){
             
-            Nodo n1 = new Nodo(cabeza.elemento);
-            n1= cabeza;
             String  nuevo =" ";
             
             if(longitud==0){
                 nuevo = "[ ]";
                 return nuevo;
             }
+            Nodo n1 = new Nodo(cabeza.elemento);
+            n1= cabeza;
             if(longitud==1){
                 nuevo = "[ "+cabeza.elemento.toString()+" ]";
             }
@@ -747,8 +734,6 @@ package proyecto3;
 
         /**
         *Deben regresar true si el objeto recibido es igual a la lista y false en otro caso.
-        * @return true, si son iguales la lista
-        *@return false, si son diferentes 
         */
         @Override
         public boolean equals(Object o){

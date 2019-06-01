@@ -7,7 +7,8 @@ package proyecto3;
 
 import java.awt.Font;
 import javax.swing.JOptionPane;
-
+import java.util.*;
+import java.io.*;
 
 
 /**
@@ -15,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author nestor2502
  */
 public class Registro extends javax.swing.JFrame {
-
+     Base base;
     /**
      * Creates new form Registro
      */
@@ -26,6 +27,8 @@ public class Registro extends javax.swing.JFrame {
         this.setVisible(false);
         this.setTitle("Proyecto 3");
         this.setResizable(false);
+        regresar.setContentAreaFilled(false);
+        crear.setContentAreaFilled(false);
         
          TextPrompt placeholder = new TextPrompt("Nombre completo", nombre);
          placeholder.changeAlpha(0.75f);
@@ -42,6 +45,20 @@ public class Registro extends javax.swing.JFrame {
          TextPrompt placeholder3 = new TextPrompt("Contraseña", contrasena);
          placeholder3.changeAlpha(0.75f);
          placeholder3.changeStyle(Font.ITALIC);
+         
+
+         try{
+             ObjectInputStream recuperando_fichero= new ObjectInputStream(new FileInputStream("BaseDatos"));
+             base =(Base )recuperando_fichero.readObject();
+             recuperando_fichero.close();}
+          catch(IOException e){
+                	System.out.println(e.getMessage());
+                }
+                catch(ClassNotFoundException e){
+                    System.out.println(e.getMessage());
+                	
+             } 
+
     }
 
     /**
@@ -57,11 +74,13 @@ public class Registro extends javax.swing.JFrame {
         nombre = new javax.swing.JTextField();
         usuario = new javax.swing.JTextField();
         correo = new javax.swing.JTextField();
-        contrasena = new javax.swing.JTextField();
         crear = new javax.swing.JButton();
+        contrasena = new javax.swing.JPasswordField();
+        regresar = new javax.swing.JButton();
         fondo2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
@@ -77,9 +96,9 @@ public class Registro extends javax.swing.JFrame {
         getContentPane().add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 160, 560, 50));
         getContentPane().add(usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 560, 50));
         getContentPane().add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, 560, 50));
-        getContentPane().add(contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 560, 50));
 
         crear.setBackground(new java.awt.Color(90, 90, 78));
+        crear.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         crear.setForeground(new java.awt.Color(240, 240, 240));
         crear.setText("Crear cuenta");
         crear.addActionListener(new java.awt.event.ActionListener() {
@@ -88,6 +107,17 @@ public class Registro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 570, 190, 60));
+        getContentPane().add(contrasena, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 450, 560, 50));
+
+        regresar.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        regresar.setForeground(new java.awt.Color(254, 254, 254));
+        regresar.setText("Regresar");
+        regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                regresarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
         fondo2.setBackground(new java.awt.Color(38, 38, 38));
         fondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto3/1080x720-00001.jpg"))); // NOI18N
@@ -102,14 +132,17 @@ public class Registro extends javax.swing.JFrame {
 
     private void crearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearActionPerformed
           int contador=0;
-          boolean correcto1 = false;
-          int correcto =0;
+          int correcto1 = 0;
+          int correcto2 =0;
+          int correcto=0;
           String nombre1 = nombre.getText().trim();
           String usuario1 = usuario.getText().trim();
           String correo1 =correo.getText().trim();
           String contraseña1 =contrasena.getText().trim();
-          
-          
+          //System.out.println("La contraseña es"+contraseña1);
+          String llave = "";
+          Usuario usuario; 
+          Historial his;
        
         
         //verificacion de email
@@ -119,13 +152,13 @@ public class Registro extends javax.swing.JFrame {
 
              	  if(email.charAt(i)=='@')
 
-             	  	  correcto ++;
+             	  	  correcto1 ++;
                   if(email.charAt(i)=='.')
 
-             	  	  correcto ++;
+             	  	  correcto2 ++;
              }
 
-             if(correcto != 2){
+             if(correcto1 == 0 && correcto2==0){
 
              	 //System.out.println("Incorrecto");
              	 JOptionPane.showMessageDialog(null, "Correo incorrecto");
@@ -135,12 +168,52 @@ public class Registro extends javax.swing.JFrame {
             if(nombre1.equals("")||usuario1.equals("")||correo1.equals("")||contraseña1.equals("")){
                JOptionPane.showMessageDialog(null, "No dejes campos vacios");
         }
-        else contador++;}}
+        else contador++;}
+        //se intenta crear el usuario si es que existe
+        if(correcto1 >0  && correcto2 > 0){
+                // System.out.println("se realizo");
+                llave = email.concat(contraseña1);
+                usuario = new Usuario(nombre1, usuario1, email,contraseña1);
+                //se verifica si existe el nombre de usuario
+                if(base.existeNombreUsuario(usuario)){
+                    JOptionPane.showMessageDialog(null, "Nombre de usuario ya registrado");
+                   // System.out.println("filtro 1.1: ay existe el nombre de usuario");
+                }
+                else{
+                     correcto++;
+                     //System.out.println("filtro 1.1: superado");
+                    }
+                if(base.existeCorreo(usuario)){
+                     JOptionPane.showMessageDialog(null, "Correo ya registrado");  
+                     //System.out.println("filtro 1.2: ay existe el correo");
+                }  
+                else{
+                   correcto++;
+                    //System.out.println("filtro 1.2: superado");
+                }
+                if(correcto>=2){
+                 //System.out.println("filtro final: se creará el usuario");
+                 base.agrega(usuario);
+                // System.out.println("filtro final: se creó el usuario");
+                  //System.out.println("La llave es: "+llave);
+                  try{
+                ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(new FileOutputStream("BaseDatos"));
+                escribiendo_fichero.writeObject(base);
+                escribiendo_fichero.close();
+                }
+                 catch(IOException e){
+                	System.out.println(e.getMessage());
+                }
+                 his = new Historial(base,llave);
+                 this.setVisible(false);
+                }
+             }}
         else{
             if(nombre1.equals("")||usuario1.equals("")||correo1.equals("")||contraseña1.equals(""))
                JOptionPane.showMessageDialog(null, "No dejes campos vacios");
          }
-
+         
+        
          
         
         
@@ -148,6 +221,10 @@ public class Registro extends javax.swing.JFrame {
         
             
     }//GEN-LAST:event_crearActionPerformed
+
+    private void regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regresarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_regresarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,12 +262,13 @@ public class Registro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField contrasena;
+    private javax.swing.JPasswordField contrasena;
     private javax.swing.JTextField correo;
     private javax.swing.JButton crear;
     private javax.swing.JLabel fondo2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField nombre;
+    private javax.swing.JButton regresar;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }

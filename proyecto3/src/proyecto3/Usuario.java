@@ -14,6 +14,7 @@ public class Usuario implements Serializable{
      private String antecedentes;
      private double saldo =0;
      private String llave;
+     private String historial;
 
      
      public Usuario(String nombre, String usuario, String correo , String contraseña){
@@ -22,7 +23,7 @@ public class Usuario implements Serializable{
      	    this.usuario = usuario;
      	    this.correo = correo;
      	    this.contraseña= contraseña;
-     	    llave= usuario.concat(contraseña);
+     	    llave= correo.concat(contraseña);
 
      }
      
@@ -72,6 +73,24 @@ public class Usuario implements Serializable{
      */
      public double getSaldo(){
      	return saldo;
+     }
+     
+     public void setHistorial(String texto){
+         if(historial!= null)
+              historial +="\n "+texto; 
+         else
+             historial = texto;
+     }
+     
+     
+     
+    /**
+     * Metodo que devuelve el historial de partidas del usuario
+     * @return historial
+     */
+     public String getHistorial(){
+     
+         return historial;
      }
       
       @Override

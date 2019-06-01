@@ -5,12 +5,18 @@
  */
 package proyecto3;
 
+import java.util.*;
+import java.io.*;
+
+import java.awt.Image;
+import java.awt.Toolkit;
+
 /**
  *
  * @author nestor2502
  */
 public class Ventana1 extends javax.swing.JFrame {
-
+    public Base base;
     /**
      * Creates new form Ventana1
      */
@@ -21,6 +27,33 @@ public class Ventana1 extends javax.swing.JFrame {
         this.setVisible(true);
         this.setTitle("Proyecto 3");
         this.setResizable(false);
+         iniciar.setContentAreaFilled(false);
+         registrarse.setContentAreaFilled(false);
+         //se esta comentadndo para poder leer la base y no crear una nueva
+         base = new Base();
+         try{   
+             
+                //ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(new FileOutputStream("/home/nestor2502/Escritorio/Test1.txt"));
+                ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(new FileOutputStream("BaseDatos"));
+                escribiendo_fichero.writeObject(base);
+                escribiendo_fichero.close();
+                
+                ObjectInputStream recuperando_fichero= new ObjectInputStream(new FileInputStream("BaseDatos"));
+                 base =(Base )recuperando_fichero.readObject();
+                recuperando_fichero.close();
+
+                }
+                 catch(IOException e){
+                	System.out.println(e.getMessage());
+                }
+                catch(ClassNotFoundException e){
+                    System.out.println(e.getMessage());
+                	
+             }   }
+    
+     public Image getIconImage() {
+        Image retValue = Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("proyecto3/586273b931349e0568ad89df.png"));
+        return retValue;
     }
 
     /**
@@ -32,52 +65,53 @@ public class Ventana1 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        registrarse = new javax.swing.JButton();
+        iniciar = new javax.swing.JButton();
         fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(getIconImage());
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton2.setBackground(new java.awt.Color(90, 90, 78));
-        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(241, 241, 240));
-        jButton2.setText("Registrarse");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        registrarse.setBackground(new java.awt.Color(90, 90, 78));
+        registrarse.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        registrarse.setForeground(new java.awt.Color(241, 241, 240));
+        registrarse.setText("Registrarse");
+        registrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                registrarseActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 600, 220, 100));
+        getContentPane().add(registrarse, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 460, 220, 100));
 
-        jButton3.setBackground(new java.awt.Color(90, 90, 78));
-        jButton3.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(240, 240, 240));
-        jButton3.setText("Iniciar sesion");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        iniciar.setBackground(new java.awt.Color(90, 90, 78));
+        iniciar.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        iniciar.setForeground(new java.awt.Color(240, 240, 240));
+        iniciar.setText("Iniciar sesion");
+        iniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                iniciarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 600, 210, 100));
+        getContentPane().add(iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 210, 100));
 
-        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto3/cropped-1366-768-701545.jpg"))); // NOI18N
-        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, -1, -1));
+        fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto3/PicsArt_05-26-12.03.49.jpg"))); // NOI18N
+        getContentPane().add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 610, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void registrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarseActionPerformed
         Registro registro = new Registro();
         registro.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_registrarseActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
         IniciarSesion inicia = new IniciarSesion();
         //this.setVisible(false);
         inicia.setVisible(true);
         
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_iniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -116,7 +150,7 @@ public class Ventana1 extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel fondo;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton iniciar;
+    private javax.swing.JButton registrarse;
     // End of variables declaration//GEN-END:variables
 }

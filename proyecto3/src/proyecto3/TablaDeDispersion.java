@@ -74,8 +74,8 @@ public class TablaDeDispersion<K, V> implements Serializable {
      *@param dispersor
      */
     public TablaDeDispersion(Dispersor<K> dispersor){
-
-	     tabla = nuevoArreglo(64*2);
+             //se modifico esta parte
+	     tabla = nuevoArreglo(CAPACIDAD_MINIMA);
          this.dispersor = dispersor;
          elementos=0;
     }
@@ -138,11 +138,36 @@ public class TablaDeDispersion<K, V> implements Serializable {
          else if(tabla[posicion]!=null){
              l1 = tabla[posicion];
               Entrada e1 = new Entrada(llave, valor);
+              //si se encuentra la llave se ssustituye
+             if(contieneLlave(llave)==true){
+                 V v =   elimina(llave);
+                 System.out.println("se elimino el repetido");
+                 agrega (llave, valor);
+              }
              //si no se encuentra la llave entonces se agrega
              if(l1.contiene(e1)==false){
                  l1.agregaFinal(e1);
                  elementos++;}
+            
              }
+
+          if(getCarga()>CARGA_MAXIMA){
+             
+              Lista<Entrada>[] temp = nuevoArreglo(tabla.length*2);
+              for(int i = 0; i< tabla.length;i++){
+                   if(tabla[i]!= null){
+                    Lista<Entrada> l5 = tabla[i];
+                    Iterator<Entrada> it = l5.iterator();
+                    while(it.hasNext()){
+                        Entrada temp2 = it.next();
+                        K llave1= temp2.llave;
+                        V valor1= temp2.valor;
+                        agrega(llave1,valor1);
+                    }
+
+                   }
+              }
+          }
 
          }
     
@@ -263,7 +288,17 @@ public class TablaDeDispersion<K, V> implements Serializable {
          return valores;
 	
     }
-
+    
+    /**
+    *Metodo que devuelve el factor de carga de una tabla
+    *@return carga
+    */
+    public double getCarga(){
+         double carga = (double) getElementos()/tabla.length;
+         return carga;
+    }
+    
+    
     /**
     *Metodo de pruebas
     *me retorna la posicion d3onde se almacena una llave

@@ -1,24 +1,31 @@
 package proyecto3;
 import java.util.*;
-
 import java.io.*;
 /**
 *Clase de pruebas
 *@version 1.0
 */
+
+
 public class Test {
      
      public static void main(String[] args) {
      	  System.out.println("Pruebas a base de datos");
      	  Base base = new Base();
      	  Usuario us = new Usuario("Nestor", "nestor2502", "correo", "1086");
-     	  //Usuario usa = new Usuario("Nestor Semer", "nestor2502", "correo", "10863");
+     	  Usuario usa = new Usuario("Nestor Semer", "nestor250", "correo", "1086");
      	  System.out.println();
      	  System.out.println();
-     	 // System.out.println("Existe el nombre nestor: "+base.existeNombreUsuario(us));
-     	  //System.out.println("Existe el correo: "+base.existeCorreo(us));
-     	  //System.out.println("Existe el Usuario: "+base.existeUsuario(us));
+     	  System.out.println("Existe el nombre nestor: "+base.existeNombreUsuario(us));
+     	  System.out.println("Existe el correo: "+base.existeCorreo(us));
+     	  System.out.println("Existe el Usuario: "+base.existeUsuario(us));
+          System.out.println("");
      	  base.agrega(us);
+          System.out.println("Existe el nombre nestor: "+base.existeNombreUsuario(usa));
+     	  System.out.println("Existe el correo: "+base.existeCorreo(usa));
+     	  System.out.println("Existe el Usuario: "+base.existeUsuario(usa));
+          System.out.println("");
+          System.out.println("");
      	  //if(base.existeNombreUsuario(us)||base.existeCorreo(us))
      	  //	   base.getAdvertencias(usa);
      	  //else
@@ -39,9 +46,9 @@ public class Test {
      	   Base personal_recuperado=null;
                 //leyendOo archivo
                 try{
-                //ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(new FileOutputStream("Base_De_Datos"));
-                //escribiendo_fichero.writeObject(base);
-                //escribiendo_fichero.close();
+                ObjectOutputStream escribiendo_fichero = new ObjectOutputStream(new FileOutputStream("Base_De_Datos"));
+                escribiendo_fichero.writeObject(base);
+                escribiendo_fichero.close();
                 
                 ObjectInputStream recuperando_fichero= new ObjectInputStream(new FileInputStream("Base_De_Datos"));
                  personal_recuperado =(Base )recuperando_fichero.readObject();
@@ -50,10 +57,10 @@ public class Test {
                 ObjectOutputStream os = new ObjectOutputStream (bs);
                 os.writeObject(base);  // this es de tipo DatoUdp
                 os.close();
-               byte[] bytes =  bs.toByteArray(); // devuelve byte[]*/
+               byte[] bytes =  bs.toByteArray(); // devuelve byte[]
                 System.out.println("Existe el nombre nestor: "+personal_recuperado.existeNombreUsuario(us));
      	  System.out.println("Existe el correo: "+personal_recuperado.existeCorreo(us));
-     	  System.out.println("Existe el Usuario: "+personal_recuperado.existeUsuario(us));
+     	  System.out.println("Existe el Usuario: "+personal_recuperado.existeUsuario(us));*/
                 }
                  catch(IOException e){
                 	System.out.println(e.getMessage());
