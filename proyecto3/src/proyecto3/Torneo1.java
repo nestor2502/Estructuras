@@ -6,8 +6,6 @@
 package proyecto3;
 
 import java.awt.Image;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
@@ -51,17 +49,11 @@ public Equipos winner;
         this.arr = arr;
         
         initComponents();
-/**        
-        Apostar1.setContentAreaFilled(false);
-        Apostar2.setContentAreaFilled(false);
-        Apostar3.setContentAreaFilled(false);
-        Apostar4.setContentAreaFilled(false);
-        Apostar5.setContentAreaFilled(false);
-        */
+
         Apostar5.setVisible(false);
-       // Apostar6.setContentAreaFilled(false);
+
         Apostar6.setVisible(false);
-        //Apostar7.setContentAreaFilled(false);
+
         Apostar7.setVisible(false);
         
         ImageIcon imagen = new ImageIcon(getClass().getResource("/proyecto3/Fondo2.jpg"));
@@ -196,6 +188,8 @@ public Equipos winner;
         ImageIcon imagen16 = new ImageIcon(getClass().getResource(winner.getImagen())); 
         Icon fondo15 = new ImageIcon(imagen16.getImage().getScaledInstance(Winner.getWidth(), Winner.getHeight(), Image.SCALE_DEFAULT));
         Winner.setIcon(fondo15);
+        
+        Apostar7.setVisible(false);
     }
     
     public void last()throws InterruptedException{
@@ -229,6 +223,12 @@ public Equipos winner;
         cuartos();
         semifinal();
         last();
+        Thread.sleep(5000);
+        mostrarCuartos();
+        Thread.sleep(5000);
+        mostrarSemifinal();
+        Thread.sleep(5000);
+        mostrarLast();        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -415,12 +415,11 @@ public Equipos winner;
             java.util.logging.Logger.getLogger(Torneo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new Torneo1().setVisible(true);
+                new Torneo1().setVisible(true);
                 
                 
             }

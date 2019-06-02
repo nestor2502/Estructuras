@@ -23,7 +23,7 @@ public class Wapuesta1 extends javax.swing.JFrame {
      */
     public Wapuesta1(Equipos A, Equipos B) {
         initComponents();
-         //this.setUndecorated(true);
+        
         ImageIcon imagen1 = new ImageIcon(getClass().getResource(A.getImagen())); 
         Icon fondo1 = new ImageIcon(imagen1.getImage().getScaledInstance(EquipoA.getWidth(), EquipoA.getHeight(), Image.SCALE_DEFAULT));
         EquipoA.setIcon(fondo1);
@@ -72,6 +72,11 @@ public class Wapuesta1 extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         EquipoB.setText("jButton1");
+        EquipoB.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EquipoBActionPerformed(evt);
+            }
+        });
         getContentPane().add(EquipoB, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 240, 260));
 
         EquipoA.setText("jButton1");
@@ -97,17 +102,19 @@ public class Wapuesta1 extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_EquipoAActionPerformed
-    
-    private void EquipoBActionPerformed(java.awt.event.ActionEvent evt){
-        String dato;
+
+    private void EquipoBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EquipoBActionPerformed
+            String dato;
         dato = this.Apostado.getText();
         if(isNumeric(dato) == true){
             //Guardamos en el de apuestas y esperamos
         }else{
             JOptionPane.showMessageDialog(null, "No es un valor valido");
         }
+// TODO add your handling code here:
+    }//GEN-LAST:event_EquipoBActionPerformed
     
-    }
+    
     
     public boolean isNumeric(String cadena){
         try{
@@ -145,7 +152,6 @@ public class Wapuesta1 extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Wapuesta1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
