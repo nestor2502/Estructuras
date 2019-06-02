@@ -5,6 +5,8 @@
  */
 package proyecto3;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,13 +17,19 @@ public class Historial extends javax.swing.JFrame {
      Base base;
      Usuario usuario;
      String llave;
-      String historial1=""; 
+     String historial1="";
+     Torneo1 torn = new Torneo1(); 
     /**
      * Creates new form Historial
      */
-    public Historial() {
-     
+    public Historial() throws InterruptedException {
+        
+        
+        
         initComponents();
+        
+        torn.iniciar();
+        
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -172,13 +180,7 @@ public class Historial extends javax.swing.JFrame {
     }//GEN-LAST:event_instruccionesActionPerformed
 
     private void comenzarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comenzarActionPerformed
-        try{
-        Proyecto3 obj = new Proyecto3();
-        }
-        catch(InterruptedException e){
-            System.out.println(e.getMessage());
-        }
-       
+        torn.setVisible(true);
     }//GEN-LAST:event_comenzarActionPerformed
 
     /**

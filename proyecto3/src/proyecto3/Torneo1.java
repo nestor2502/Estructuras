@@ -9,51 +9,58 @@ import java.awt.Image;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
-
-
 /**
  *
  * @author isayd
  */
 public class Torneo1 extends javax.swing.JFrame {
-
-    
-    Equipos [] arr;
+public Equipos [] arr;
     
     //Inicio
-public static Equipos A;
-public static Equipos B;
-public static Equipos C;
-public static Equipos D;
-public static Equipos E;
-public static Equipos F;
-public static Equipos G;
-public static Equipos H;
+public Equipos A;
+public Equipos B;
+public Equipos C;
+public Equipos D;
+public Equipos E;
+public Equipos F;
+public Equipos G;
+public Equipos H;
 
 //Semifinal
-public static Equipos semi1;
-public static Equipos semi2;
-public static Equipos semi3;
-public static Equipos semi4;
+public Equipos semi1;
+public Equipos semi2;
+public Equipos semi3;
+public Equipos semi4;
 
 //Final
-public static Equipos last1;
-public static Equipos last2;
+public Equipos last1;
+public Equipos last2;
 
 //Ganador
 public Equipos winner;
     /**
-     * Creates new form Torneo1
+     * Creates new form Torneo
      */
-    public Torneo1(Equipos [] arr) {
-        this.arr = arr;
+    public Torneo1() {
         
         initComponents();
-
+        
+        Equipos Seoul = new Equipos("Seoul Dynasty", 200, "Seoul.png");
+        Equipos Houston = new Equipos("Houston Outlaws", 180, "Houston.png");
+        Equipos LAG = new Equipos("LA Gladiator", 210, "LosAngeles.png");
+        Equipos NY = new Equipos("New York Excelsior", 240, "New York.png");
+        Equipos Phily = new Equipos("Philadelphia Fusion", 230, "Philadelphia.png");
+        Equipos Shangai = new Equipos("Shangai Dragons", 190, "Shangai.png");
+        Equipos Vanc = new Equipos("Vancouver Titans", 215,"Vancouver.png");
+        Equipos Atl = new Equipos("Atlanta Reign", 224, "Atlanta.png");
+        Equipos[] arr1 = {Seoul,Houston,LAG,NY,Phily,Shangai,Vanc,Atl};
+        
+        this.arr = arr1;
+        
         Apostar5.setVisible(false);
-
+       
         Apostar6.setVisible(false);
-
+       
         Apostar7.setVisible(false);
         
         ImageIcon imagen = new ImageIcon(getClass().getResource("/proyecto3/Fondo2.jpg"));
@@ -64,7 +71,7 @@ public Equipos winner;
         
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(HIDE_ON_CLOSE);
-        this.setVisible(true);
+        this.setVisible(false);
         this.setTitle("Proyecto 3");
         this.setResizable(false);
     }
@@ -131,11 +138,11 @@ public Equipos winner;
     
         public void cuartos()throws InterruptedException{
         semi1 = batalla(A,B);
-        //---------------------------------
+        
         semi2 = batalla(C,D);
-        //--------------------------------------------
+        
         semi3 = batalla(E,F);
-        //-----------------------------------------------
+        
         semi4 = batalla(G,H);      
     }
         
@@ -189,14 +196,13 @@ public Equipos winner;
         Icon fondo15 = new ImageIcon(imagen16.getImage().getScaledInstance(Winner.getWidth(), Winner.getHeight(), Image.SCALE_DEFAULT));
         Winner.setIcon(fondo15);
         
-        Apostar7.setVisible(false);
+       Apostar7.setVisible(false);
     }
     
     public void last()throws InterruptedException{
         winner = batalla(last1,last2);
         Thread.sleep(5000);
-        //limpiar();
-        //repeticion();
+        
     }
     
     public void limpiar(){
@@ -223,12 +229,12 @@ public Equipos winner;
         cuartos();
         semifinal();
         last();
-        Thread.sleep(5000);
+        //Thread.sleep(3000);
         mostrarCuartos();
-        Thread.sleep(5000);
+        //Thread.sleep(5000);
         mostrarSemifinal();
-        Thread.sleep(5000);
-        mostrarLast();        
+        //Thread.sleep(5000);
+        mostrarLast();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -239,6 +245,13 @@ public Equipos winner;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Apostar1 = new javax.swing.JButton();
+        Apostar2 = new javax.swing.JButton();
+        Apostar3 = new javax.swing.JButton();
+        Apostar4 = new javax.swing.JButton();
+        Apostar5 = new javax.swing.JButton();
+        Apostar6 = new javax.swing.JButton();
+        Apostar7 = new javax.swing.JButton();
         Cua1 = new javax.swing.JLabel();
         Cua2 = new javax.swing.JLabel();
         Cua3 = new javax.swing.JLabel();
@@ -254,144 +267,135 @@ public Equipos winner;
         Last1 = new javax.swing.JLabel();
         Last2 = new javax.swing.JLabel();
         Winner = new javax.swing.JLabel();
-        Apostar1 = new javax.swing.JButton();
-        Apostar2 = new javax.swing.JButton();
-        Apostar3 = new javax.swing.JButton();
-        Apostar4 = new javax.swing.JButton();
-        Apostar5 = new javax.swing.JButton();
-        Apostar6 = new javax.swing.JButton();
-        Apostar7 = new javax.swing.JButton();
+        Regresar = new javax.swing.JButton();
         Fondo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(Cua1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 14, 100, 80));
-        getContentPane().add(Cua2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 100, 80));
-        getContentPane().add(Cua3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, 100, 80));
-        getContentPane().add(Cua4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 540, 100, 80));
-        getContentPane().add(Cua5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 20, 100, 80));
-        getContentPane().add(Cua6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1080, 140, 100, 80));
-        getContentPane().add(Cua7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 420, 100, 80));
-        getContentPane().add(Cua8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 530, 100, 80));
-        getContentPane().add(Semi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 70, 100, 80));
-        getContentPane().add(Semi2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 490, 100, 80));
-        getContentPane().add(Semi3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 70, 100, 80));
-        getContentPane().add(Semi4, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 500, 100, 80));
-        getContentPane().add(Last1, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 100, 80));
-        getContentPane().add(Last2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 300, 100, 80));
-        getContentPane().add(Winner, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 100, 80));
 
-        Apostar1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Apostar1.setText("Apostar");
         Apostar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Apostar1ActionPerformed(evt);
             }
         });
-        getContentPane().add(Apostar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 90, -1, -1));
+        getContentPane().add(Apostar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, -1));
 
-        Apostar2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Apostar2.setText("Apostar");
         Apostar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Apostar2ActionPerformed(evt);
             }
         });
-        getContentPane().add(Apostar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 510, -1, -1));
+        getContentPane().add(Apostar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 520, -1, -1));
 
-        Apostar3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Apostar3.setText("Apostar");
         Apostar3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Apostar3ActionPerformed(evt);
             }
         });
-        getContentPane().add(Apostar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 100, -1, -1));
+        getContentPane().add(Apostar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 110, -1, -1));
 
-        Apostar4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Apostar4.setText("Apostar");
         Apostar4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Apostar4ActionPerformed(evt);
             }
         });
-        getContentPane().add(Apostar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 500, -1, -1));
+        getContentPane().add(Apostar4, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 510, -1, -1));
 
-        Apostar5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Apostar5.setText("Apostar");
         Apostar5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Apostar5ActionPerformed(evt);
             }
         });
-        getContentPane().add(Apostar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 320, -1, -1));
+        getContentPane().add(Apostar5, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, -1, -1));
 
-        Apostar6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Apostar6.setText("Apostar");
         Apostar6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Apostar6ActionPerformed(evt);
             }
         });
-        getContentPane().add(Apostar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 320, -1, -1));
+        getContentPane().add(Apostar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 330, -1, -1));
 
-        Apostar7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         Apostar7.setText("Apostar");
         Apostar7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Apostar7ActionPerformed(evt);
             }
         });
-        getContentPane().add(Apostar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 410, -1, -1));
+        getContentPane().add(Apostar7, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 390, -1, -1));
+        getContentPane().add(Cua1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 110, 70));
+        getContentPane().add(Cua2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 110, 70));
+        getContentPane().add(Cua3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 440, 110, 70));
+        getContentPane().add(Cua4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 550, 110, 70));
+        getContentPane().add(Cua5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 20, 110, 70));
+        getContentPane().add(Cua6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 150, 110, 70));
+        getContentPane().add(Cua7, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 430, 110, 70));
+        getContentPane().add(Cua8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1060, 550, 110, 70));
+        getContentPane().add(Semi1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, 110, 70));
+        getContentPane().add(Semi2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 490, 110, 70));
+        getContentPane().add(Semi3, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 80, 110, 70));
+        getContentPane().add(Semi4, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 510, 110, 70));
+        getContentPane().add(Last1, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 310, 110, 70));
+        getContentPane().add(Last2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, 110, 70));
+        getContentPane().add(Winner, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 110, 70));
+
+        Regresar.setText("Regresar");
+        Regresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegresarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Regresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 620, 130, 30));
 
         Fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto3/Fondo2.jpg"))); // NOI18N
-        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-6, -6, 1200, 660));
+        Fondo.setVerifyInputWhenFocusTarget(false);
+        getContentPane().add(Fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1180, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Apostar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apostar2ActionPerformed
-    Wapuesta1 apuesta2 = new Wapuesta1(C,D);
-// TODO add your handling code here:
-    }//GEN-LAST:event_Apostar2ActionPerformed
-
-    
-    
-    private void Apostar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apostar6ActionPerformed
-        Wapuesta1 apuesta6 = new Wapuesta1(semi3,semi4);
-// TODO add your handling code here:
-    }//GEN-LAST:event_Apostar6ActionPerformed
-
-    
-    private void Apostar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apostar1ActionPerformed
-    Wapuesta1 apuesta1 = new Wapuesta1(A,B);
-// TODO add your handling code here:
-    }//GEN-LAST:event_Apostar1ActionPerformed
-
     private void Apostar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apostar3ActionPerformed
         Wapuesta1 apuesta3 = new Wapuesta1(E,F);
-        // TODO add your handling code here:
     }//GEN-LAST:event_Apostar3ActionPerformed
 
     private void Apostar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apostar4ActionPerformed
         Wapuesta1 apuesta4 = new Wapuesta1(G,H);
-        // TODO add your handling code here:
     }//GEN-LAST:event_Apostar4ActionPerformed
 
+    private void Apostar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apostar6ActionPerformed
+        Wapuesta1 apuesta6 = new Wapuesta1(semi3,semi4);
+    }//GEN-LAST:event_Apostar6ActionPerformed
+
+    private void Apostar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apostar2ActionPerformed
+        Wapuesta1 apuesta2 = new Wapuesta1(C,D);
+    }//GEN-LAST:event_Apostar2ActionPerformed
+
+    private void Apostar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apostar1ActionPerformed
+        Wapuesta1 apuesta1 = new Wapuesta1(A,B);
+    }//GEN-LAST:event_Apostar1ActionPerformed
+
     private void Apostar5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apostar5ActionPerformed
-        Wapuesta1 apuesta5 = new Wapuesta1(semi1,semi2);
-        // TODO add your handling code here:
+        Wapuesta1 apuesta5 = new Wapuesta1(semi1, semi2);
     }//GEN-LAST:event_Apostar5ActionPerformed
 
     private void Apostar7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apostar7ActionPerformed
-        Wapuesta1 apuesta7 = new Wapuesta1(last1,last2);
-        // TODO add your handling code here:
+        Wapuesta1 apuesta7 = new Wapuesta1(last1 , last2 );
     }//GEN-LAST:event_Apostar7ActionPerformed
+
+    private void RegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegresarActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_RegresarActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws InterruptedException {
         
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -415,12 +419,12 @@ public Equipos winner;
             java.util.logging.Logger.getLogger(Torneo1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Torneo1().setVisible(true);
-                
                 
             }
         });
@@ -445,6 +449,7 @@ public Equipos winner;
     private javax.swing.JLabel Fondo;
     private javax.swing.JLabel Last1;
     private javax.swing.JLabel Last2;
+    private javax.swing.JButton Regresar;
     private javax.swing.JLabel Semi1;
     private javax.swing.JLabel Semi2;
     private javax.swing.JLabel Semi3;
